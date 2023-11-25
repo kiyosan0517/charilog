@@ -1,11 +1,7 @@
 # [チャリログ]
 
-## 画面遷移図URL(3つ)
-https://www.figma.com/file/YrfJfDuCIqev6LuVW19NhY/chari-log-%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=design&node-id=0%3A1&mode=design&t=Mg2tSPcWeQ36PkoV-1
-
-https://www.figma.com/file/biu2wNPyR66uSsCsosxTc4/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3-%E8%A9%B3%E7%B4%B0No.1?type=design&node-id=52%3A2&mode=design&t=Mg2tSPcWeQ36PkoV-1
-
-https://www.figma.com/file/msJcGPqhO2aEiFOBe3cFAu/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3-%E8%A9%B3%E7%B4%B0No.2?type=design&node-id=2219%3A2&mode=design&t=Mg2tSPcWeQ36PkoV-1
+## 画面遷移図URL
+https://www.figma.com/file/YrfJfDuCIqev6LuVW19NhY/chari-log-%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=design&node-id=0%3A1&mode=design&t=XJfhJRyLokP4E0tf-1
 
 ## サービス概要
 チャリログはツーリングや自身のバイクに関することを投稿（発信）できる、
