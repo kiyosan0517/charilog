@@ -3,6 +3,9 @@
 ## 画面遷移図URL
 https://www.figma.com/file/YrfJfDuCIqev6LuVW19NhY/chari-log-%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=design&node-id=0%3A1&mode=design&t=XJfhJRyLokP4E0tf-1
 
+## ER図
+https://gyazo.com/6aca2491dbde8e8838b3451b23790b7e
+
 ## サービス概要
 チャリログはツーリングや自身のバイクに関することを投稿（発信）できる、
 自転車というツールに特化した投稿サービスです。
