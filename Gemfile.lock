@@ -153,6 +153,7 @@ GEM
       yard (~> 0.9.11)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
+    psych (3.3.4)
     public_suffix (5.0.4)
     puma (4.3.12)
       nio4r (~> 2.0)
@@ -325,6 +326,7 @@ DEPENDENCIES
   pry-byebug
   pry-doc
   pry-rails
+  psych (~> 3.1)
   puma (~> 4.1)
   rails (~> 6.0.3)
   rspec-rails
@@ -343,7 +345,7 @@ DEPENDENCIES
   webpacker (~> 4.0)
 
 RUBY VERSION
-   ruby 3.0.0p0
+   ruby 3.1.0p0
 
 BUNDLED WITH
    2.4.13
