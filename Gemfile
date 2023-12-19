@@ -32,6 +32,12 @@ gem 'net-http'
 
 gem 'psych', '~> 3.1'
 
+# UI/UX
+gem 'rails-i18n'
+gem 'bootstrap', '~> 5.3.2'
+gem 'font-awesome-sass', '~> 5.12.0'
+gem 'jquery-rails'
+
 group :development, :test do
   # Debugger
   gem 'better_errors'
