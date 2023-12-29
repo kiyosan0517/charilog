@@ -1,0 +1,35 @@
+<div class="col-lg-4 text-center">
+  <div class="text-center border rounded shadow-sm p-5 h-100">
+    <div class="text-center border-bottom">
+      <%= image_tag "chari-log-logo.png", class: "img-responsive", style: "height:auto%; width:90%;" %>
+    </div>
+    <div class="text-center">
+      <br>
+      <h5 class="font-weight-bold text-secondary">-MyBikeと<br/>
+                      思い出を刻もう-</h5>
+      <br/>
+    </div>
+    <div class="text-center">
+      <%= form_with local: true do |f| %>
+        <div class="form-group">
+          <%= f.text_field :email, class: 'form-control bg-light', placeholder: 'メールアドレス' %>
+        </div>
+        <div class="form-group">
+          <%= f.password_field :password, class: 'form-control bg-light mb-4', placeholder: 'パスワード' %>
+        </div>
+        <div class="actions">
+          <%= f.submit "ログイン", class: 'form-control btn btn-primary font-weight-bold rounded-pill' %>
+        </div>
+      <% end %>
+    </div>
+    <div class='text-center my-4'>
+      <span>───</span> または <span>───</span>
+    </div>
+    <div class="text-center">
+      <%= link_to "新規登録", new_user_path, class: "form-control btn btn-default rounded-pill font-weight-bold border text-info mb-3" %>
+    </div>
+    <div class="text-center">
+      <%= link_to 'パスワードをお忘れの方', class: "" %>
+    </div>
+  </div>
+</div>

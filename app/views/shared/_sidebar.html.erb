@@ -1,0 +1,59 @@
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="/" class="brand-link">
+    <%= image_tag 'chari-log-logo', class: 'brand-image img-circle elevation-3 ', style: "height:auto%; width:100%;" %>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      #
+      <div class="info">
+        <a class="d-block"><%= link_to current_user.name, posts_path %></a>
+      </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item">
+          <%= link_to "/", class: "nav-link" do %>
+            <i class="nav-icon fas fa-home"></i>
+            <p>
+              ホーム
+            </p>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "/", class: "nav-link" do %>
+            <i class="nav-icon fas fa-bicycle"></i>
+            <p>
+              投稿一覧
+            </p>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "/", class: "nav-link" do %>
+            <i class="nav-icon fas fa-heart"></i>
+            <p>
+              いいね一覧
+            </p>
+          <% end %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to logout_path, method: :delete, class: "nav-link", data: { confirm: 'ログアウトしますか？' } do %>
+            <i class="fas fa-sign-out-alt"></i>
+            <p>
+              ログアウト
+            </p>
+          <% end %>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
