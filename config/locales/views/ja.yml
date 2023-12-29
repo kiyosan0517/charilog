@@ -1,0 +1,20 @@
+ja:
+  defaults:
+    login: 'ログイン'
+    email: 'メールアドレス'
+    password: 'パスワード'
+    register: '登録'
+    logout: 'ログアウト'
+    post: '投稿'
+    profile: 'プロフィール'
+    submit: '送信'
+    update: '更新する'
+    message:
+      require_login: 'ログインしてください'
+  users:
+    new:
+      title: 'ユーザー登録'
+      to_login_page: 'ログインページへ'
+    create:
+      success: 'ユーザー登録が完了しました'
+      fail: 'ユーザー登録に失敗しました'

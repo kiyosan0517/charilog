@@ -38,6 +38,9 @@ gem 'bootstrap', '~> 5.3.2'
 gem 'font-awesome-sass', '~> 5.12.0'
 gem 'jquery-rails'
 
+# Authentication
+gem 'sorcery'
+
 group :development, :test do
   # Debugger
   gem 'better_errors'
