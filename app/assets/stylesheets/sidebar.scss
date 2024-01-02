@@ -1,0 +1,92 @@
+.navigation {
+  position: relative;
+  position: fixed;
+  /* height: 500px; 最初はこれ*/
+  height: 100vh;
+  /* width: 300px; 最初はこれ*/
+  width: 200px;
+  background-color: #4d4c86;
+  box-shadow: 10px 0 0 #c77946;
+  border-left: 10px solid #4d4c86;
+  overflow-x: hidden;
+  transition: all 0.5s;
+}
+
+.navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 20px;
+  padding-left: 10px;
+}
+
+.navigation ul li {
+  list-style: none;
+  display: block;
+  position: relative;
+  width: 100%;
+  border-radius: 15px;
+}
+
+.navigation ul li:hover {
+  background-color: #20272c5e;
+}
+
+.navigation ul li.active {
+  background-color: #c77946;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.navigation ul li a {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  color: white;
+  width: 100%;
+  display: flex;
+}
+
+/* あとで */
+.navigation ul li.active a::before {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  /* background-color: red; */
+  top: -30px;
+  right: 0;
+  border-radius: 50%;
+  box-shadow: 15px 15px 0 #c77946;
+}
+.navigation ul li.active a::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  /* background-color: red; */
+  top: 60px;
+  right: 0;
+  border-radius: 50%;
+  box-shadow: 15px -15px 0 #c77946;
+}
+
+.navigation ul li a .nav-icon {
+  display: block;
+  min-width: 45px;
+  height: 60px;
+  line-height: 70px;
+  text-align: center;
+}
+
+.navigation ul li a .nav-icon ion-icon {
+  font-size: 1.5em;
+}
+
+.navigation ul li a .title {
+  padding-left: 10px;
+  height: 60px;
+  line-height: 60px;
+  white-space: nowrap;
+}
