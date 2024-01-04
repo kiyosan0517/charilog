@@ -15,7 +15,7 @@ RSpec.describe 'UserSessions', type: :system do
       it 'ログインが失敗する' do
         visit root_path
         click_button 'ログイン'
-        expect(current_path).to eq root_path
+        expect(current_path).to eq login_path
         expect(page).to have_content('ログインに失敗しました')
       end
     end

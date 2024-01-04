@@ -1,0 +1,14 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <%= link_to posts_path, class: "navbar-brand ps-3" do %>
+      <h4>ChariLog</h4>
+    <% end %>
+    <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    <button class="navbar-toggler" type="button">
+      <span class="fas fa-bars"></span>
+    </button>
+  </div>
+</nav>
