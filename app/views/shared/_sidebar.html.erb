@@ -1,21 +1,21 @@
 <sidebar>
   <div class="navigation">
     <ul>
-      <li class="nav-item">
-        <a href="#">
+      <li class="nav-item <%= nav_item_class(posts_path) %>">
+        <%= link_to posts_path do %>
           <span class="nav-icon">
             <ion-icon name="home-outline"></ion-icon>
           </span>
           <span class="title">ホーム</span>
-        </a>
+        <% end %>
       </li>
-      <li class="nav-item">
-        <a href="#">
+      <li class="nav-item <%= nav_item_class(new_post_path) %>">
+        <%= link_to new_post_path do %>
           <span class="nav-icon">
             <ion-icon name="person-circle-outline"></ion-icon>
           </span>
           <span class="title">プロフィール</span>
-        </a>
+        <% end %>
       </li>
       <li class="nav-item">
         <a href="#">
@@ -50,11 +50,11 @@
         </a>
       </li>
       <li class="nav-item">
-        <%= link_to logout_path, method: :delete do %>
+        <%= link_to logout_path, method: :delete, data: { confirm: 'ログアウトしますか？' } do %>
           <span class="nav-icon">
             <ion-icon name="log-out-outline"></ion-icon>
           </span>
-          <span class="title">サインアウト</span>
+          <span class="title">ログアウト</span>
         <% end %>
       </li>
     </ul>
@@ -68,19 +68,5 @@
     nomodule
     src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
   ></script>
-  <script>
-    const list = document.querySelectorAll(".list");
-    console.log(list);
-    function activeLink() {
-      list.forEach((item) =>
-        // console.log(item);
-        item.classList.remove("active")
-      );
-      this.classList.add("active");
-    }
-
-    list.forEach((item) => {
-      item.addEventListener("click", activeLink);
-    });
-  </script>
+  
 </sidebar>
