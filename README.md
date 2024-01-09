@@ -1,11 +1,5 @@
 # [チャリログ]
 
-## 画面遷移図URL
-https://www.figma.com/file/YrfJfDuCIqev6LuVW19NhY/chari-log-%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=design&node-id=0%3A1&mode=design&t=XJfhJRyLokP4E0tf-1
-
-## ER図
-https://gyazo.com/5f8ed673eda7f2627b85fca28c39f04c
-
 ## サービス概要
 チャリログはツーリングや自身のバイクに関することを投稿（発信）できる、
 自転車というツールに特化した投稿サービスです。
@@ -53,3 +47,9 @@ XやFacebookなど以上に自転車に関連する投稿を発信しやすく�
 * ヘルスケア機能（ユーザーが自身で設定した走行距離・消費カロリー目標（各１ヶ月）と、HealthKitから得たデータを照らし合わせて達成できたかを測る（API(HealthKit)を使用する予定））
 * 投稿に位置情報を紐づける機能（API(Google Map)を使用する予定）
 * 退会機能
+
+## 画面遷移図URL
+https://www.figma.com/file/YrfJfDuCIqev6LuVW19NhY/chari-log-%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=design&node-id=0%3A1&mode=design&t=XJfhJRyLokP4E0tf-1
+
+## ER図
+![08CE0444-7D3A-49E7-B16F-BC06121E7FA6](https://github.com/kiyosan0517/chari-log/assets/131296049/0dcd9167-1512-4fb4-9bf8-6f1792d8e7e3)
