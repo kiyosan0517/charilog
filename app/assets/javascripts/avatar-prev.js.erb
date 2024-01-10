@@ -1,0 +1,60 @@
+document.addEventListener('DOMContentLoaded', function() {
+  const PrevImg = document.querySelector('#prev_img');
+  const DeleteBtnArea = document.querySelector('.delete-preview');
+  const DeleteBtn = document.querySelector('.fa-times');
+  const AvatarInput = document.querySelector('#user_avatar');
+  const sampleImagePath = '<%= asset_path('sample.png') %>';
+  
+  // 初期表示の設定
+  if (window.innerWidth >= 450) {
+    PrevImg.classList.add('upsize');
+    PrevImg.classList.remove('downsize');
+    DeleteBtn.classList.add('fa-2x');
+    DeleteBtn.classList.remove('fa-lg');
+  } else {
+    PrevImg.classList.remove('upsize');
+    PrevImg.classList.add('downsize');
+    DeleteBtn.classList.remove('fa-2x');
+    DeleteBtn.classList.add('fa-lg');
+  }
+
+  // 画面サイズが変更された時にプレビューのサイズを切り替える
+  window.addEventListener('resize', function() {
+    if (window.innerWidth >= 450) {
+      PrevImg.classList.add('upsize');
+      PrevImg.classList.remove('downsize');
+      DeleteBtn.classList.add('fa-2x');
+      DeleteBtn.classList.remove('fa-lg');
+    } else {
+      PrevImg.classList.remove('upsize');
+      PrevImg.classList.add('downsize');
+      DeleteBtn.classList.remove('fa-2x');
+      DeleteBtn.classList.add('fa-lg');
+    }
+  });
+
+  $(function() {
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#prev_img').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+    $("#user_avatar").change(function() {
+      readURL(this);
+      DeleteBtnArea.classList.add('open');
+    });
+
+    DeleteBtnArea.addEventListener('click', function() {
+      // プレビューを削除
+      PrevImg.src = sampleImagePath;
+      // ×ボタンを非表示
+      DeleteBtnArea.classList.remove('open');
+      // アップロードファイルをクリア
+      AvatarInput.value = null;
+    });
+  });
+});

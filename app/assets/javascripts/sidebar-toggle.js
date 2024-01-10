@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
 
   // 初期表示の設定
-  if (window.innerWidth >= 991) {
+  if (window.innerWidth >= 992) {
     sidebar.classList.add('open');
   } else {
     sidebar.classList.remove('open');
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // 画面サイズが変更された時にサイドバーの表示を切り替える
   window.addEventListener('resize', function() {
-    if (window.innerWidth >= 991) {
+    if (window.innerWidth >= 992) {
       sidebar.classList.add('open');
     } else {
       sidebar.classList.remove('open');

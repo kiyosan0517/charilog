@@ -1,6 +1,16 @@
 <sidebar>
   <div class="navigation">
     <ul>
+      <div class="user-panel d-flex align-items-center pb-3 border-bottom border-dark">
+        <div class="user_avatar pe-2">
+          <%= link_to posts_path do %>
+            <%= image_tag current_user.avatar.variant(gravity: :center, resize: "50x50^", crop:"200x200+0+0"), class: "rounded-circle mx-auto d-block bg-dark-subtle" %>
+          <% end %>
+        </div>
+        <div class="info">
+          <%= link_to current_user.name, posts_path, class: "d-block font-weight-bold text-secondary" %>
+        </div>
+      </div>
       <li class="nav-item <%= nav_item_class(posts_path) %>">
         <%= link_to posts_path do %>
           <span class="nav-icon">
@@ -18,36 +28,36 @@
         <% end %>
       </li>
       <li class="nav-item">
-        <a href="#">
+        <%= link_to posts_path do %>
           <span class="nav-icon">
             <ion-icon name="tv-outline"></ion-icon>
           </span>
           <span class="title">チャンネル</span>
-        </a>
+        <% end %>
       </li>
       <li class="nav-item">
-        <a href="#">
+        <%= link_to posts_path do %>
           <span class="nav-icon">
             <ion-icon name="settings-outline"></ion-icon>
           </span>
           <span class="title">設定</span>
-        </a>
+        <% end %>
       </li>
       <li class="nav-item">
-        <a href="#">
+        <%= link_to posts_path do %>
           <span class="nav-icon">
             <ion-icon name="id-card-outline"></ion-icon>
           </span>
           <span class="title">個人情報</span>
-        </a>
+        <% end %>
       </li>
       <li class="nav-item">
-        <a href="#">
+        <%= link_to posts_path do %>
           <span class="nav-icon">
             <ion-icon name="help-circle-outline"></ion-icon>
           </span>
           <span class="title">ヘルプ</span>
-        </a>
+        <% end %>
       </li>
       <li class="nav-item">
         <%= link_to logout_path, method: :delete, data: { confirm: 'ログアウトしますか？' } do %>

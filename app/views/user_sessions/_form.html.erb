@@ -1,20 +1,19 @@
 <div class="border rounded shadow p-5 h-100">
-  <div class="text-center border-bottom mb-4">
+  <div class="text-center border-bottom">
     <%= image_tag "chari-log-logo.png", class: "img-fluid", style: "max-width: 85%;" %>
   </div>
-  <div class="text-center">
-    <h4 class="font-weight-bold text-secondary">-MyBikeと<br/>
-                    思い出を刻もう-</h4>
-    <br/>
+  <div class="text-center py-3">
+    <h5 class="font-weight-bold text-secondary">MyBikeとの思い出を<br>
+          刻んで共有しよう!!</h5>
   </div>
   <div class="text-center">
     <%= form_with url: login_path, method: :post, local: true do |f| %>
       <div class="form-group">
-        <%= f.text_field :email, class: 'form-control bg-light', placeholder: 'メールアドレス' %>
+        <%= f.text_field :email, class: 'form-control bg-light', placeholder: 'メールアドレス', autocomplete: 'email' %>
       </div>
       <div class="form-group text-left pb-2">
         <%= f.password_field :password, class: 'form-control bg-light ', placeholder: 'パスワード', type: "password", id: "password"%>
-        <input type="checkbox" onChange="document.getElementById('password').type = (this.checked) ? 'text' : 'password';">
+        <input name="pwPrev" type="checkbox" onChange="document.getElementById('password').type = (this.checked) ? 'text' : 'password';">
         パスワードを表示
       </div>
       <div class="actions">
@@ -23,12 +22,12 @@
     <% end %>
   </div>
   <div class='text-center my-4'>
-    <span>────</span> または <span>────</span>
+    <span>─────</span> または <span>─────</span>
   </div>
   <div class="text-center">
-    <%= link_to "新規登録", new_user_path, class: "btn btn-outline-info btn-block font-weight-bold rounded-pill mb-3" %>
+    <%= link_to "新規登録", new_user_path, data: {"turbolinks" => false}, class: "btn btn-outline-info btn-block font-weight-bold rounded-pill mb-3" %>
   </div>
   <div class="text-center">
-    <%= link_to 'パスワードをお忘れの方', class: "" %>
+    <%= link_to 'パスワードをお忘れの方', new_user_path, data: {"turbolinks" => false}, class: "" %>
   </div>
 </div>
