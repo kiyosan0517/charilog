@@ -32,6 +32,10 @@ gem 'net-http'
 
 gem 'psych', '~> 3.1'
 
+# Uploader
+gem "aws-sdk-s3", require: false
+
+
 # UI/UX
 gem 'rails-i18n'
 gem 'bootstrap', '~> 5.3.2'

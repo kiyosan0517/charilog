@@ -3,8 +3,14 @@
     <ul>
       <div class="user-panel d-flex align-items-center pb-3 border-bottom border-dark">
         <div class="user_avatar pe-2">
-          <%= link_to posts_path do %>
-            <%= image_tag current_user.avatar.variant(gravity: :center, resize: "50x50^", crop:"200x200+0+0"), class: "rounded-circle mx-auto d-block bg-dark-subtle" %>
+          <% if current_user.avatar.present? %>
+            <%= link_to posts_path do %>
+              <%= image_tag current_user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle d-block bg-dark-subtle" %>
+            <% end %>
+          <% else %>
+            <%= link_to posts_path do %>
+              <%= image_tag 'sample.png', style: "height: 50px; width: 50px;", class: "rounded-circle mx-auto d-block bg-dark-subtle" %>
+            <% end %>
           <% end %>
         </div>
         <div class="info">
