@@ -1,0 +1,25 @@
+.upsize {
+  height: 130px; 
+  width: 130px;
+}
+
+.downsize {
+  height: 78px; 
+  width: 78px;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.delete-preview {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.delete-preview.open {
+  display: block;
+}

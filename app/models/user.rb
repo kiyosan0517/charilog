@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
+  before_create :default_image
 
+  has_one_attached :avatar
   has_many :posts, dependent: :destroy
 
   validates :password, length: { minimum: 8 }, if: -> { new_record? || changes[:crypted_password] }
@@ -20,4 +22,11 @@ class User < ApplicationRecord
     MARIN:46,MERIDA:47,MIYATA:48,NEILPRYDE:49,NESTO:50,ORBEA:51,Panasonic:52,PINARELLO:53,RALEIGH:54,RIDLEY:55,RITCHEY:56,
     SCOTT:57,SHIMANO:58,SPECIALIZED:59,THOMPSON:60,TIME:61,TREK:62,Wilier:63,YONEX:64
   }
+
+  def default_image
+    if !self.avatar.attached?
+      self.avatar.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'sample.png')), filename: 'sample.png', content_type: 'image/png')
+    end
+  end
+
 end
