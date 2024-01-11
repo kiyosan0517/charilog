@@ -22,10 +22,12 @@
         <%= javascript_include_tag "sidebar-toggle.js" %>
 
         <div class="container-fluid bg-light p-0">
-          <div class="sticky-top shadow-sm bg-white">
-            <%= render "/shared/header" %>
-          </div>
           <div class="row">
+            <!-- ヘッダー -->
+            <div class="header-wrapper sticky-top shadow-sm bg-white">
+              <%= render "/shared/header" %>
+            </div>
+
             <!-- サイドバー -->
             <div class="sidebar-wrapper col-xl-2 col-lg-2 z-2">
               <%= render "/shared/sidebar" %>
