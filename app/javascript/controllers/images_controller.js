@@ -3,13 +3,32 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="images"
 export default class extends Controller {
   /* ①静的プロパティを定義（data-{controller}-target で指定したターゲット名） */
-  static targets = ["select", "preview", "image_box"]
+  static targets = ["select", "preview", "image_box", "error"]
+
+  imageSizeOver(file){ // アップロードする画像ファイルサイズの上限（2MB）を超えたかどうか判定
+    const fileSize = (file.size)/1000 // ファイルサイズ(KB)
+    if(fileSize > 5000){
+      return true // ファイルサイズが2MBを超えた場合はtrueを返す
+    }else{
+      return false
+    }
+  }
 
   /* ②画像選択時の処理 */
   selectImages(){
-    const files = this.selectTargets[0].files // file_fieldで取得した画像ファイル
-    for(const file of files){
-      this.uploadImage(file) // 選択した画像ファイルのアップロード
+    this.errorTarget.textContent = ""
+    const uploadedFilesCount = this.previewTarget.querySelectorAll(".image-box").length // すでにアップロードされた画像の枚数
+    const files = this.selectTargets[0].files // 選択した画像の枚数（これからアップロードする画像）
+    if(files.length + uploadedFilesCount > 4){
+      this.errorTarget.textContent = "画像アップロード上限は最大4枚です"
+    }else{
+      for(const file of files){
+        if(this.imageSizeOver(file)){
+          this.errorTarget.textContent = "ファイルサイズの上限(1枚あたり5MB)を超えている画像はアップロードできません"
+        }else{
+          this.uploadImage(file) // ファイルのアップロード
+        }
+      }
     }
     this.selectTarget.value = "" // 選択ファイルのリセット
   }

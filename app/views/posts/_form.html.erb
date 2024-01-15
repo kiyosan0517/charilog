@@ -2,15 +2,9 @@
   <%= render 'shared/error_messages', object: f.object %>
   <div class="offset-lg-2 col-lg-8 offset-md-1 col-md-10 col-sm-12 col-12 pt-3 p-0">
     <h6 class="fw-bold require">
-      投稿画像(最大4枚まで)
+      <i class="fas fa-camera me-2"></i>投稿画像(最大4枚まで)
     </h6>
-
-    <div class="count-over-alert alert alert-danger fade show mt-3" style="display:none;">
-      画像は合計で4枚以下にしてください
-    </div>
-    <div class="size-over-alert alert alert-danger fade show mt-3" style="display:none;">
-      ファイルサイズは1枚あたり5MBまです
-    </div>
+    <p data-images-target="error" class="text-danger m-0"></p>
 
     <div class="row mb-1" data-images-target="preview">
       <% if @post.images.attached? %>
@@ -37,11 +31,17 @@
       <% end %>
     </div>
     <div class="form-group">
-      <%= f.label :title, class: "fw-bold require" %>
+      <span class="form-icon">
+        <i class="fas fa-bicycle"></i>
+      </span>
+      <%= f.label "ログタイトル", class: "fw-bold require" %>
       <%= f.text_field :title, class: 'form-control' %>
     </div>
     <div class="form-group">
-      <%= f.label :content, class: "fw-bold" %>
+      <span class="form-icon me-1">
+        <i class="fas fa-pencil-alt"></i>
+      </span>
+      <%= f.label "ログ内容", class: "fw-bold" %>
       <%= f.text_area :content, class: 'form-control', rows: 5 %>
     </div>
     <div class='text-center'>
