@@ -40,6 +40,7 @@ gem "aws-sdk-s3", require: false
 gem 'rails-i18n'
 gem 'bootstrap', '~> 5.3.2'
 gem 'font-awesome-sass', '~> 5.12.0'
+gem 'stimulus-rails'
 gem 'jquery-rails'
 
 # Authentication

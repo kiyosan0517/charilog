@@ -12,6 +12,28 @@ body {
   border: dashed;
 }
 
-.pointer{
+.pointer {
   cursor: pointer;
+}
+
+.require::after {
+  content: "必須";
+  font-weight: lighter;
+  font-size: 13px;
+  border-radius: 2px;
+  color: white;
+  background-color: red;
+  margin-left: 5px;
+  padding: 0 5px;
+}
+
+.title-underline {
+  border-bottom: 5px solid #77e1f7
+}
+
+.operetion-bg {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
 }

@@ -7,8 +7,7 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1 or /posts/1.json
-  def show
-  end
+  def show; end
 
   # GET /posts/new
   def new
@@ -16,34 +15,27 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /posts or /posts.json
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.new(post_params)
 
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if @post.save
+      redirect_to posts_path, flash: { success: 'ログを投稿しました' }
+    else
+      flash.now[:danger] = 'ログの投稿に失敗しました'
+      render :new
     end
   end
 
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
-    respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }
-        format.json { render :show, status: :ok, location: @post }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if @post.update(post_params)
+      redirect_to posts_path, flash: { warning: 'ログを更新しました' }
+    else
+      flash.now[:danger] = 'ログの更新に失敗しました'
+      render :edit
     end
   end
 
@@ -57,14 +49,36 @@ class PostsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
+  # 画像アップロード用のアクション
+  def upload_image
+    @image_blob = create_blob(params[:image])
+    render json: @image_blob
+  end
 
-    # Only allow a list of trusted parameters through.
-    def post_params
-      params.require(:post).permit(:user_id, :title, :content)
-    end
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def post_params
+    params.require(:post).permit(:title, :content, images: []).merge(images: uploaded_images)
+  end
+
+    # アップロード済み画像の検索
+  def uploaded_images
+    params[:post][:images].map { |id| ActiveStorage::Blob.find(id) } if params[:post][:images]
+  end
+
+  # blobデータの作成
+  def create_blob(file)
+    ActiveStorage::Blob.create_and_upload!(
+      io: file.open,
+      filename: file.original_filename,
+      content_type: file.content_type
+    )
+  end
+
 end
