@@ -14,17 +14,16 @@
         <div class="text-center">
           <%= form_with model: @user, local: true do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
-            <div class="form-group d-flex justify-content-around align-items-center py-3">
-              <div class="prev-img position-relative">
+            <div class="form-group d-flex justify-content-around align-items-center py-2">
+              <div class="prev-img position-relative border-right border-secondary pe-3">
                 <%= image_tag 'sample.png', class: "rounded-circle bg-dark-subtle", id: "prev_img" %>
                 <div class="delete-preview">
                   <i class="fas fa-times fa-lg"></i>
                 </div>
               </div>
               <%= f.label :avatar do %>
-                <div class="px-5 py-4 ms-1 bg-light border-dashed border-secondary pointer rounded-1" >
-                  <i class="fas fa-camera"></i>
-                  <span>画像を<br>
+                <div class="avatar-area d-flex align-items-center justify-content-center bg-light border-dashed border-secondary pointer rounded-1 ms-3" >
+                  <span><i class="fas fa-camera me-2"></i>画像を<br>
                   選択する</span>
                 </div>
                 <%= f.file_field :avatar, :id => 'user_avatar', accept: '.jpeg, .jpg, .png', style: "display: none;" %>

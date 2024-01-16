@@ -3,33 +3,42 @@ document.addEventListener('DOMContentLoaded', function() {
   const DeleteBtnArea = document.querySelector('.delete-preview');
   const DeleteBtn = document.querySelector('.fa-times');
   const AvatarInput = document.querySelector('#user_avatar');
+  const AvatarInputArea = document.querySelector('.avatar-area');
   const sampleImagePath = '<%= asset_path('sample.png') %>';
   
   // 初期表示の設定
-  if (window.innerWidth >= 450) {
+  if (window.innerWidth >= 475) {
     PrevImg.classList.add('upsize');
     PrevImg.classList.remove('downsize');
     DeleteBtn.classList.add('fa-2x');
     DeleteBtn.classList.remove('fa-lg');
+    AvatarInputArea.classList.add('avatar-input-upsize');
+    AvatarInputArea.classList.remove('avatar-input-downsize');
   } else {
     PrevImg.classList.remove('upsize');
     PrevImg.classList.add('downsize');
     DeleteBtn.classList.remove('fa-2x');
     DeleteBtn.classList.add('fa-lg');
+    AvatarInputArea.classList.remove('avatar-input-upsize');
+    AvatarInputArea.classList.add('avatar-input-downsize');
   }
 
   // 画面サイズが変更された時にプレビューのサイズを切り替える
   window.addEventListener('resize', function() {
-    if (window.innerWidth >= 450) {
+    if (window.innerWidth >= 475) {
       PrevImg.classList.add('upsize');
       PrevImg.classList.remove('downsize');
       DeleteBtn.classList.add('fa-2x');
       DeleteBtn.classList.remove('fa-lg');
+      AvatarInputArea.classList.add('avatar-input-upsize');
+      AvatarInputArea.classList.remove('avatar-input-downsize');
     } else {
       PrevImg.classList.remove('upsize');
       PrevImg.classList.add('downsize');
       DeleteBtn.classList.remove('fa-2x');
       DeleteBtn.classList.add('fa-lg');
+      AvatarInputArea.classList.remove('avatar-input-upsize');
+      AvatarInputArea.classList.add('avatar-input-downsize');
     }
   });
 

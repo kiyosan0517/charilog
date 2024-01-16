@@ -35,11 +35,14 @@ gem 'psych', '~> 3.1'
 # Uploader
 gem "aws-sdk-s3", require: false
 
+# Task
+gem "whenever", require: false
 
 # UI/UX
 gem 'rails-i18n'
 gem 'bootstrap', '~> 5.3.2'
 gem 'font-awesome-sass', '~> 5.12.0'
+gem 'stimulus-rails'
 gem 'jquery-rails'
 
 # Authentication

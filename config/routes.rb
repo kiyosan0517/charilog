@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :posts
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'static_pages#top'
   post '/', to: 'user_sessions#create'
@@ -8,6 +7,7 @@ Rails.application.routes.draw do
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
 
-  resources :users, only: %i[new create]
+  resources :users, only: %i[new create show]
   resources :posts
+  post "posts/upload_image", to: "posts#upload_image"
 end

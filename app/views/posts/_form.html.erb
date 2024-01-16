@@ -1,32 +1,56 @@
-<%= form_with(model: post, local: true) do |form| %>
-  <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+<%= form_with(model: @post, local: true, data: { controller: "images"}) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="offset-lg-2 col-lg-8 offset-md-1 col-md-10 col-sm-12 col-12 pt-3 p-0">
+    <h6 class="fw-bold require">
+      <i class="fas fa-camera me-2"></i>投稿画像(最大4枚まで)
+    </h6>
+    <p data-images-target="error" class="text-danger m-0"></p>
 
-      <ul>
-        <% post.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+    <div class="row mb-1" data-images-target="preview">
+      <% if @post.images.attached? %>
+        <% @post.images.each do |image| %>
+          <div class="image-box col-6 col-sm-3 position-relative" data-controller="images" data-images-target="image_box">
+            <div class="text-center">
+              <%= image_tag image, class: 'img-thumbnail mb-2' %>
+              <a class="operetion-bg pointer position-absolute top-0 end-0">
+                <i class="fas fa-times text-white d-flex justify-content-center align-items-center h-100 m-0" data-action="click->images#deleteImage"></i>
+              </a>
+              <%= f.hidden_field :images, name: "post[images][]", style: "display: none", value: "#{image.blob.id}" %>
+            </div>
+          </div>
         <% end %>
-      </ul>
+      <% end %>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+    <div class="form-group">
+      <%= f.label :images, class: "input-area text-center d-block w-100 border-dashed border-2 rounded-1 border-success pointer py-2 py-lg-4", for: "file-upload" do %>
+        <span class="text-center text-success">
+          <i class="fas fa-camera me-2"></i>画像を選択する
+        </span>
+        <%= f.file_field :images, id: "file-upload", multiple: true, accept: '.jpeg, .jpg, .png', style: "display: none;", data: { images_target: "select", action: "change->images#selectImages" } %>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <span class="form-icon">
+        <i class="fas fa-bicycle"></i>
+      </span>
+      <%= f.label "ログタイトル", class: "fw-bold require" %>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <span class="form-icon me-1">
+        <i class="fas fa-pencil-alt"></i>
+      </span>
+      <%= f.label "ログ内容", class: "fw-bold" %>
+      <%= f.text_area :content, class: 'form-control', rows: 5 %>
+    </div>
+    <div class='text-center'>
+      <% if f.object.new_record? %>
+        <%= f.submit '投稿する', class: 'btn btn-success m-4 submit-button' %>
+      <% else %>
+        <%= f.submit '編集する', class: 'btn btn-primary m-4 submit-button' %>
+      <% end %>
+      <%= link_to '一覧へ', posts_path, class: 'btn btn-info m-4' %>
+    </div>
   </div>
 <% end %>
