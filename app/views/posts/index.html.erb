@@ -1,31 +1,15 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="title-area title-underline mb-2">
+    <h2 class="fw-bold">ログ一覧</h2>
+  </div>
 
-<h1>Posts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Title</th>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.user_id %></td>
-        <td><%= post.title %></td>
-        <td><%= post.content %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+  <!-- 掲示板一覧 -->
+  <div class="row">
+    <% if @posts.present? %>
+      <%= render @posts %>
+    <% else %>
+      <p>ログがまだありません</p>
+      <%= link_to 'ログの第一号になろう！', new_post_path %>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Post', new_post_path %>
+  </div>
+</div>

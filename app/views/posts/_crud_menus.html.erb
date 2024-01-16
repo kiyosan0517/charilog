@@ -1,0 +1,14 @@
+<td class="action">
+  <ul class='crud-menu-btn list-inline m-0'>
+    <li class="list-inline-item me-2">
+      <%= link_to edit_post_path(post), class: "hover-opacity-50" do %>
+        <i class="fas fa-pencil-alt fa-lg text-dark"></i>
+      <% end %>
+    </li>
+    <li class="list-inline-item me-2">
+      <%= link_to post_path(post), class: "hover-opacity-50", method: :delete, data: {confirm: "ログを削除しますか"} do %>
+        <i class="fas fa-trash fa-lg text-dark"></i>
+      <% end %>
+    </li>
+  </ul>
+</td>
