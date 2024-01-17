@@ -1,0 +1,60 @@
+<div class="col-sm-12 col-md-6 col-xl-4 mb-3">
+  <div class="card shadow-sm">
+    <div class="header-area">
+      <div class="container">
+        <div class="user-panel d-flex py-3">
+          <div class="user-avatar pe-2">
+            <%= link_to posts_path do %>
+              <% if current_user.avatar.present? %>
+                <%= image_tag post.user.avatar.variant(gravity: :center, resize: "40x40^!", crop:"40x40+0+0"), class: "d-block bg-dark-subtle rounded-circle" %>
+              <% else %>
+                <%= image_tag 'sample.png', style: "height: 40px; width: 40px;", class: "d-block bg-dark-subtle rounded-circle" %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="user-name d-flex align-items-center text-break">
+            <%= link_to post.user.name, posts_path, class: "fw-bold text-dark hover-opacity-50", style:"text-decoration:none;" %>
+          </div>
+          <div class="operation_area d-flex align-items-center ml-auto">
+            <% if current_user.own?(post) %>
+              <%= render 'crud_menus', post: post %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%= link_to edit_post_path(post), class:"text-dark", style:"text-decoration:none;" do %>
+      <% if post.images.present? %>
+        <div class="img-area">
+          <div id="img-carousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <% post.images.each_with_index do |image, index| %>
+                <li data-target="#img-carousel" data-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>" style="<%= post.images.length == 1 ? 'display: none;' : 'cursor: default;' %>"></li>
+              <% end %>
+            </ol>
+
+            <div class="carousel-inner">
+              <% post.images.each_with_index do |image, index| %>
+                <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
+                  <%= image_tag(image.variant(gravity: :center, resize: "510x350^", crop: "510x350+0+0"), class: "d-block mx-auto img-fluid hover-opacity-75") %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="card-body hover-opacity-50 ps-1">
+        <div class="container">
+          <h5 class="card-title fw-bold"><%= post.title %></h5>
+          <p class="card-text m-0"><%= post.content.truncate(50) %></p>
+          <span class="text-black-75">
+            <i class="far fa-calendar me-1"></i>
+            <%= l post.created_at, format: :long %>
+          </span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -2,22 +2,9 @@
   <div class="title-field title-underline mt-4 pb-3">
     <h1>ログ投稿</h1>
   </div>
-  <div class="card shadow">
-    <div class="card-header">
-      <div class="d-flex align-items-center ps-0">
-        <div class="avatar-field me-2">
-          <%= link_to image_tag(current_user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle"),
-                      posts_path, style: "display: inline-block;" %>
-        </div>
-        <div class="name_field text-break">
-          <%= current_user.name %>
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <%= render 'form', post: @post %>
-    </div>
-  </div>
+
+  <%= render 'form', post: @post %>
+  
 </div>
 
 <%= link_to 'Back', posts_path %>

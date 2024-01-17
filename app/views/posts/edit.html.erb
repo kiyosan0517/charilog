@@ -1,6 +1,10 @@
-<h1>Editing Post</h1>
+<div class="container-fluid p-0">
+  <div class="title-field title-underline mt-4 pb-3">
+    <h1>ログ編集</h1>
+  </div>
+  
+  <%= render 'form', post: @post %>
 
-<%= render 'form', post: @post %>
+</div>
 
-<%= link_to 'Show', @post %> |
 <%= link_to 'Back', posts_path %>

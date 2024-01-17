@@ -1,9 +1,10 @@
 class PostsController < ApplicationController
+  before_action :require_login
   before_action :set_post, only: %i[ show edit update destroy ]
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.all.includes(:user).order(created_at: :desc).page(params[:page])
   end
 
   # GET /posts/1 or /posts/1.json
@@ -41,12 +42,9 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
-    @post.destroy
-
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    @post.images.purge
+    @post.destroy!
+    redirect_to posts_path, flash: { success: 'ログを削除しました' }
   end
 
   # 画像アップロード用のアクション
@@ -59,7 +57,7 @@ class PostsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

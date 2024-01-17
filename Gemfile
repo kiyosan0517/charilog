@@ -44,6 +44,8 @@ gem 'bootstrap', '~> 5.3.2'
 gem 'font-awesome-sass', '~> 5.12.0'
 gem 'stimulus-rails'
 gem 'jquery-rails'
+gem 'kaminari'
+gem 'bootstrap4-kaminari-views'
 
 # Authentication
 gem 'sorcery'
