@@ -91,6 +91,9 @@ GEM
     bootstrap (5.3.2)
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 2.11.8, < 3)
+    bootstrap4-kaminari-views (1.0.1)
+      kaminari (>= 0.13)
+      rails (>= 3.1)
     builder (3.2.4)
     bullet (7.1.4)
       activesupport (>= 3.0.0)
@@ -147,6 +150,18 @@ GEM
       thor (>= 0.14, < 2.0)
     json (2.7.1)
     jwt (2.7.1)
+    kaminari (1.2.2)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
+      actionview
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
     language_server-protocol (3.17.0.3)
     listen (3.8.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -393,6 +408,7 @@ DEPENDENCIES
   binding_of_caller
   bootsnap (>= 1.4.2)
   bootstrap (~> 5.3.2)
+  bootstrap4-kaminari-views
   bullet
   byebug
   capybara (>= 2.15)
@@ -402,6 +418,7 @@ DEPENDENCIES
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   jquery-rails
+  kaminari
   listen (~> 3.2)
   net-http
   pg

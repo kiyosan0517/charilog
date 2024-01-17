@@ -4,7 +4,7 @@
   </div>
 
   <!-- 掲示板一覧 -->
-  <div class="row">
+  <div class="row mb-4">
     <% if @posts.present? %>
       <%= render @posts %>
     <% else %>
@@ -12,4 +12,7 @@
       <%= link_to 'ログの第一号になろう！', new_post_path %>
     <% end %>
   </div>
+
+  <%= paginate @posts, theme: 'twitter-bootstrap-4' %>
+
 </div>
