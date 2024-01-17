@@ -25,12 +25,12 @@ class User < ApplicationRecord
 
   def default_image
     if !self.avatar.attached?
-      self.avatar.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'sample.png')), filename: 'sample.png', content_type: 'image/png')
+      self.avatar.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'sample.png')),
+                         filename: 'sample.png', content_type: 'image/png')
     end
   end
 
   def own?(object)
     id == object.user_id
   end
-
 end

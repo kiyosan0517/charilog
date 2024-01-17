@@ -7,16 +7,10 @@ class PostsController < ApplicationController
     @posts = Post.all.includes(:user).order(created_at: :desc).page(params[:page])
   end
 
-  # GET /posts/1 or /posts/1.json
-  def show; end
-
   # GET /posts/new
   def new
     @post = Post.new
   end
-
-  # GET /posts/1/edit
-  def edit; end
 
   # POST /posts or /posts.json
   def create
@@ -29,6 +23,12 @@ class PostsController < ApplicationController
       render :new
     end
   end
+
+  # GET /posts/1 or /posts/1.json
+  def show; end
+
+  # GET /posts/1/edit
+  def edit; end
 
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
@@ -78,5 +78,4 @@ class PostsController < ApplicationController
       content_type: file.content_type
     )
   end
-
 end

@@ -1,0 +1,82 @@
+ja:
+  defaults:
+    email: 'メールアドレス'
+    password: 'パスワード'
+    login: 'ログイン'
+    logout: 'ログアウト'
+    register: '登録する'
+    post: '投稿する'
+    submit: '送信する'
+    update: '更新する'
+    follow: 'フォローする'
+    unfollow: 'フォロー解除'
+    to_register_page: '新規登録ページへ'
+    to_login_page: 'ログインページへ'
+    to_posts_page: '投稿一覧へ'
+    message:
+      require_login: 'ログインしてください'
+      created: '%{item}を作成しました'
+      not_created: '%{item}の作成に失敗しました。'
+      updated: '%{item}を更新しました'
+      not_updated: '%{item}の更新に失敗しました'
+      destroyed: '%{item}を削除しました'
+      delete_confirm: '%{item}を削除しますか？'
+      not_authorized: '権限がありません'
+  application:
+    not_authenticated:
+      warning: ログインしてください
+  users:
+    index:
+      title: 'ユーザー一覧'
+    new:
+      title: 'ユーザー登録'
+    create:
+      success: 'ユーザー登録が完了しました'
+      fail: 'ユーザー登録に失敗しました'
+    show:
+      title: 'ユーザー詳細'
+  user_sessions:
+    new:
+      title: 'ログイン'
+      forget_password?: 'パスワードをお忘れの方はこちら'
+    create: 
+      success: 'ログインしました'
+      fail: 'ログインに失敗しました'
+    destroy:
+      success: 'ログアウトしました'
+  posts:
+    index:
+      title: 'ログ一覧'
+      no_post: 'ログがまだありません'
+    new:
+      title: 'ログ投稿'
+    show:
+      title: 'ログ詳細'
+    edit:
+      title: 'ログ編集'
+    bookmarks:
+      title: 'ブックマーク一覧'
+      no_bookmark: 'ブックマーク中のログはありません'
+    likes:
+      title: 'いいね一覧'
+      no_like: 'いいねしたログはありません'
+  items:
+    index:
+
+    create:
+
+    destroy:
+
+  profiles:
+    show:
+      title: 'マイページ'
+      follow: 'フォロー中'
+      follower: 'フォロワー'
+    edit:
+      title: 'プロフィール編集'
+  password_resets:
+    new:
+      title: パスワードリセット申請
+    edit:
+      title: パスワードリセット
+      

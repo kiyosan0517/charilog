@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
 
-  def index
-  end
+  def index; end
 
   def new
     @user = User.new
@@ -20,22 +19,11 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-  end
-
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
-  end
+  def show; end
 
   private
 
   def user_params
     params.require(:user).permit(:name, :my_bike, :email, :password, :password_confirmation, :avatar)
   end
-
 end
