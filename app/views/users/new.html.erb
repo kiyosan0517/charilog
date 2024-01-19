@@ -2,60 +2,76 @@
 
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-xl-5 col-lg-6 col-md-8 col-sm-11 col-11">
-      <div class="border rounded shadow p-4">
+    <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 col-12 px-md-4">
+      <div class="border rounded shadow-sm p-4 py-5">
         <div class="text-center border-bottom">
           <%= image_tag "chari-log-logo.png", class: "img-fluid", style: "max-width: 85%;" %>
         </div>
-        <div class="text-center py-3">
-          <h4 class="font-weight-bold text-secondary">MyBikeとの思い出を<br>
-          刻んで共有しよう!!</h4>
+        <div class="text-center py-4">
+          <h4 class="font-weight-bold text-secondary">MyBikeとの思い出を
+          <br>刻んで共有しよう!!</h4>
         </div>
-        <div class="text-center">
+        <div class="text-left">
           <%= form_with model: @user, local: true do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
-            <div class="form-group d-flex justify-content-around align-items-center py-2">
+            <div class="form-group avatar-panel d-flex justify-content-center align-items-center pb-2">
               <div class="prev-img position-relative border-right border-secondary pe-3">
-                <%= image_tag 'sample.png', class: "rounded-circle bg-dark-subtle", id: "prev_img" %>
+                <%= image_tag 'sample.png', class: "d-block rounded-circle bg-dark-subtle", id: "prev_img" %>
                 <div class="delete-preview">
-                  <i class="fas fa-times fa-lg"></i>
+                  <i class="fas fa-times fa-lg text-white rounded-circle bg-dark opacity-75 p-1 px-sm-2"></i>
                 </div>
               </div>
-              <%= f.label :avatar do %>
-                <div class="avatar-area d-flex align-items-center justify-content-center bg-light border-dashed border-secondary pointer rounded-1 ms-3" >
-                  <span><i class="fas fa-camera me-2"></i>画像を<br>
-                  選択する</span>
+              <%= f.label :avatar, class: "m-0" do %>
+                <div class="input-area d-flex align-items-center justify-content-center d-block-inline flex-wrap border-dashed border-2 rounded-1 border-secondary pointer ms-3">
+                  <div class="text-center text-secondary">
+                    <i class="fas fa-camera me-1"></i>画像を
+                    <br>選択する
+                  </div>
                 </div>
-                <%= f.file_field :avatar, :id => 'user_avatar', accept: '.jpeg, .jpg, .png', style: "display: none;" %>
+                <%= f.file_field :avatar, class: "form-control", :id => 'user_avatar', accept: '.jpeg, .jpg, .png', style: "display: none;" %>
               <% end %>
             </div>
             <div class="form-group">
-              <%= f.text_field :name, class: 'form-control bg-light', placeholder: 'ユーザーネーム' %>
+              <i class="fas fa-user me-1"></i>
+              <%= f.label :name, class: "fw-bold require" %>
+              <%= f.text_field :name, class: 'form-control bg-light', placeholder: User.human_attribute_name(:name) %>
             </div>
             <div class="form-group">
-              <%= f.select :my_bike, User.my_bikes.keys, {}, class: 'form-control bg-light', placeholder: 'あなたの持つバイクメーカー(好きなメーカー)を選択してください' %>
+              <i class="fas fa-bicycle"></i>
+              <%= f.label :my_bike, class: "fw-bold text-break" %>
+              <%= f.select :my_bike, User.my_bikes.keys, {}, class: 'form-control bg-light' %>
             </div>
             <div class="form-group">
-              <%= f.text_field :email, class: 'form-control bg-light', placeholder: 'メールアドレス' %>
+              <i class="fas fa-envelope"></i>
+              <%= f.label :email, class: "fw-bold require" %>
+              <%= f.text_field :email, class: 'form-control bg-light', placeholder: User.human_attribute_name(:email) %>
             </div>
             <div class="form-group">
-              <%= f.password_field :password, class: 'form-control bg-light', placeholder: 'パスワード' %>
+              <i class="fas fa-lock"></i>
+              <%= f.label :password, class: "fw-bold" %>
+              <span class="fw-bold require">(8字以上)</span>
+              <%= f.password_field :password, class: 'form-control bg-light', placeholder: User.human_attribute_name(:password) %>
             </div>
             <div class="form-group">
-              <%= f.password_field :password_confirmation, class: 'form-control bg-light', placeholder: 'パスワード確認' %>
+              <i class="fas fa-key"></i>
+              <%= f.label :password_confirmation, class: "fw-bold require" %>
+              <%= f.password_field :password_confirmation, class: 'form-control bg-light', placeholder: User.human_attribute_name(:password_confirmation) %>
             </div>
             <div class="form-group">
-              <%= f.submit "登録する", class: 'btn btn-primary btn-block font-weight-bold rounded-pill mt-4' %>
+              <%= f.submit t("defaults.register"), class: 'btn btn-primary btn-block font-weight-bold rounded-pill mt-4' %>
             </div>
           <% end %>
         </div>
-        <div class='text-center my-4'>
-          <span>─</span> 登録済みの方はこちらへ <span>─</span>
+        <div class='text-center d-flex justify-content-center align-items-center fw-bold mt-4 mb-1'>
+          <i class="fas fa-arrow-alt-circle-down me-1 mb-3"></i>
+            <p>登録済みの方は<span class="d-inline-block flex-wrap">こちらへ</span></p>
+          <i class="fas fa-arrow-alt-circle-down ms-1 mb-3"></i>
         </div>
         <div class="text-center">
-          <%= link_to "ログインページへ", login_path, class: "btn btn-outline-info btn-block font-weight-bold rounded-pill mb-3" %>
+          <%= link_to t("defaults.to_login_page"), login_path, class: "btn btn-outline-info btn-block font-weight-bold rounded-pill mb-3" %>
         </div>
       </div>
+      <%= link_to t("defaults.to_top_page"), root_path, class: "text-decoration-none" %>
     </div>
   </div>
 </div>

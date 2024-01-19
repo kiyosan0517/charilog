@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="title-area title-underline mb-2">
-    <h2 class="fw-bold">ログ一覧</h2>
+  <div class="title-area title-underline my-2">
+    <h2 class="fw-bold"><%= t(".title") %></h2>
   </div>
 
   <!-- 掲示板一覧 -->
@@ -8,7 +8,7 @@
     <% if @posts.present? %>
       <%= render @posts %>
     <% else %>
-      <p>ログがまだありません</p>
+      <p><%= t(".no_post") %></p>
       <%= link_to 'ログの第一号になろう！', new_post_path %>
     <% end %>
   </div>

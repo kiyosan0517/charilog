@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-  before_action :require_login
   before_action :set_post, only: %i[ show edit update destroy ]
 
   # GET /posts or /posts.json
@@ -7,35 +6,36 @@ class PostsController < ApplicationController
     @posts = Post.all.includes(:user).order(created_at: :desc).page(params[:page])
   end
 
-  # GET /posts/1 or /posts/1.json
-  def show; end
-
   # GET /posts/new
   def new
     @post = Post.new
   end
-
-  # GET /posts/1/edit
-  def edit; end
 
   # POST /posts or /posts.json
   def create
     @post = current_user.posts.new(post_params)
 
     if @post.save
-      redirect_to posts_path, flash: { success: 'ログを投稿しました' }
+      redirect_to posts_path, success: t("defaults.message.created", item: Post.model_name.human)
     else
-      flash.now[:danger] = 'ログの投稿に失敗しました'
+      @post = Post.new(post_params)
+      flash.now[:danger] = t("defaults.message.not_created", item: Post.model_name.human)
       render :new
     end
   end
 
+  # GET /posts/1 or /posts/1.json
+  def show; end
+
+  # GET /posts/1/edit
+  def edit; end
+
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
     if @post.update(post_params)
-      redirect_to posts_path, flash: { warning: 'ログを更新しました' }
+      redirect_to posts_path, success: t("defaults.message.updated", item: Post.model_name.human)
     else
-      flash.now[:danger] = 'ログの更新に失敗しました'
+      flash.now[:danger] = t("defaults.message.not_updated", item: Post.model_name.human)
       render :edit
     end
   end
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
   def destroy
     @post.images.purge
     @post.destroy!
-    redirect_to posts_path, flash: { success: 'ログを削除しました' }
+    redirect_to posts_path, success: t("defaults.message.deleted", item: Post.model_name.human)
   end
 
   # 画像アップロード用のアクション
@@ -78,5 +78,4 @@ class PostsController < ApplicationController
       content_type: file.content_type
     )
   end
-
 end

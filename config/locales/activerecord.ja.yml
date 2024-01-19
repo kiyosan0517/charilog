@@ -1,0 +1,31 @@
+ja:
+  activerecord:
+    models:
+      comment: 'コメント'
+      item: 'アイテム'
+      maker: 'メーカー'
+      post: 'ログ'
+      user: 'ユーザー'
+    attributes:
+      comment:
+        content: 'コメント'
+      item:
+        name: 'アイテム名'
+        price: '価格'
+      maker:
+        name: 'メーカー名'
+      post:
+        content: 'ログ内容'
+        title: 'ログタイトル'
+        images: '投稿画像'
+      user:
+        avatar: 'アイコン'
+        bio: 'ひと言'
+        email: 'メールアドレス'
+        my_bike: 'お気に入り(所有する)自転車メーカー'
+        name: 'ユーザー名'
+        password: 'パスワード'
+        password_confirmation: 'パスワード確認'
+  attributes:
+    created_at: '作成日時'
+    updated_at: '更新日時'
