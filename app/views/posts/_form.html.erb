@@ -4,7 +4,7 @@
       <div class="avatar-field mx-2">
         <% if current_user.avatar.present? %>
           <%= link_to posts_path do %>
-            <%= image_tag current_user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
+            <%= image_tag current_user.avatar.variant(gravity: :center, resize: "55x55^!", crop:"55x55+0+0"), class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
           <% end %>
         <% else %>
           <%= link_to posts_path do %>
@@ -22,9 +22,9 @@
     <%= form_with(model: @post, local: true, data: { controller: "images"}) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <div class="offset-lg-2 col-lg-8 offset-md-1 col-md-10 col-sm-12 col-12 pt-3 p-0">
-        <h6 class="fw-bold require">
-          <i class="fas fa-camera me-2"></i>
-          投稿画像(最大4枚まで)
+        <h6 class="fw-bold">
+          <i class="fas fa-camera me-1"></i>
+          <%= Post.human_attribute_name(:images) %>(最大4枚まで)
         </h6>
         <p data-images-target="error" class="text-danger m-0"></p>
 
@@ -54,21 +54,21 @@
         </div>
         <div class="form-group">
           <i class="fas fa-bicycle"></i>
-          <%= f.label "ログタイトル", class: "fw-bold require", for: "title" %>
+          <%= f.label :title, class: "fw-bold require", for: "title" %>
           <%= f.text_field :title, class: 'form-control', id: "title" %>
         </div>
         <div class="form-group">
-          <i class="fas fa-pencil-alt"></i>
-          <%= f.label "ログ内容", class: "fw-bold", for: "content" %>
+          <i class="fas fa-pencil-alt me-1"></i>
+          <%= f.label :content, class: "fw-bold", for: "content" %>
           <%= f.text_area :content, class: 'form-control', id: "content", rows: 5 %>
         </div>
         <div class='text-center'>
           <% if f.object.new_record? %>
-            <%= f.submit '投稿する', class: 'btn btn-success m-4 submit-button' %>
+            <%= f.submit t("defaults.post"), class: 'btn btn-success m-4 submit-button' %>
           <% else %>
-            <%= f.submit '編集する', class: 'btn btn-primary m-4 submit-button' %>
+            <%= f.submit t("defaults.edit"), class: 'btn btn-primary m-4 submit-button' %>
           <% end %>
-          <%= link_to '一覧へ', posts_path, class: 'btn btn-info m-4' %>
+          <%= link_to t("defaults.to_posts_page"), posts_path, class: 'btn btn-info m-4' %>
         </div>
       </div>
     <% end %>

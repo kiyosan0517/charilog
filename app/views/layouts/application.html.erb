@@ -24,7 +24,7 @@
         <div class="container-fluid bg-light p-0">
           <div class="row m-0">
             <!-- ヘッダー -->
-            <div class="header-wrapper sticky-top shadow-sm bg-white">
+            <div class="header-wrapper sticky-top shadow-sm bg-white p-0">
               <%= render "/shared/header" %>
             </div>
 
@@ -34,9 +34,10 @@
             </div>
 
             <!-- メインコンテンツ -->
-            <div class="content-wrapper col-xl-10 col-lg-10 col-md-12 px-3 px-sm-5 py-4 z-1">
+            <div class="content-wrapper col-xl-10 col-lg-10 col-md-12 px-1 px-sm-5 pt-4 z-1">
               <%= render "/shared/flash_message" %>
               <%= yield %>
+              <div class="mask-area overlay"></div>
             </div>
 
             <!-- フッター -->
@@ -47,11 +48,11 @@
         </div>
       <% else %>
         <!-- ログインしていない場合、メインコンテンツのみ表示 -->
-        <div class="content-wrapper pt-5">
+        <div class="content-wrapper pt-4">
           <%= render "/shared/flash_message" %>
           <%= yield %>
         </div>
-        <div class="footer-wrapper shadow mt-4">
+        <div class="footer-wrapper shadow mt-5">
           <%= render "/shared/footer" %>
         </div>
       <% end %>

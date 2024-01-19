@@ -1,24 +1,24 @@
 <sidebar>
   <div class="navigation">
     <ul>
-      <div class="user-panel d-flex pb-3 border-bottom border-dark">
+      <div class="user-panel d-lg-none d-flex align-items-center border-bottom border-dark pb-3">
         <div class="user-avatar pe-2">
           <% if current_user.avatar.present? %>
             <%= link_to posts_path do %>
-              <%= image_tag current_user.avatar.variant(gravity: :center, resize: "55x55^!", crop:"55x55+0+0"), class: "rounded-circle d-block bg-dark-subtle" %>
+              <%= image_tag current_user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle d-block bg-dark-subtle" %>
             <% end %>
           <% else %>
             <%= link_to posts_path do %>
-              <%= image_tag 'sample.png', style: "height: 55px; width: 55px;", class: "rounded-circle d-block bg-dark-subtle" %>
+              <%= image_tag 'sample.png', style: "height: 50px; width: 50px;", class: "rounded-circle d-block bg-dark-subtle" %>
             <% end %>
           <% end %>
         </div>
         <div class="d-flex flex-column">
           <div class="user-name">
-            <%= link_to current_user.name, posts_path, class: "d-block font-weight-bold text-secondary" %>
+            <%= link_to current_user.name.truncate(12), posts_path, class: "d-block font-weight-bold text-secondary" %>
           </div>
           <div class="new-post-btn">
-            <%= link_to "投稿する", new_post_path, class: "btn btn-sm btn-success" %>
+            <%= link_to t("defaults.post"), new_post_path, class: "btn btn-sm btn-success" %>
           </div>
         </div>
       </div>
@@ -27,55 +27,55 @@
           <span class="nav-icon">
             <ion-icon name="home-outline"></ion-icon>
           </span>
-          <span class="title">ホーム</span>
+          <span class="title"><%= t("defaults.home") %></span>
         <% end %>
       </li>
-      <li class="nav-item <%= nav_item_class(new_post_path) %>">
-        <%= link_to new_post_path do %>
+       <li class="nav-item <%= nav_item_class(users_path) %>">
+        <%= link_to posts_path do %>
+          <span class="nav-icon">
+            <ion-icon name="people-circle-outline"></ion-icon>
+          </span>
+          <span class="title"><%= User.model_name.human %></span>
+        <% end %>
+      </li>
+      <li class="nav-item ">
+        <%= link_to posts_path do %>
+          <span class="nav-icon">
+            <ion-icon name="heart-outline"></ion-icon>
+          </span>
+          <span class="title"><%= t("defaults.likes") %></span>
+        <% end %>
+      </li>
+      <li class="nav-item ">
+        <%= link_to posts_path do %>
+          <span class="nav-icon">
+            <ion-icon name="bookmarks-outline"></ion-icon>
+          </span>
+          <span class="title"><%= t("defaults.bookmarks") %></span>
+        <% end %>
+      </li>
+      <li class="nav-item ">
+        <%= link_to posts_path do %>
           <span class="nav-icon">
             <ion-icon name="person-circle-outline"></ion-icon>
           </span>
-          <span class="title">プロフィール</span>
+          <span class="title"><%= t("defaults.my_page") %></span>
         <% end %>
       </li>
-      <li class="nav-item">
-        <%= link_to posts_path do %>
-          <span class="nav-icon">
-            <ion-icon name="tv-outline"></ion-icon>
-          </span>
-          <span class="title">チャンネル</span>
-        <% end %>
-      </li>
-      <li class="nav-item">
+      <li class="nav-item ">
         <%= link_to posts_path do %>
           <span class="nav-icon">
             <ion-icon name="settings-outline"></ion-icon>
           </span>
-          <span class="title">設定</span>
+          <span class="title"><%= t("defaults.site") %></span>
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to posts_path do %>
-          <span class="nav-icon">
-            <ion-icon name="id-card-outline"></ion-icon>
-          </span>
-          <span class="title">個人情報</span>
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to posts_path do %>
-          <span class="nav-icon">
-            <ion-icon name="help-circle-outline"></ion-icon>
-          </span>
-          <span class="title">ヘルプ</span>
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to logout_path, method: :delete, data: { confirm: 'ログアウトしますか？' } do %>
+        <%= link_to logout_path, method: :delete, data: { confirm: t("defaults.message.logout_confirm") } do %>
           <span class="nav-icon">
             <ion-icon name="log-out-outline"></ion-icon>
           </span>
-          <span class="title">ログアウト</span>
+          <span class="title"><%= t("defaults.logout") %></span>
         <% end %>
       </li>
     </ul>

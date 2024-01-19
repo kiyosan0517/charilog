@@ -14,13 +14,13 @@ class User < ApplicationRecord
   validates :bio, length: { maximum: 160 }
 
   enum my_bike:{
-    "---":0, 
-    ANCHOR:1,ARAYA:2,ARGON:3,Avedio:4,BASSO:5,BH:6,Bianchi:7,BMC:8,BOMA:9,BOTTECCHIA:10,BRIDGESTONE:11,BROMPTON:12,
-    Cannondale:13,CANYON:14,CARRERA:15,CEEPO:16,centurion:17,cervelo:18,CHAPTER2:19,cinelli:20,CIPOLLINI:21,COLNAGO:22,commencal:23,corratec:24,CUBE:25, 
-    DAHON:26,DEROSA:27,EDDYMERCKX:28,FELT:29,FOCUS:30,FUJI:31,GIANT:32,GIOS:33,GT:34,GUSTO:35,
-    KhodaaBloom:36,KHS:37,KOGA:38,KONA:39,KUOTA:40,KUWAHARA:41,LAPIERRE:42,Liv:43,LOOK:44,LOUISGARNEAU:45,
-    MARIN:46,MERIDA:47,MIYATA:48,NEILPRYDE:49,NESTO:50,ORBEA:51,Panasonic:52,PINARELLO:53,RALEIGH:54,RIDLEY:55,RITCHEY:56,
-    SCOTT:57,SHIMANO:58,SPECIALIZED:59,THOMPSON:60,TIME:61,TREK:62,Wilier:63,YONEX:64
+    "--未選択(特にない)--":0, 
+    ANCHOR（アンカー）:1,ARAYA（アラヤ）:2,ARGON（アルゴン）:3,AVEDIO（エヴァディオ）:4,BASSO（バッソ）:5,BH（ビーエイチ）:6,Bianchi（ビアンキ）:7,BMC（ビーエムシー）:8,BOMA（ボーマ）:9,BOTTECCHIA（ボッテキア）:10,BRIDGESTONE（ブリヂストン）:11,BROMPTON（ブロンプトン）:12,
+    Cannondale（キャノンデール）:13,CANYON（キャニオン）:14,CARRERA（カレラ）:15,CEEPO（シーポ）:16,centurion（センチュリオン）:17,cervelo（サーベロ）:18,CHAPTER2（チャプター2）:19,cinelli（チネリ）:20,CIPOLLINI（チッポリーニ）:21,COLNAGO（コルナゴ）:22,commencal（コメンサル）:23,corratec（コラテック）:24,CUBE（キューブ）:25, 
+    DAHON（ダホン）:26,DEROSA（デローザ）:27,EDDYMERCKX（エディメルクス）:28,FELT（フェルト）:29,FOCUS（フォーカス）:30,FUJI（フジ）:31,GIANT（ジャイアント）:32,GIOS（ジオス）:33,GT（ジーティー）:34,GUSTO（グスト）:35,
+    KhodaaBloom（コーダーブルーム）:36,KHS（ケーエイチエス）:37,KOGA（コガ）:38,KONA（コナ）:39,KUOTA（クオータ）:40,KUWAHARA（クワハラ）:41,LAPIERRE（ラピエール）:42,Liv（リブ）:43,LOOK（ルック）:44,LOUISGARNEAU（ルイガノ）:45,
+    MARIN（マリン）:46,MERIDA（メリダ）:47,MIYATA（ミヤタ）:48,NEILPRYDE（ニールプライド）:49,NESTO（ネスト）:50,ORBEA（オルベア）:51,Panasonic（パナソニック）:52,PINARELLO（ピナレロ）:53,RALEIGH（ラレー）:54,RIDLEY（リドレー）:55,RITCHEY（リッチー）:56,
+    SCOTT（スコット）:57,SHIMANO（シマノ）:58,SPECIALIZED（スペシャライズド）:59,THOMPSON（トンプソン）:60,TIME（タイム）:61,TREK（トレック）:62,Wilier（ウィリエール）:63,YONEX（ヨネックス）:64
   }
 
   def default_image

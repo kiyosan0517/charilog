@@ -4,15 +4,24 @@ ja:
     password: 'パスワード'
     login: 'ログイン'
     logout: 'ログアウト'
+    home: 'ホーム'
+    likes: 'いいね'
+    bookmarks: 'ブックマーク'
+    my_page: 'マイページ'
+    site: '設定'
     register: '登録する'
     post: '投稿する'
+    edit: '編集する'
     submit: '送信する'
     update: '更新する'
     follow: 'フォローする'
     unfollow: 'フォロー解除'
+    back: '戻る'
+    to_top_page: 'トップページに戻る'
     to_register_page: '新規登録ページへ'
     to_login_page: 'ログインページへ'
     to_posts_page: '投稿一覧へ'
+    look_password: 'パスワードを表示'
     message:
       require_login: 'ログインしてください'
       created: '%{item}を作成しました'
@@ -21,6 +30,8 @@ ja:
       not_updated: '%{item}の更新に失敗しました'
       destroyed: '%{item}を削除しました'
       delete_confirm: '%{item}を削除しますか？'
+      deleted: '%{item}を削除しました'
+      logout_confirm: 'ログアウトしますか？'
       not_authorized: '権限がありません'
   application:
     not_authenticated:
@@ -30,6 +41,7 @@ ja:
       title: 'ユーザー一覧'
     new:
       title: 'ユーザー登録'
+      registered: '登録済みの方はこちら'
     create:
       success: 'ユーザー登録が完了しました'
       fail: 'ユーザー登録に失敗しました'
@@ -38,6 +50,7 @@ ja:
   user_sessions:
     new:
       title: 'ログイン'
+      before_registration: '登録前の方はこちら'
       forget_password?: 'パスワードをお忘れの方はこちら'
     create: 
       success: 'ログインしました'
