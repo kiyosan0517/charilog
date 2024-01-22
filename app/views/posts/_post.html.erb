@@ -1,4 +1,4 @@
-<div class="col-sm-12 col-md-6 col-xl-4 mb-3">
+<div class="col-12 col-md-6 col-xl-4 mb-3">
   <div class="card shadow-sm">
     <div class="header-area">
       <div class="container">
@@ -13,7 +13,7 @@
             <% end %>
           </div>
           <div class="user-name d-flex align-items-center text-break">
-            <%= link_to post.user.name, posts_path, class: "fw-bold text-dark hover-opacity-50", style:"text-decoration:none;" %>
+            <%= link_to post.user.name.truncate(18), posts_path, class: "fw-bold text-dark hover-opacity-50", style:"text-decoration:none;" %>
           </div>
           <div class="operation_area d-flex align-items-center ml-auto">
             <% if current_user.own?(post) %>
@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <%= link_to edit_post_path(post), class:"text-dark", style:"text-decoration:none;" do %>
+    <%= link_to post_path(post), class:"text-dark", style:"text-decoration:none;" do %>
       <% if post.images.present? %>
         <div class="img-area">
           <div id="img-carousel" class="carousel slide" data-ride="carousel">
@@ -37,25 +37,23 @@
             <div class="carousel-inner">
               <% post.images.each_with_index do |image, index| %>
                 <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
-                  <%= image_tag(image.variant(gravity: :center, resize: "510x350^", crop: "510x300+0+0"), class: "d-block mx-auto img-fluid hover-opacity-75") %>
+                  <%= image_tag(image.variant(gravity: :center, resize: "530x312^", crop: "530x312+0+0"), class: "d-block mx-auto img-fluid hover-opacity-75") %>
                 </div>
               <% end %>
             </div>
           </div>
         </div>
       <% else %>
-        <%= image_tag "no_image.png", class: "d-block mx-auto img-fluid hover-opacity-75 border-top border-bottom", style: "height: 185px; width: 300px;" %>
+        <%= image_tag "no_image.png", class: "d-block mx-auto img-fluid hover-opacity-75 border-top border-bottom", style: "height: auto; width: auto;" %>
       <% end %>
 
-      <div class="card-body hover-opacity-50 ps-1">
-        <div class="container">
-          <h5 class="card-title fw-bold"><%= post.title %></h5>
-          <p class="card-text m-0"><%= post.content.truncate(50) %></p>
-          <span class="text-secondary">
-            <i class="far fa-clock clock-icon me-1">
-            </i><%= time_ago_in_words(post.created_at) %>前
-          </span>
-        </div>
+      <div class="card-body hover-opacity-50">
+        <h5 class="card-title fw-bold"><%= post.title %></h5>
+        <p class="card-text m-0"><%= post.content.truncate(30) %></p>
+        <span class="text-secondary">
+          <i class="far fa-clock clock-icon me-1">
+          </i><%= time_ago_in_words(post.created_at) %>前
+        </span>
       </div>
     <% end %>
   </div>
