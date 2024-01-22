@@ -56,7 +56,10 @@
         <div class="swiper-wrapper">
           <% @post.images.each do |image| %>
             <div class="swiper-slide">
-              <%= image_tag(image.variant(resize_to_fit: [450,290], gravity: 'Center', strip: true), class: "d-block mx-auto img-fluid") %>
+              <%# スマホの画像サイズ %>
+              <%= image_tag(image.variant(resize_to_fit: [450,300], gravity: 'Center', strip: true), class: "d-block mx-auto img-fluid d-sm-none") %>
+              <%# PCの画像サイズ %>
+              <%= image_tag(image.variant(resize_to_fit: [500,415], gravity: 'Center', strip: true), class: "d-none mx-auto img-fluid d-sm-block") %>
             </div>
           <% end %>
         </div>
