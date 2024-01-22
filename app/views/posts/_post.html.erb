@@ -3,13 +3,13 @@
     <div class="header-area">
       <div class="container">
         <div class="user-panel d-flex align-items-center py-3">
-          <div class="user-avatar mx-2">
+          <div class="user-avatar me-2">
             <%= link_to posts_path do %>
-              <%= image_tag current_user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
+              <%= image_tag post.user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
             <% end %>
           </div>
           <div class="user-name d-flex align-items-center text-break">
-            <%= link_to post.user.name.truncate(18), posts_path, class: "fw-bold text-dark hover-opacity-50", style:"text-decoration:none;" %>
+            <%= link_to post.user.name, posts_path, class: "fw-bold text-dark hover-opacity-50", style:"text-decoration:none;" %>
           </div>
           <div class="operation_area d-flex align-items-center ml-auto">
             <% if current_user.own?(post) %>
