@@ -1,4 +1,4 @@
-<div class='container-fluid'>
+<div class='container-fluid px-1'>
   <div class="operation-area d-flex my-2">
     <div class="dropdown-btn ms-auto">
       <% if current_user.own?(@post) %>
@@ -34,9 +34,9 @@
   <div class="card shadow">
     <div class="card-header">
       <div class="d-flex align-items-center">
-        <div class="user-avatar mx-2">
+        <div class="user-avatar me-2 sm-mx-2">
           <%= link_to posts_path do %>
-            <%= image_tag @post.user.avatar.variant(gravity: :center, resize: "55x55^!", crop:"55x55+0+0"), class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
+            <%= image_tag @post.user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
           <% end %>
         </div>
         <div class="user-name d-flex align-items-center text-break">
@@ -55,8 +55,8 @@
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
           <% @post.images.each do |image| %>
-            <div class="swiper-slide align-items-center">
-              <%= image_tag(image.variant(resize_to_fit: [510,350], gravity: 'Center', strip: true, quality: 60), class: "d-block mx-auto img-fluid") %>
+            <div class="swiper-slide">
+              <%= image_tag(image.variant(resize_to_fit: [450,290], gravity: 'Center', strip: true), class: "d-block mx-auto img-fluid") %>
             </div>
           <% end %>
         </div>
