@@ -1,15 +1,11 @@
-<div class="col-sm-12 col-md-6 col-xl-4 mb-3">
+<div class="col-12 col-md-6 mb-3">
   <div class="card shadow-sm">
     <div class="header-area">
       <div class="container">
         <div class="user-panel d-flex align-items-center py-3">
-          <div class="user-avatar pe-2">
+          <div class="user-avatar me-2">
             <%= link_to posts_path do %>
-              <% if current_user.avatar.present? %>
-                <%= image_tag post.user.avatar.variant(gravity: :center, resize: "40x40^!", crop:"40x40+0+0"), class: "d-block bg-dark-subtle rounded-circle" %>
-              <% else %>
-                <%= image_tag 'sample.png', style: "height: 40px; width: 40px;", class: "d-block bg-dark-subtle rounded-circle" %>
-              <% end %>
+              <%= image_tag post.user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
             <% end %>
           </div>
           <div class="user-name d-flex align-items-center text-break">
@@ -24,7 +20,7 @@
       </div>
     </div>
 
-    <%= link_to edit_post_path(post), class:"text-dark", style:"text-decoration:none;" do %>
+    <%= link_to post_path(post), class:"text-dark", style:"text-decoration:none;" do %>
       <% if post.images.present? %>
         <div class="img-area">
           <div id="img-carousel" class="carousel slide" data-ride="carousel">
@@ -37,25 +33,23 @@
             <div class="carousel-inner">
               <% post.images.each_with_index do |image, index| %>
                 <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
-                  <%= image_tag(image.variant(gravity: :center, resize: "510x350^", crop: "510x300+0+0"), class: "d-block mx-auto img-fluid hover-opacity-75") %>
+                  <%= image_tag(image.variant(gravity: :center, resize: "530x323^", crop: "530x323+0+0"), class: "d-block mx-auto img-fluid hover-opacity-75") %>
                 </div>
               <% end %>
             </div>
           </div>
         </div>
       <% else %>
-        <%= image_tag "no_image.png", class: "d-block mx-auto img-fluid hover-opacity-75 border-top border-bottom", style: "height: 185px; width: 300px;" %>
+        <%= image_tag "no_image.png", class: "d-block mx-auto img-fluid hover-opacity-75 border-top border-bottom", style: "height: auto; width: auto;" %>
       <% end %>
 
-      <div class="card-body hover-opacity-50 ps-1">
-        <div class="container">
-          <h5 class="card-title fw-bold"><%= post.title %></h5>
-          <p class="card-text m-0"><%= post.content.truncate(50) %></p>
-          <span class="text-secondary">
-            <i class="far fa-clock clock-icon me-1">
-            </i><%= time_ago_in_words(post.created_at) %>前
-          </span>
-        </div>
+      <div class="card-body hover-opacity-50">
+        <h5 class="card-title fw-bold"><%= post.title %></h5>
+        <p class="card-text m-0"><%= post.content.truncate(30) %></p>
+        <span class="text-secondary">
+          <i class="far fa-clock clock-icon me-1">
+          </i><%= time_ago_in_words(post.created_at) %>前
+        </span>
       </div>
     <% end %>
   </div>

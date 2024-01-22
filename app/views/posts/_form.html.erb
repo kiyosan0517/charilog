@@ -1,15 +1,9 @@
 <div class="card shadow">
   <div class="card-header">
     <div class="d-flex align-items-center ps-0">
-      <div class="avatar-field mx-2">
-        <% if current_user.avatar.present? %>
-          <%= link_to posts_path do %>
-            <%= image_tag current_user.avatar.variant(gravity: :center, resize: "55x55^!", crop:"55x55+0+0"), class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
-          <% end %>
-        <% else %>
-          <%= link_to posts_path do %>
-            <%= image_tag 'sample.png', style: "height: 55px; width: 55px;", class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
-          <% end %>
+      <div class="user-avatar mx-2">
+        <%= link_to posts_path do %>
+          <%= image_tag current_user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
         <% end %>
       </div>
       <div class="name_field text-break">

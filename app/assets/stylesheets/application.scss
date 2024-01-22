@@ -1,6 +1,8 @@
 @import 'bootstrap';
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+@import 'swiper/swiper-bundle';
+@import 'swiper';
 @import 'sidebar';
 @import 'users';
 
@@ -27,7 +29,7 @@ body {
   padding: 0 5px;
 }
 
-.title-underline {
+.underline {
   border-bottom: 5px solid #77e1f7
 }
 

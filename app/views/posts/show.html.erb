@@ -1,19 +1,105 @@
-<p id="notice"><%= notice %></p>
+<div class='container-fluid px-1'>
+  <div class="operation-area d-flex my-2">
+    <div class="dropdown-btn ms-auto">
+      <% if current_user.own?(@post) %>
+        <div class="add-element float-left">
+          <div class="dropleft">
+            <button class="btn btn-light dropdown-toggle border" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="far fa-plus-square fa-lg"></i>
+            </button>
+            <div class="dropdown-menu bg-white" aria-labelledby="dropdownMenuButton">
+              <%= link_to edit_post_path(@post), class: 'dropdown-item text-success doropdown-list-delete' do%>
+                  <i class="fas fa-plus"></i>  写真を追加・編集
+              <% end %>
+            </div>
+          </div>
+        </div>
 
-<p>
-  <strong>User:</strong>
-  <%= @post.user_id %>
-</p>
+        <div class="delete-element float-left ps-1">
+          <div class="dropleft">
+            <button class="btn btn-light dropdown-toggle border" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="far fa-trash-alt fa-lg"></i>
+            </button>
+            <div class="dropdown-menu bg-white" aria-labelledby="dropdownMenuButton">
+              <%= link_to post_path, method: :delete, data: { confirm: 'このログを削除しますか？' }, class: 'dropdown-item text-danger doropdown-list-delete' do %>
+                <span><i class="far fa-trash-alt"></i></span>  ログを削除
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+  <div class="card shadow">
+    <div class="card-header">
+      <div class="d-flex align-items-center">
+        <div class="user-avatar me-2 sm-mx-2">
+          <%= link_to posts_path do %>
+            <%= image_tag @post.user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
+          <% end %>
+        </div>
+        <div class="user-name d-flex align-items-center text-break">
+          <%= link_to @post.user.name, posts_path, class: "fw-bold text-dark hover-opacity-50", style:"text-decoration:none;" %>
+        </div>
+        <span class="text-secondary mx-2">
+          <i class="far fa-clock clock-icon me-1">
+          </i><%= time_ago_in_words(@post.created_at) %>前
+        </span>
+      </div>
+    </div>
 
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %>
-</p>
+    <% if @post.images.present? %>
+      <!-- Slider main container -->
+      <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <% @post.images.each do |image| %>
+            <div class="swiper-slide">
+              <%# スマホの画像サイズ %>
+              <%= image_tag(image.variant(resize_to_fit: [450,300], gravity: 'Center', strip: true), class: "d-block mx-auto img-fluid d-sm-none") %>
+              <%# PCの画像サイズ %>
+              <%= image_tag(image.variant(resize_to_fit: [500,415], gravity: 'Center', strip: true), class: "d-none mx-auto img-fluid d-sm-block") %>
+            </div>
+          <% end %>
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    <% else %>
+      <%= image_tag "no_image.png", class: "d-block mx-auto img-fluid hover-opacity-75 border-top border-bottom m-0", style: "height: auto; width: auto;" %>
+    <% end %>
+
+    <div class="card-body ms-2">
+      <h4 class="card-title fw-bold m-0"><%= @post.title %></h4><br>
+      <p class="card-text"><%= @post.content %></p>
+    </div>
+  </div>
+</div>  
+
+<script>
+    let mySwiper = new Swiper ('.swiper', {
+  // 以下にオプションを設定
+  loop: false, //最後に達したら先頭に戻る
+
+  //ページネーション表示の設定
+  pagination: {
+    el: '.swiper-pagination', //ページネーションの要素
+    type: 'fraction',
+    renderFraction: function(currentClass, totalClass) {
+      return '<span class="customPagenation">- <span class="' + currentClass + '"></span>' + ' / ' + '<span class="' + totalClass + '"></span> -</span>';
+    },
+  },
+
+  //ナビゲーションボタン（矢印）表示の設定
+  navigation: {
+    nextEl: '.swiper-button-next', //「次へボタン」要素の指定
+    prevEl: '.swiper-button-prev', //「前へボタン」要素の指定
+  },
+
+})
+</script>
