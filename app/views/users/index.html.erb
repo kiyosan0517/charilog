@@ -1,2 +1,39 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="table-responsive">
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th></th>
+            <th><%= User.model_name.human %></th>
+            <th>Mybike</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <th class="text-center">
+                <%= link_to posts_path do %>
+                  <%= image_tag user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
+                <% end %>
+              </th>
+              <th class="align-middle">
+                <%= link_to user.name, posts_path, class: "text-center fw-bold text-dark hover-opacity-50", style: "text-decoration:none;" %>
+              </th>
+              <th class="align-middle">
+                <div class="text-nowrap"><%= user.my_bike_i18n %></div>
+              </th>
+              <th class="align-middle">
+                <%= link_to t("defaults.follow"), "#", class: "btn btn-primary" %>
+              </th>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <%= paginate @users, theme: 'twitter-bootstrap-4' %>
+
+</div>
