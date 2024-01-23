@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
 
-  def index; end
+  def index
+    @users = User.with_attached_avatar.order(created_at: :desc).page(params[:page]).per(15)
+  end
 
   def new
     @user = User.new

@@ -39,6 +39,7 @@ ja:
   users:
     index:
       title: 'ユーザー一覧'
+      no_user: '他にユーザーはいません。あなたが最初の利用者です！'
     new:
       title: 'ユーザー登録'
       registered: '登録済みの方はこちら'
