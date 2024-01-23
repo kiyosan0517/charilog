@@ -21,6 +21,10 @@ ja:
     to_register_page: '新規登録ページへ'
     to_login_page: 'ログインページへ'
     to_posts_page: '投稿一覧へ'
+    to_items_page: 'アイテム一覧へ'
+    to_new_item_page: 'アイテム登録へ'
+    to_edit_profile_page: 'プロフィール設定'
+    to_reset_page: 'メール・パスワード設定'
     look_password: 'パスワードを表示'
     message:
       require_login: 'ログインしてください'
@@ -42,12 +46,17 @@ ja:
       no_user: '他にユーザーはいません。あなたが最初の利用者です！'
     new:
       title: 'ユーザー登録'
+      my_bike: 'お気に入り(所有する)自転車メーカー'
       registered: '登録済みの方はこちら'
     create:
       success: 'ユーザー登録が完了しました'
       fail: 'ユーザー登録に失敗しました'
     show:
       title: 'ユーザー詳細'
+      setting_profile: '登録情報設定'
+      item_management: 'アイテム管理'
+      no_post: 'まだ投稿がありません'
+      no_bio: '自己紹介は登録されていません'
   user_sessions:
     new:
       title: 'ログイン'

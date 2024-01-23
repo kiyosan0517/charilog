@@ -1,5 +1,5 @@
 <div class="container p-2">
-  <div class="title-area underline my-2">
+  <div class="title-area under-line border-4 my-2">
     <h2 class="fw-bold"><%= t(".title") %></h2>
   </div>
 
@@ -8,7 +8,7 @@
     <% if @posts.present? %>
       <%= render @posts %>
     <% else %>
-      <p><%= t(".no_post") %></p>
+      <p class="text-secondary><%= t(".no_post") %></p>
       <%= link_to 'ログの第一号になろう！', new_post_path %>
     <% end %>
   </div>

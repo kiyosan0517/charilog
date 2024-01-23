@@ -87,9 +87,9 @@ ja:
         images: '投稿画像'
       user:
         avatar: 'アイコン'
-        bio: 'ひと言'
+        bio: '自己紹介'
         email: 'メールアドレス'
-        my_bike: 'お気に入り(所有する)自転車メーカー'
+        my_bike: 'Mybike'
         name: 'ユーザー名'
         password: 'パスワード'
         password_confirmation: 'パスワード確認'

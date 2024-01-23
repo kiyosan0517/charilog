@@ -3,13 +3,13 @@
     <ul>
       <div class="user-panel d-lg-none d-flex align-items-center border-bottom border-dark pb-3">
         <div class="user-avatar mx-2">
-        <%= link_to posts_path do %>
-          <%= image_tag current_user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
-        <% end %>
-      </div>
+          <%= link_to user_path(current_user) do %>
+            <%= image_tag current_user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
+          <% end %>
+        </div>
         <div class="d-flex flex-column">
           <div class="user-name">
-            <%= link_to current_user.name.truncate(12), posts_path, class: "d-block font-weight-bold text-secondary" %>
+            <%= link_to current_user.name.truncate(12), user_path(current_user), class: "d-block font-weight-bold text-secondary" %>
           </div>
           <div class="new-post-btn">
             <%= link_to t("defaults.post"), new_post_path, class: "btn btn-sm btn-info fw-bold p-0 px-2" %>
