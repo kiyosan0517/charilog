@@ -38,7 +38,7 @@
             </div>
             <div class="form-group">
               <i class="fas fa-bicycle"></i>
-              <%= f.label :my_bike, class: "fw-bold text-break" %>
+              <%= f.label t(".my_bike"), class: "fw-bold text-break" %>
               <%= f.select :my_bike, User.my_bikes.keys, {}, class: 'form-control bg-light' %>
             </div>
             <div class="form-group">

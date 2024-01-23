@@ -29,10 +29,6 @@ body {
   padding: 0 5px;
 }
 
-.underline {
-  border-bottom: 5px solid #77e1f7
-}
-
 .operetion-bg {
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 50%;
@@ -46,4 +42,76 @@ body {
 
 .hover-opacity-50:hover {
   opacity: 0.5;
+}
+
+.over-line {
+  &.border-1 {
+    border-top: 1px solid;
+  }
+  &.border-2 {
+    border-top: 2px solid;
+  }
+  &.border-3 {
+    border-top: 3px solid;
+  }
+  &.border-4 {
+    border-top: 4px solid;
+  }
+  &.border-5 {
+    border-top: 5px solid;
+  }
+}
+
+.under-line {
+  &.border-1 {
+    border-bottom: 1px solid;
+  }
+  &.border-2 {
+    border-bottom: 2px solid;
+  }
+  &.border-3 {
+    border-bottom: 3px solid;
+  }
+  &.border-4 {
+    border-bottom: 4px solid;
+  }
+  &.border-5 {
+    border-bottom: 5px solid;
+  }
+}
+
+.left-line {
+  &.border-1 {
+    border-left: 1px solid;
+  }
+  &.border-2 {
+    border-left: 2px solid;
+  }
+  &.border-3 {
+    border-left: 3px solid;
+  }
+  &.border-4 {
+    border-left: 4px solid;
+  }
+  &.border-5 {
+    border-left: 5px solid;
+  }
+}
+
+.right-line {
+  &.border-1 {
+    border-right: 1px solid;
+  }
+  &.border-2 {
+    border-right: 2px solid;
+  }
+  &.border-3 {
+    border-right: 3px solid;
+  }
+  &.border-4 {
+    border-right: 4px solid;
+  }
+  &.border-5 {
+    border-right: 5px solid;
+  }
 }

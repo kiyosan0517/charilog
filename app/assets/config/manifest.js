@@ -3,3 +3,4 @@
 //= link_tree ../javascripts .js 
 //= link sidebar-toggle.js
 //= link avatar-prev.js
+//= link user-show.js

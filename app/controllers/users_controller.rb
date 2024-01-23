@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
 
   def index
-    @users = User.with_attached_avatar.order(created_at: :desc).page(params[:page]).per(15)
+    @users = User.with_attached_avatar.where.not(id: current_user.id).order(created_at: :desc).page(params[:page]).per(15)
   end
 
   def new
@@ -21,7 +21,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @user = User.find(params[:id])
+    @posts = @user.posts.order(created_at: :desc).page(params[:page]).per(10)
+  end
 
   private
 

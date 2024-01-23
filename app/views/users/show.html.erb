@@ -1,2 +1,126 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<%= javascript_include_tag "user-show.js" %>
+
+<div class="container px-lg-5 px-md-4">
+  <div class="row pb-4 mb-5 border-bottom">
+    <div class="user-panel d-flex flex-column flex-md-row justify-content-center align-items-center">
+      <div class="user-avatar d-flex align-items-center mt-3 mb-4">
+        <%= image_tag @user.avatar.variant(gravity: :center, resize: "90x90^!", crop:"90x90+0+0"), class: "rounded-circle bg-dark-subtle me-4", style: "display: inline-block;" %>
+        <div class="follow-btn mobile-size" style="display: inline-block;">
+          <% if @user.id == current_user.id %>
+            <div class="item-info mb-2">
+              <button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <%= t(".item_management") %>
+              </button>
+              <div class="dropdown-menu bg-white" aria-labelledby="dropdownMenuButton">
+                <%= link_to users_path, class: 'dropdown-item text-danger doropdown-list-delete' do %>
+                    <i class="fas fa-book"></i>  <%= t("defaults.to_items_page") %>
+                <% end %>
+                <%= link_to posts_path, class: 'dropdown-item text-danger doropdown-list-delete' do %>
+                    <i class="fas fa-search-plus"></i>  <%= t("defaults.to_new_item_page") %>
+                <% end %>
+              </div>
+            </div>
+            <div class="edit-profile">
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <%= t(".setting_profile") %>
+                </button>
+                <div class="dropdown-menu bg-white" aria-labelledby="dropdownMenuButton">
+                  <%= link_to users_path, class: 'dropdown-item text-secondary doropdown-list-delete' do %>
+                      <i class="fas fa-id-card"></i>  <%= t("defaults.to_edit_profile_page") %>
+                  <% end %>
+                  <%= link_to posts_path, class: 'dropdown-item text-secondary doropdown-list-delete' do %>
+                      <i class="fas fa-lock"></i>  <%= t("defaults.to_reset_page") %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% else %>
+            <%= link_to t("defaults.follow"), "#", class: "btn btn-primary fw-bold p-3" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="d-flex flex-column fw-bold me-3">
+        <div class="user-element left-line border-4 border-primary ps-3 mb-3 mb-md-0">
+          <div class="user-name mb-2">
+            <i class="fas fa-user me-1"></i>
+            <%= User.human_attribute_name(:name) %>
+            <span>：</span>
+            <%= @user.name %>
+          </div>
+          <div class="bike-name mb-2">
+            <i class="fas fa-bicycle me-1"></i>
+            <%= User.human_attribute_name(:my_bike) %>
+            <span>：</span>
+            <%= @user.my_bike_i18n %>
+          </div>
+          <div class="element-count d-flex flex-wrap">
+            <div class="me-3">フォロワー10件</div>
+            <div class="me-3">フォロー中10件</div>
+            <div>投稿<%= @user.posts.count %>件</div>
+          </div>
+        </div>
+        <div class="bio-area mobile-size fw-bold">
+          <% if @user.bio.present? %>
+            <div class="text"><%= @user.bio %></div>
+          <% else %>
+            <div class="text-secondary"><%= t(".no_bio") %></div>
+          <% end %>
+        </div>
+      </div>
+      <div class="follow-btn pc-size mx-auto">
+        <% if @user.id == current_user.id %>
+          <div class="item-info mb-2">
+            <button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= t(".item_management") %>
+            </button>
+            <div class="dropdown-menu bg-white" aria-labelledby="dropdownMenuButton">
+              <%= link_to users_path, class: 'dropdown-item text-danger doropdown-list-delete' do %>
+                  <i class="fas fa-book"></i>  <%= t("defaults.to_items_page") %>
+              <% end %>
+              <%= link_to posts_path, class: 'dropdown-item text-danger doropdown-list-delete' do %>
+                  <i class="fas fa-search-plus"></i>  <%= t("defaults.to_new_item_page") %>
+              <% end %>
+            </div>
+          </div>
+          <div class="edit-profile">
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <%= t(".setting_profile") %>
+              </button>
+              <div class="dropdown-menu bg-white" aria-labelledby="dropdownMenuButton">
+                <%= link_to users_path, class: 'dropdown-item text-secondary doropdown-list-delete' do %>
+                    <i class="fas fa-id-card"></i>  <%= t("defaults.to_edit_profile_page") %>
+                <% end %>
+                <%= link_to posts_path, class: 'dropdown-item text-secondary doropdown-list-delete' do %>
+                    <i class="fas fa-lock"></i>  <%= t("defaults.to_reset_page") %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% else %>
+          <%= link_to t("defaults.follow"), "#", class: "btn btn-primary fw-bold p-3" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="bio-area pc-size fw-bold">
+      <% if @user.bio.present? %>
+        <div><%= @user.bio %></div>
+      <% else %>
+        <div class="text-secondary"><%= t(".no_bio") %></div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <% if @posts.present? %>
+      <%= render @posts %>
+    <% else %>
+      <p class="text-secondary><%= t(".no_post") %></p>
+      <%= link_to 'あなたのログを残そう', new_post_path %>
+    <% end %>
+  </div>
+
+  <%= paginate @posts, theme: 'twitter-bootstrap-4' %>
+
+</div>

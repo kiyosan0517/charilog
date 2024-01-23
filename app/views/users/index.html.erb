@@ -5,27 +5,27 @@
         <thead>
           <tr>
             <th></th>
-            <th><%= User.model_name.human %></th>
-            <th>Mybike</th>
+            <th class="text-nowrap"><%= User.human_attribute_name(:name) %></th>
+            <th><%= User.human_attribute_name(:my_bike) %></th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           <% @users.each do |user| %>
             <tr>
-              <th class="text-center">
-                <%= link_to posts_path do %>
+              <th class="align-middle">
+                <%= link_to user_path(user) do %>
                   <%= image_tag user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
                 <% end %>
               </th>
               <th class="align-middle">
-                <%= link_to user.name, posts_path, class: "text-center fw-bold text-dark hover-opacity-50", style: "text-decoration:none;" %>
+                <%= link_to user.name, user_path(user), class: "text-nowrap text-dark hover-opacity-50", style: "text-decoration:none;" %>
               </th>
               <th class="align-middle">
                 <div class="text-nowrap"><%= user.my_bike_i18n %></div>
               </th>
               <th class="align-middle">
-                <%= link_to t("defaults.follow"), "#", class: "btn btn-primary" %>
+                <%= link_to t("defaults.follow"), "#", class: "btn btn-primary fw-bold" %>
               </th>
             </tr>
           <% end %>
