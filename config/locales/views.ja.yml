@@ -10,12 +10,12 @@ ja:
     my_page: 'マイページ'
     profile: 'プロフィール'
     site: '設定'
-    register: '登録する'
-    post: '投稿する'
-    edit: '編集する'
+    register: '登録'
+    post: '投稿'
+    edit: '編集'
     delete: '削除'
-    submit: '送信する'
-    update: '更新する'
+    submit: '送信'
+    update: '更新'
     follow: 'フォローする'
     unfollow: 'フォロー解除'
     back: '戻る'
@@ -28,6 +28,7 @@ ja:
     to_edit_profile_page: 'プロフィール設定'
     to_reset_page: 'メール・パスワード設定'
     look_password: 'パスワードを表示'
+    select_images: '画像を選択する'
     message:
       require_login: 'ログインしてください'
       created: '%{item}を作成しました'
@@ -57,8 +58,11 @@ ja:
       title: 'ユーザー詳細'
       setting_profile: '登録情報設定'
       item_management: 'アイテム管理'
-      no_post: 'まだ投稿がありません'
+      no_post: 'まだ投稿はありません'
       no_bio: '自己紹介は登録されていません'
+      follow: 'フォロー中'
+      follower: 'フォロワー'
+      leave_log!: 'あなたのログを残そう！'
   user_sessions:
     new:
       title: 'ログイン'
@@ -73,10 +77,13 @@ ja:
     index:
       title: 'ログ一覧'
       no_post: 'ログがまだありません'
+      log_first!: '最初にログを残そう！'
     new:
       title: 'ログ投稿'
     show:
       title: 'ログ詳細'
+      edit_images: '写真を追加・編集'
+      delete_post: 'ログを削除'
     edit:
       title: 'ログ編集'
     bookmarks:

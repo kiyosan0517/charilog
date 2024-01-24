@@ -63,9 +63,9 @@
             <%= @user.my_bike_i18n %>
           </div>
           <div class="element-count d-flex flex-wrap">
-            <div class="me-3">フォロワー10件</div>
-            <div class="me-3">フォロー中10件</div>
-            <div>投稿<%= @user.posts.count %>件</div>
+            <div class="me-3"><%= t(".follower") %>10件</div>
+            <div class="me-3"><%= t(".follow") %>10件</div>
+            <div><%= t("defaults.post") %><%= @user.posts.count %>件</div>
           </div>
         </div>
         <div class="bio-area mobile-size fw-bold">
@@ -128,12 +128,14 @@
     </div>
   </div>
 
-  <div class="row mb-4">
+  <div class="row mb-5">
     <% if @posts.present? %>
       <%= render @posts %>
     <% else %>
-      <p class="text-secondary><%= t(".no_post") %></p>
-      <%= link_to 'あなたのログを残そう', new_post_path %>
+      <div class="text-center text-secondary mt-4 mb-5"><%= t(".no_post") %></div>
+      <div class="text-center">
+        <%= link_to t(".leave_log!"), new_post_path, class: "btn btn-info" %>
+      </div>
     <% end %>
   </div>
 

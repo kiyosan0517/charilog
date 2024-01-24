@@ -4,12 +4,14 @@
   </div>
 
   <!-- 掲示板一覧 -->
-  <div class="row mb-4">
+  <div class="row mb-5">
     <% if @posts.present? %>
       <%= render @posts %>
     <% else %>
-      <p class="text-secondary><%= t(".no_post") %></p>
-      <%= link_to 'ログの第一号になろう！', new_post_path %>
+      <div class="text-center text-secondary my-5"><%= t(".no_post") %></div>
+      <div class="text-center">
+        <%= link_to t(".log_first!"), new_post_path, class: "btn btn-info" %>
+      </div>
     <% end %>
   </div>
 

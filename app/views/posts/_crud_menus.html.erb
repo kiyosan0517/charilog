@@ -6,7 +6,7 @@
       <% end %>
     </li>
     <li class="list-inline-item me-1">
-      <%= link_to post_path(post), class: "hover-opacity-50", method: :delete, data: {confirm: "ログを削除しますか"} do %>
+      <%= link_to post_path(post), class: "hover-opacity-50", method: :delete, data: {confirm: t('defaults.message.delete_confirm', item: Post.model_name.human)} do %>
         <i class="fas fa-trash fa-lg text-dark"></i>
       <% end %>
     </li>
