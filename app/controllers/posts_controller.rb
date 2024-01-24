@@ -44,9 +44,15 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
+    user = @post.user
     @post.images.purge
     @post.destroy!
-    redirect_to posts_path, success: t("defaults.message.deleted", item: Post.model_name.human)
+
+    if came_from_user_show?
+      redirect_to user_path(user), success: t("defaults.message.deleted", item: Post.model_name.human)
+    else
+      redirect_to posts_path, success: t("defaults.message.deleted", item: Post.model_name.human)
+    end
   end
 
   # 画像アップロード用のアクション
@@ -79,5 +85,10 @@ class PostsController < ApplicationController
       filename: file.original_filename,
       content_type: file.content_type
     )
+  end
+
+  def came_from_user_show?
+    referer = request.referer
+    referer.present? && referer.include?('users')
   end
 end

@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const AvatarInput = document.querySelector('#user_avatar');
   const AvatarInputArea = document.querySelector('.input-area');
   const sampleImagePath = '<%= asset_path('sample.png') %>';
+  const avatarUrl = document.querySelector('#prev_img').dataset.avatarUrl;
   
   // 初期表示の設定
   if (window.innerWidth >= 450) {
@@ -59,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     DeleteBtnArea.addEventListener('click', function() {
       // プレビューを削除
-      PrevImg.src = sampleImagePath;
+      PrevImg.src = avatarUrl || sampleImagePath;
       // ×ボタンを非表示
       DeleteBtnArea.classList.remove('open');
       // アップロードファイルをクリア

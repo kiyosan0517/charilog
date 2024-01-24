@@ -9,7 +9,7 @@
             </button>
             <div class="dropdown-menu bg-white" aria-labelledby="dropdownMenuButton">
               <%= link_to edit_post_path(@post), class: 'dropdown-item text-success doropdown-list-delete' do%>
-                  <i class="fas fa-plus"></i>  写真を追加・編集
+                  <i class="fas fa-plus"></i>  <%= t(".edit_images") %>
               <% end %>
             </div>
           </div>
@@ -21,8 +21,8 @@
               <i class="far fa-trash-alt fa-lg"></i>
             </button>
             <div class="dropdown-menu bg-white" aria-labelledby="dropdownMenuButton">
-              <%= link_to post_path, method: :delete, data: { confirm: 'このログを削除しますか？' }, class: 'dropdown-item text-danger doropdown-list-delete' do %>
-                <span><i class="far fa-trash-alt"></i></span>  ログを削除
+              <%= link_to post_path, method: :delete, data: { confirm: t('defaults.message.delete_confirm', item: Post.model_name.human) }, class: 'dropdown-item text-danger doropdown-list-delete' do %>
+                <span><i class="far fa-trash-alt"></i></span>  <%= t(".delete_post") %>
               <% end %>
             </div>
           </div>
@@ -56,10 +56,12 @@
         <div class="swiper-wrapper">
           <% @post.images.each do |image| %>
             <div class="swiper-slide">
-              <%# スマホの画像サイズ %>
-              <%= image_tag(image.variant(resize_to_fit: [450,300], gravity: 'Center', strip: true), class: "d-block mx-auto img-fluid d-sm-none") %>
-              <%# PCの画像サイズ %>
-              <%= image_tag(image.variant(resize_to_fit: [500,415], gravity: 'Center', strip: true), class: "d-none mx-auto img-fluid d-sm-block") %>
+              <%= link_to image, "data-lightbox": image do %>
+                <%# スマホの画像サイズ %>
+                <%= image_tag(image.variant(resize_to_fit: [450,300], gravity: 'Center', strip: true), class: "img d-block mx-auto img-fluid d-sm-none") %>
+                <%# PCの画像サイズ %>
+                <%= image_tag(image.variant(resize_to_fit: [500,415], gravity: 'Center', strip: true), class: "img d-none mx-auto img-fluid d-sm-block") %>
+              <% end %>
             </div>
           <% end %>
         </div>

@@ -41,7 +41,7 @@
         <div class="form-group">
           <%= f.label :images, class: "input-area text-center d-block w-100 border-dashed border-2 rounded-1 border-success pointer py-2 py-lg-4", for: "file-upload" do %>
             <span class="text-center text-success">
-              <i class="fas fa-camera me-2"></i>画像を選択する
+              <i class="fas fa-camera me-2"></i><%= t("defaults.select_images") %>
             </span>
             <%= f.file_field :images, id: "file-upload", multiple: true, accept: '.jpeg, .jpg, .png', style: "display: none;", data: { images_target: "select", action: "change->images#selectImages" } %>
           <% end %>
