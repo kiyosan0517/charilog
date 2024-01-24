@@ -4,7 +4,9 @@
   <div class="row pb-4 mb-4 border-bottom">
     <div class="user-panel d-flex flex-column flex-md-row justify-content-center align-items-center">
       <div class="user-avatar d-flex align-items-center my-3">
-        <%= image_tag @user.avatar.variant(gravity: :center, resize: "90x90^!", crop:"90x90+0+0"), class: "rounded-circle bg-dark-subtle me-5", style: "display: inline-block;" %>
+        <%= link_to @user.avatar, "data-lightbox": @user.avatar do %>
+          <%= image_tag @user.avatar.variant(gravity: :center, resize: "90x90^!", crop:"90x90+0+0"), class: "img rounded-circle bg-dark-subtle me-5", style: "display: inline-block;" %>
+        <% end %>
         <div class="follow-btn mobile-size" style="display: inline-block;">
           <% if @user.id == current_user.id %>
             <div class="item-info mb-2">

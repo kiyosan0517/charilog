@@ -56,10 +56,12 @@
         <div class="swiper-wrapper">
           <% @post.images.each do |image| %>
             <div class="swiper-slide">
-              <%# スマホの画像サイズ %>
-              <%= image_tag(image.variant(resize_to_fit: [450,300], gravity: 'Center', strip: true), class: "d-block mx-auto img-fluid d-sm-none") %>
-              <%# PCの画像サイズ %>
-              <%= image_tag(image.variant(resize_to_fit: [500,415], gravity: 'Center', strip: true), class: "d-none mx-auto img-fluid d-sm-block") %>
+              <%= link_to image, "data-lightbox": image do %>
+                <%# スマホの画像サイズ %>
+                <%= image_tag(image.variant(resize_to_fit: [450,300], gravity: 'Center', strip: true), class: "img d-block mx-auto img-fluid d-sm-none") %>
+                <%# PCの画像サイズ %>
+                <%= image_tag(image.variant(resize_to_fit: [500,415], gravity: 'Center', strip: true), class: "img d-none mx-auto img-fluid d-sm-block") %>
+              <% end %>
             </div>
           <% end %>
         </div>
