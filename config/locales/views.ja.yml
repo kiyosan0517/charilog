@@ -13,6 +13,7 @@ ja:
     register: '登録する'
     post: '投稿する'
     edit: '編集する'
+    delete: '削除'
     submit: '送信する'
     update: '更新する'
     follow: 'フォローする'

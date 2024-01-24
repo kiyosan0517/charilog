@@ -7,11 +7,17 @@
         <%= form_with model: @user, url: profile_path, local: true do |f| %>
           <%= render 'shared/error_messages', object: f.object %>
           <div class="form-group avatar-panel d-flex justify-content-evenly justify-content-sm-center pb-2">
-            <div class="prev-img position-relative border-right border-secondary pe-3 pe-sm-4">
-              <%= image_tag @user.avatar, id: 'prev_img', class: "d-block-inline rounded-circle bg-dark-subtle", data: { avatar_url: rails_blob_path(@user.avatar, only_path: true) } if @user.avatar.attached? %>
+            <div class="prev-img position-relative">
+              <div class="border-right border-secondary pe-3 pe-sm-4">
+                <%= image_tag @user.avatar, id: 'prev_img', class: "d-block-inline rounded-circle bg-dark-subtle", 
+                              data: { avatar_url: rails_blob_path(@user.avatar, only_path: true) } if @user.avatar.attached? %>
+              </div>
               <div class="delete-preview operetion-bg pointer position-absolute top-0 end-0 me-2 mb-2">
                 <i class="fas fa-times text-white d-flex justify-content-center align-items-center h-100 m-0"></i>
               </div>
+              <% if @user.avatar.attached? && @user.avatar.blob.filename.to_s != 'sample.png' %>
+                <%= link_to t("defaults.delete"), profile_attachment_path(@user.avatar.id), method: :delete, class: 'btn btn-danger d-block me-3 me-sm-4 mt-1 p-0' %>
+              <% end %>
             </div>
             <%= f.label :avatar, class: "m-0" do %>
               <div class="input-area d-flex align-items-center justify-content-center d-block-inline flex-wrap border-dashed border-2 rounded-1 border-secondary pointer ms-3 ms-sm-5">
