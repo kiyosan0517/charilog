@@ -1,0 +1,48 @@
+<%= javascript_include_tag "avatar-prev.js" %>
+
+<div class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-9 p-0">
+      <div class="text-left">
+        <%= form_with model: @user, url: profile_path, local: true do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
+          <div class="form-group avatar-panel d-flex justify-content-center pb-2">
+            <div class="prev-img position-relative border-right border-secondary pe-2 pe-sm-5">
+              <%= image_tag 'sample.png', class: "d-block rounded-circle bg-dark-subtle", id: "prev_img" %>
+              <div class="delete-preview">
+                <i class="fas fa-times fa-lg text-white rounded-circle bg-dark opacity-75 p-1 px-sm-2"></i>
+              </div>
+            </div>
+            <%= f.label :avatar, class: "m-0" do %>
+              <div class="input-area d-flex align-items-center justify-content-center d-block-inline flex-wrap border-dashed border-2 rounded-1 border-secondary pointer ms-3 ms-sm-5">
+                <div class="text-center text-secondary">
+                  <i class="fas fa-camera me-1"></i>画像を
+                  <br>選択する
+                </div>
+              </div>
+              <%= f.file_field :avatar, class: "form-control", :id => 'user_avatar', accept: '.jpeg, .jpg, .png', style: "display: none;" %>
+            <% end %>
+          </div>
+          <div class="form-group">
+            <i class="fas fa-user me-1"></i>
+            <%= f.label :name, class: "fw-bold" %>
+            <%= f.text_field :name, class: 'form-control bg-light', placeholder: User.human_attribute_name(:name) %>
+          </div>
+          <div class="form-group">
+            <i class="fas fa-bicycle"></i>
+            <%= f.label t("users.new.my_bike"), class: "fw-bold text-break", for: "my_bike" %>
+            <%= f.select :my_bike, User.my_bikes.keys, {}, class: 'form-control bg-light', id: "my_bike" %>
+          </div>
+          <div class="form-group">
+            <i class="fas fa-envelope"></i>
+            <%= f.label :bio, class: "fw-bold" %>
+            <%= f.text_area :bio, class: 'form-control bg-light', placeholder: User.human_attribute_name(:bio), rows: 2 %>
+          </div>
+          <div class="form-group">
+            <%= f.submit t("defaults.update"), class: 'btn btn-primary btn-block font-weight-bold rounded-pill mt-4' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

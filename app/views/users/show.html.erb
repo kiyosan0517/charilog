@@ -1,10 +1,10 @@
 <%= javascript_include_tag "user-show.js" %>
 
-<div class="container px-lg-5 px-md-4">
-  <div class="row pb-4 mb-5 border-bottom">
+<div class="container px-md-4">
+  <div class="row pb-4 mb-4 border-bottom">
     <div class="user-panel d-flex flex-column flex-md-row justify-content-center align-items-center">
-      <div class="user-avatar d-flex align-items-center mt-3 mb-4">
-        <%= image_tag @user.avatar.variant(gravity: :center, resize: "90x90^!", crop:"90x90+0+0"), class: "rounded-circle bg-dark-subtle me-4", style: "display: inline-block;" %>
+      <div class="user-avatar d-flex align-items-center my-3">
+        <%= image_tag @user.avatar.variant(gravity: :center, resize: "90x90^!", crop:"90x90+0+0"), class: "rounded-circle bg-dark-subtle me-5", style: "display: inline-block;" %>
         <div class="follow-btn mobile-size" style="display: inline-block;">
           <% if @user.id == current_user.id %>
             <div class="item-info mb-2">
@@ -13,10 +13,14 @@
               </button>
               <div class="dropdown-menu bg-white" aria-labelledby="dropdownMenuButton">
                 <%= link_to users_path, class: 'dropdown-item text-danger doropdown-list-delete' do %>
+                  <div class="fw-bold">
                     <i class="fas fa-book"></i>  <%= t("defaults.to_items_page") %>
+                  </div>
                 <% end %>
                 <%= link_to posts_path, class: 'dropdown-item text-danger doropdown-list-delete' do %>
+                  <div class="fw-bold">
                     <i class="fas fa-search-plus"></i>  <%= t("defaults.to_new_item_page") %>
+                  </div>
                 <% end %>
               </div>
             </div>
@@ -26,11 +30,15 @@
                   <%= t(".setting_profile") %>
                 </button>
                 <div class="dropdown-menu bg-white" aria-labelledby="dropdownMenuButton">
-                  <%= link_to users_path, class: 'dropdown-item text-secondary doropdown-list-delete' do %>
-                      <i class="fas fa-id-card"></i>  <%= t("defaults.to_edit_profile_page") %>
+                  <%= link_to edit_profile_path, class: 'dropdown-item text-secondary doropdown-list-delete' do %>
+                      <div class="fw-bold">
+                        <i class="fas fa-id-card"></i>  <%= t("defaults.to_edit_profile_page") %>
+                      </div>
                   <% end %>
                   <%= link_to posts_path, class: 'dropdown-item text-secondary doropdown-list-delete' do %>
-                      <i class="fas fa-lock"></i>  <%= t("defaults.to_reset_page") %>
+                      <div class="fw-bold">
+                        <i class="fas fa-lock"></i>  <%= t("defaults.to_reset_page") %>
+                      </div>
                   <% end %>
                 </div>
               </div>
@@ -40,7 +48,7 @@
           <% end %>
         </div>
       </div>
-      <div class="d-flex flex-column fw-bold me-3">
+      <div class="d-flex flex-column fw-bold">
         <div class="user-element left-line border-4 border-primary ps-3 mb-3 mb-md-0">
           <div class="user-name mb-2">
             <i class="fas fa-user me-1"></i>
@@ -76,10 +84,14 @@
             </button>
             <div class="dropdown-menu bg-white" aria-labelledby="dropdownMenuButton">
               <%= link_to users_path, class: 'dropdown-item text-danger doropdown-list-delete' do %>
+                <div class="fw-bold">
                   <i class="fas fa-book"></i>  <%= t("defaults.to_items_page") %>
+                </div>
               <% end %>
               <%= link_to posts_path, class: 'dropdown-item text-danger doropdown-list-delete' do %>
+                <div class="fw-bold">
                   <i class="fas fa-search-plus"></i>  <%= t("defaults.to_new_item_page") %>
+                </div>
               <% end %>
             </div>
           </div>
@@ -89,11 +101,15 @@
                 <%= t(".setting_profile") %>
               </button>
               <div class="dropdown-menu bg-white" aria-labelledby="dropdownMenuButton">
-                <%= link_to users_path, class: 'dropdown-item text-secondary doropdown-list-delete' do %>
+                <%= link_to edit_profile_path, class: 'dropdown-item text-secondary doropdown-list-delete' do %>
+                  <div class="fw-bold">
                     <i class="fas fa-id-card"></i>  <%= t("defaults.to_edit_profile_page") %>
+                  </div>
                 <% end %>
                 <%= link_to posts_path, class: 'dropdown-item text-secondary doropdown-list-delete' do %>
+                  <div class="fw-bold">
                     <i class="fas fa-lock"></i>  <%= t("defaults.to_reset_page") %>
+                  </div>
                 <% end %>
               </div>
             </div>
