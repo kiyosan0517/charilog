@@ -14,7 +14,7 @@
         <div class="text-left">
           <%= form_with model: @user, local: true do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
-            <div class="form-group avatar-panel d-flex justify-content-center align-items-center pb-2">
+            <div class="form-group avatar-panel d-flex justify-content-center align-items-center flex-wrap pb-2">
               <div class="prev-img position-relative border-right border-secondary pe-3">
                 <%= image_tag 'sample.png', class: "d-block rounded-circle bg-dark-subtle", id: "prev_img" %>
                 <div class="delete-preview">
@@ -38,8 +38,8 @@
             </div>
             <div class="form-group">
               <i class="fas fa-bicycle"></i>
-              <%= f.label t(".my_bike"), class: "fw-bold text-break" %>
-              <%= f.select :my_bike, User.my_bikes.keys, {}, class: 'form-control bg-light' %>
+              <%= f.label t(".my_bike"), class: "fw-bold text-break", for: "my_bike" %>
+              <%= f.select :my_bike, User.my_bikes.keys, {}, class: 'form-control bg-light', id: "my_bike" %>
             </div>
             <div class="form-group">
               <i class="fas fa-envelope"></i>

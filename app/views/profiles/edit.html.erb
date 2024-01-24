@@ -2,15 +2,15 @@
 
 <div class="container my-4">
   <div class="row justify-content-center">
-    <div class="col-lg-8 col-md-9 p-0">
+    <div class="col-lg-8 col-md-9 col-11 p-0">
       <div class="text-left">
         <%= form_with model: @user, url: profile_path, local: true do |f| %>
           <%= render 'shared/error_messages', object: f.object %>
-          <div class="form-group avatar-panel d-flex justify-content-center pb-2">
-            <div class="prev-img position-relative border-right border-secondary pe-2 pe-sm-5">
-              <%= image_tag 'sample.png', class: "d-block rounded-circle bg-dark-subtle", id: "prev_img" %>
-              <div class="delete-preview">
-                <i class="fas fa-times fa-lg text-white rounded-circle bg-dark opacity-75 p-1 px-sm-2"></i>
+          <div class="form-group avatar-panel d-flex justify-content-evenly justify-content-sm-center pb-2">
+            <div class="prev-img position-relative border-right border-secondary pe-3 pe-sm-4">
+              <%= image_tag @user.avatar, id: 'prev_img', class: "d-block-inline rounded-circle bg-dark-subtle", data: { avatar_url: rails_blob_path(@user.avatar, only_path: true) } if @user.avatar.attached? %>
+              <div class="delete-preview operetion-bg pointer position-absolute top-0 end-0 me-2 mb-2">
+                <i class="fas fa-times text-white d-flex justify-content-center align-items-center h-100 m-0"></i>
               </div>
             </div>
             <%= f.label :avatar, class: "m-0" do %>
