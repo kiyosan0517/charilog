@@ -62,7 +62,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.default_url_options = { protocol: 'https', host: 'charilog.herokuapp.com'}
+  config.action_mailer.default_url_options = { protocol: 'https', host: 'charilog-ae3ab1d1c47c.herokuapp.com'}
 
   config.action_mailer.delivery_method = :smtp
 
