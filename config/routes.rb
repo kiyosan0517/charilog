@@ -15,4 +15,5 @@ Rails.application.routes.draw do
       post "upload_image"
     end
   end
+  resources :password_resets, only: %i[new create edit update]
 end
