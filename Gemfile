@@ -51,6 +51,9 @@ gem 'bootstrap4-kaminari-views'
 # Authentication
 gem 'sorcery'
 
+# Mailer
+gem 'letter_opener_web'
+
 group :development, :test do
   # Debugger
   gem 'better_errors'

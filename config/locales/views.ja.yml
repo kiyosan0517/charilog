@@ -10,16 +10,17 @@ ja:
     my_page: 'マイページ'
     profile: 'プロフィール'
     site: '設定'
-    register: '登録'
-    post: '投稿'
-    edit: '編集'
-    delete: '削除'
-    submit: '送信'
-    update: '更新'
+    register: '登録する'
+    post: '投稿する'
+    edit: '編集する'
+    delete: '削除する'
+    submit: '送信する'
+    update: '更新する'
     follow: 'フォローする'
     unfollow: 'フォロー解除'
     back: '戻る'
-    to_top_page: 'トップページに戻る'
+    to_top_page: 'トップページへ戻る'
+    to_my_page: 'マイページへ戻る'
     to_register_page: '新規登録ページへ'
     to_login_page: 'ログインページへ'
     to_posts_page: '投稿一覧へ'
@@ -108,7 +109,10 @@ ja:
       title: 'プロフィール編集'
   password_resets:
     new:
-      title: パスワードリセット申請
+      title: 'メール・パスワード再設定申請'
+      require_email: 'メールアドレスを入力して下さい'
+      to_edit_password_reset_page: '再設定手続きを進める'
     edit:
-      title: パスワードリセット
-      
+      title: 'メール・パスワード再設定'
+      new_password: '新しいパスワード'
+      new_password_confirm: '新しいパスワード確認'

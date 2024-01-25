@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-xl-7 col-lg-8 col-md-10 col-12">
+      <div class="title-area text-center mt-4 mb-5">
+        <h3 class="fw-bold"><%= t(".title") %></h3>
+      </div>
+      <div class="form-area border rounded bg-body-secondary px-4 py-5 p-sm-5">
+        <h5 class='text-center fw-bold text-info pt-2 pb-4'>
+          <i class="far fa-envelope"></i>
+          <%= t(".require_email") %>
+        </h5>
+        <%= form_with url: password_resets_path, method: :post, local: true do |f| %>
+          <div class="form-group mb-1 mt-4">
+            <input type="text" name="email" id="email" autocomplete="on" class="form-control">
+          </div>
+          <div>
+            ご登録されているメールアドレスに<br>
+            再設定用ページへのURLを送信致します。
+          </div>
+          <div class="form-group mt-5">
+            <%= f.submit t(".to_edit_password_reset_page"), class: 'form-control btn btn-primary mt-3' %>
+          </div>
+        <% end %>
+      </div>
+      <h5 class="text-center mt-5">
+        <% if logged_in? %>
+          <%= link_to t("defaults.to_my_page"), user_path(current_user), class: "fw-bold", style: "text-decoration: underline;" %>
+        <% else %>
+          <div class="d-flex flex-column flex-sm-row justify-content-center px-2">
+            <%= link_to t("defaults.to_top_page"), root_path, class: "btn btn-outline-info fw-bold mb-4 mb-sm-0 py-3 px-sm-5" %>
+            <%= link_to t("defaults.to_register_page"), new_user_path, class: "btn btn-outline-success fw-bold ms-sm-4 ms-md-5 py-3 px-sm-5" %>
+          </div>
+        <% end %>
+      </h5>
+    </div>
+  </div>
+</div>
