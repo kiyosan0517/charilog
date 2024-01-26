@@ -1,0 +1,15 @@
+<%= search_form_for @q, url: posts_path do |f| %>
+  <div class="row">
+    <div class="form-inline align-items-center mx-auto">
+      <div class="col-auto">
+        <%= f.search_field :title_or_content_cont, class: 'form-control', placeholder: 'キーワードから投稿を検索' %>
+      </div>
+      <div class="col-auto">
+        <%= f.select :user_my_bike_eq, User.my_bikes_i18n.invert.map{|key, value| [key, User.my_bikes[value]]}, { include_blank: 'バイクメーカーを選択' }, { class: 'form-control mr-1' } %>
+      </div>
+      <div class="col-auto">
+        <%= f.submit class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
 
   def index
-    @users = User.with_attached_avatar.where.not(id: current_user.id).order(created_at: :desc).page(params[:page]).per(15)
+    @q = User.ransack(params[:q])
+    @users = @q.result(distinct: true).with_attached_avatar.where.not(id: current_user.id).order(created_at: :desc).page(params[:page]).per(15)
   end
 
   def new
