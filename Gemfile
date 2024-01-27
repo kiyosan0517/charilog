@@ -54,6 +54,9 @@ gem 'sorcery'
 # Mailer
 gem 'letter_opener_web'
 
+# Search
+gem 'ransack'
+
 group :development, :test do
   # Debugger
   gem 'better_errors'

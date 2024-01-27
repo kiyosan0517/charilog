@@ -3,6 +3,11 @@
     <h2 class="fw-bold"><%= t(".title") %></h2>
   </div>
 
+  <!-- 検索フォーム -->
+  <div class="row">
+    <%= render 'search_form', q: @q %>
+  </div>
+
   <!-- 掲示板一覧 -->
   <div class="row mb-5">
     <% if @posts.present? %>

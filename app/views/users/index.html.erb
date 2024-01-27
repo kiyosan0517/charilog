@@ -1,4 +1,11 @@
 <div class="container">
+
+  <!-- 検索フォーム -->
+  <div class="row">
+    <%= render 'search_form', q: @q %>
+  </div>
+
+  <!-- ユーザー一覧 -->
   <div class="row">
     <div class="table-responsive">
       <table class="table table-condensed">
@@ -13,7 +20,7 @@
         <tbody>
           <% @users.each do |user| %>
             <tr>
-              <th class="align-middle">
+              <th class="text-center">
                 <%= link_to user_path(user) do %>
                   <%= image_tag user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
                 <% end %>
