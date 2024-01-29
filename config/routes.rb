@@ -7,7 +7,12 @@ Rails.application.routes.draw do
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
 
-  resources :users, only: %i[index new create show]
+  resources :users, only: %i[index new create show] do
+    resource :relationships, only: %i[create destroy]
+    member do
+      get :follows, :followers
+    end
+  end
   resource :profile, only: %i[edit update] do 
     resources :attachments, controller: 'profile/attachments', only: %i[destroy]
   end

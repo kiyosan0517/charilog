@@ -39,7 +39,7 @@
             <div class="form-group">
               <i class="fas fa-bicycle"></i>
               <%= f.label t(".my_bike"), class: "fw-bold text-break", for: "my_bike" %>
-              <%= f.select :my_bike, User.my_bikes.keys, {}, class: 'form-control bg-light', id: "my_bike" %>
+              <%= f.select :my_bike, User.my_bikes.keys, { include_blank: t("defaults.select_bike") }, class: 'form-select text-secondary bg-light', id: "my_bike" %>
             </div>
             <div class="form-group">
               <i class="fas fa-envelope"></i>

@@ -2,7 +2,7 @@
 
   <!-- 検索フォーム -->
   <div class="row">
-    <%= render 'search_form', q: @q, url: users_path %>
+    <%= render 'search_form', q: @q, url: followers_user_path %>
   </div>
 
   <!-- ユーザー一覧 -->
@@ -24,13 +24,15 @@
         </table>
       </div>
     <% else %>
-      <div class="text-center text-secondary my-5"><%= t(".no_user") %></div>
-      <div class="text-center">
-        <%= link_to t(".leave_log!"), new_post_path, class: "btn btn-info" %>
-      </div>
+      <div class="text-center text-secondary my-5"><%= t(".no_followers") %></div>
+      <% if current_user.id == @user.id %>
+        <div class="text-center">
+          <%= link_to t(".leave_log!"), new_post_path, class: "btn btn-info" %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 
-  <%= paginate @users, theme: 'twitter-bootstrap-4' %>
+  
 
 </div>
