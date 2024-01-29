@@ -24,7 +24,21 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @following_users = @user.following_users
+    @follower_users = @user.follower_users
     @posts = @user.posts.order(created_at: :desc).page(params[:page]).per(10)
+  end
+
+  def follows
+    @user = User.find(params[:id])
+    @q = @user.following_users.ransack(params[:q])
+    @users = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(15)
+  end
+
+  def followers
+    @user = User.find(params[:id])
+    @q = @user.follower_users.ransack(params[:q])
+    @users = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(15)
   end
 
   private

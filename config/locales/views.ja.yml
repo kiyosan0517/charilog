@@ -29,7 +29,9 @@ ja:
     to_edit_profile_page: 'プロフィール設定'
     to_reset_page: 'メール・パスワード設定'
     look_password: 'パスワードを表示'
+    input_user_name: 'ユーザー名を入力'
     select_images: '画像を選択する'
+    select_bike: 'メーカーを選択'
     message:
       require_login: 'ログインしてください'
       created: '%{item}を作成しました'
@@ -48,6 +50,7 @@ ja:
     index:
       title: 'ユーザー一覧'
       no_user: '他にユーザーはいません。あなたが最初の利用者です！'
+      leave_log!: 'ログを残そう！'
     new:
       title: 'ユーザー登録'
       my_bike: 'お気に入り(所有する)自転車メーカー'
@@ -61,9 +64,19 @@ ja:
       item_management: 'アイテム管理'
       no_post: 'まだ投稿はありません'
       no_bio: '自己紹介は登録されていません'
+      no_mybike: '登録されていません'
       follow: 'フォロー中'
       follower: 'フォロワー'
+      post: '投稿'
       leave_log!: 'あなたのログを残そう！'
+    followers:
+      title:  'フォロワー一覧'
+      no_followers: 'フォロワーはまだいません'
+      leave_log!: 'ログを残してフォロワーを増やそう！'
+    follows:
+      title:  'フォロー中一覧'
+      no_follows: 'フォロー中のユーザーはいません'
+      lets_follow: 'ユーザーをフォローしよう'
   user_sessions:
     new:
       title: 'ログイン'

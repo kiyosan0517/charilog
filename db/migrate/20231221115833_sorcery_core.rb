@@ -6,7 +6,7 @@ class SorceryCore < ActiveRecord::Migration[6.0]
       t.string :salt
       t.string :name, null: false
       t.text :bio
-      t.integer :my_bike, null: false, default: 0
+      t.integer :my_bike
 
       t.timestamps                null: false
     end

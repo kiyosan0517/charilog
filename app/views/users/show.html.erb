@@ -46,7 +46,11 @@
               </div>
             </div>
           <% else %>
-            <%= link_to t("defaults.follow"), "#", class: "btn btn-primary fw-bold p-3" %>
+            <% if current_user.following?(@user) %>
+              <%= link_to t("defaults.unfollow"), user_relationships_path(@user.id), method: :delete, class: "btn btn-danger fw-bold p-3" %>
+            <% else %>
+              <%= link_to t("defaults.follow"), user_relationships_path(@user.id), method: :post, class: "btn btn-primary fw-bold p-3" %>
+            <% end %>
           <% end %>
         </div>
       </div>
@@ -62,12 +66,20 @@
             <i class="fas fa-bicycle me-1"></i>
             <%= User.human_attribute_name(:my_bike) %>
             <span>：</span>
-            <%= @user.my_bike_i18n %>
+            <% if @user.my_bike.present? %>
+              <%= @user.my_bike_i18n %>
+            <% else %>
+              <%= t(".no_mybike") %>
+            <% end %>
           </div>
           <div class="element-count d-flex flex-wrap">
-            <div class="me-3"><%= t(".follower") %>10件</div>
-            <div class="me-3"><%= t(".follow") %>10件</div>
-            <div><%= t("defaults.post") %><%= @user.posts.count %>件</div>
+            <%= link_to followers_user_path, style:"text-decoration:none;" do %>
+              <div class="text-secondary me-3"><%= t(".follower") %><%= @user.followeds.count %>人</div>
+            <% end %>
+            <%= link_to follows_user_path, style:"text-decoration:none;" do %>
+              <div class="text-secondary me-3"><%= t(".follow") %><%= @user.followers.count %>人</div>
+            <% end %>
+            <div><%= t(".post") %><%= @user.posts.count %>件</div>
           </div>
         </div>
         <div class="bio-area mobile-size fw-bold">
@@ -117,7 +129,11 @@
             </div>
           </div>
         <% else %>
-          <%= link_to t("defaults.follow"), "#", class: "btn btn-primary fw-bold p-3" %>
+          <% if current_user.following?(@user) %>
+            <%= link_to t("defaults.unfollow"), user_relationships_path(@user.id), method: :delete, class: "btn btn-danger fw-bold p-3" %>
+          <% else %>
+            <%= link_to t("defaults.follow"), user_relationships_path(@user.id), method: :post, class: "btn btn-primary fw-bold p-3" %>
+          <% end %>
         <% end %>
       </div>
     </div>
