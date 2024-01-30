@@ -6,4 +6,8 @@ class StaticPagesController < ApplicationController
       redirect_to posts_path
     end
   end
+
+  def privacy_policy; end
+
+  def terms; end
 end
