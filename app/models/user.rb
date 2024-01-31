@@ -4,6 +4,8 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
   has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :like_posts, through: :likes, source: :post
 
   # フォローをした、されたの関係
   has_many :followers, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
@@ -54,5 +56,17 @@ class User < ApplicationRecord
 
   def following?(user)
     following_users.include?(user)
+  end
+
+  def like(post)
+    like_posts << post
+  end
+
+  def unlike(post)
+    like_posts.destroy(post)
+  end
+
+  def liked?(post)
+    like_posts.include?(post)
   end
 end

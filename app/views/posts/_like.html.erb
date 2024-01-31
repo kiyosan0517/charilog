@@ -1,0 +1,9 @@
+<%= link_to post_like_path(post), 
+            id: "js-like-button-for-post-#{post.id}", 
+            class: "text-center",
+            style: "text-decoration:none;",
+            method: :post,
+            remote: true do %>
+  <i class="far fa-heart heart-empty text-dark"></i>
+  <div class="text-secondary"><%= post.likes.count %> Likes</div>
+<% end %>

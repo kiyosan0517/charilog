@@ -1,0 +1,14 @@
+.heart {
+  color: rgb(255, 74, 74);
+  font-size: 25px;
+  animation: anime 1s;
+  margin-left: 2px;
+}
+@keyframes anime{
+  15% { transform: scale(1.3); }
+  20% { transform: scale(1); }
+  }
+
+.heart-empty {
+  font-size: 25px;
+}
