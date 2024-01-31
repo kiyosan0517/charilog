@@ -5,7 +5,7 @@
 
   <!-- 検索フォーム -->
   <div class="row">
-    <%= render 'search_form', q: @q, url: posts_path %>
+    <%= render 'search_form', q: @q, url: likes_posts_path %>
   </div>
 
   <!-- 掲示板一覧 -->
@@ -13,9 +13,9 @@
     <% if @posts.present? %>
       <%= render @posts %>
     <% else %>
-      <div class="text-center text-secondary my-5"><%= t(".no_post") %></div>
+      <div class="text-center text-secondary my-5"><%= t(".no_like") %></div>
       <div class="text-center">
-        <%= link_to t(".log_first!"), new_post_path, class: "btn btn-info" %>
+        <%= link_to t(".lets_like!"), posts_path, class: "btn btn-info" %>
       </div>
     <% end %>
   </div>

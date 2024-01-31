@@ -108,6 +108,7 @@ ja:
     likes:
       title: 'いいね一覧'
       no_like: 'いいねしたログはありません'
+      lets_like!: 'ログをいいねしよう！'
   items:
     index:
 

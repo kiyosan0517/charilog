@@ -56,6 +56,11 @@ class PostsController < ApplicationController
     end
   end
 
+  def likes
+    @q = current_user.like_posts.ransack(params[:q])
+    @posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page])
+  end
+
   # 画像アップロード用のアクション
   def upload_image
     @image_blob = create_blob(params[:image])

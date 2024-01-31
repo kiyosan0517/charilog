@@ -33,7 +33,7 @@
         <% end %>
       </li>
       <li class="nav-item ">
-        <%= link_to posts_path do %>
+        <%= link_to likes_posts_path do %>
           <span class="nav-icon">
             <ion-icon name="heart-outline"></ion-icon>
           </span>
@@ -49,7 +49,7 @@
         <% end %>
       </li>
       <li class="nav-item ">
-        <%= link_to posts_path do %>
+        <%= link_to user_path(current_user) do %>
           <span class="nav-icon">
             <ion-icon name="person-circle-outline"></ion-icon>
           </span>
@@ -57,7 +57,7 @@
         <% end %>
       </li>
       <li class="nav-item ">
-        <%= link_to posts_path do %>
+        <%= link_to edit_profile_path do %>
           <span class="nav-icon">
             <ion-icon name="settings-outline"></ion-icon>
           </span>
