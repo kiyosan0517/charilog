@@ -1,4 +1,12 @@
 <div class="container">
+  <div class="title-area d-flex align-items-end under-line border-4 my-2">
+    <h2 class="fw-bold"><%= t(".title") %></h2>
+    <% if search_from? %>
+      <h4 class="ms-auto">
+        <%= t("defaults.search_result") %><%= "#{@user_count}件" %>
+      </h4>
+    <% end %>
+  </div>
 
   <!-- 検索フォーム -->
   <div class="row">
@@ -24,15 +32,17 @@
         </table>
       </div>
     <% else %>
-      <div class="text-center text-secondary my-5"><%= t(".no_followers") %></div>
-      <% if current_user.id == @user.id %>
-        <div class="text-center">
-          <%= link_to t(".leave_log!"), new_post_path, class: "btn btn-info" %>
-        </div>
+      <% if search_from? %>
+        <div class="text-center text-secondary my-5"><%= t("defaults.no_search_result") %></div>
+      <% else %>
+        <div class="text-center text-secondary my-5"><%= t(".no_followers") %></div>
+        <% if current_user.id == @user.id %>
+          <div class="text-center">
+            <%= link_to t(".leave_log!"), new_post_path, class: "btn btn-info" %>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
   </div>
-
-  
 
 </div>

@@ -1,11 +1,16 @@
 <div class="container p-2">
-  <div class="title-area under-line border-4 my-2">
+  <div class="title-area d-flex align-items-end under-line border-4 my-2">
     <h2 class="fw-bold"><%= t(".title") %></h2>
+    <% if search_from? %>
+      <h4 class="ms-auto">
+        <%= t("defaults.search_result") %><%= "#{@post_count}件" %>
+      </h4>
+    <% end %>
   </div>
 
   <!-- 検索フォーム -->
   <div class="row">
-    <%= render 'search_form', q: @q, url: posts_path %>
+    <%= render 'search_form', q: @q, url: posts_path(from_search: @from_search) %>
   </div>
 
   <!-- 掲示板一覧 -->
@@ -13,10 +18,14 @@
     <% if @posts.present? %>
       <%= render @posts %>
     <% else %>
-      <div class="text-center text-secondary my-5"><%= t(".no_post") %></div>
-      <div class="text-center">
-        <%= link_to t(".log_first!"), new_post_path, class: "btn btn-info" %>
-      </div>
+      <% if search_from? %>
+        <div class="text-center text-secondary my-5"><%= t("defaults.no_search_result") %></div>
+      <% else %>
+        <div class="text-center text-secondary my-5"><%= t(".no_post") %></div>
+        <div class="text-center">
+          <%= link_to t(".log_first!"), new_post_path, class: "btn btn-info" %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 
