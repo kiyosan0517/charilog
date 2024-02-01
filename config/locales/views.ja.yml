@@ -34,6 +34,8 @@ ja:
     input_user_name: 'ユーザー名を入力'
     select_images: '画像を選択する'
     select_bike: 'メーカーを選択'
+    search_result: '検索結果'
+    no_search_result: '検索結果がありません'
     message:
       require_login: 'ログインしてください'
       created: '%{item}を作成しました'
@@ -50,7 +52,7 @@ ja:
       warning: ログインしてください
   users:
     index:
-      title: 'ユーザー一覧'
+      title: 'ユーザーリスト'
       no_user: '他にユーザーはいません。あなたが最初の利用者です！'
       leave_log!: 'ログを残そう！'
     new:
@@ -72,11 +74,11 @@ ja:
       post: '投稿'
       leave_log!: 'あなたのログを残そう！'
     followers:
-      title:  'フォロワー一覧'
+      title:  'フォロワー'
       no_followers: 'フォロワーはまだいません'
       leave_log!: 'ログを残してフォロワーを増やそう！'
     follows:
-      title:  'フォロー中一覧'
+      title:  'フォロー中'
       no_follows: 'フォロー中のユーザーはいません'
       lets_follow: 'ユーザーをフォローしよう'
   user_sessions:

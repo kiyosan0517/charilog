@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   def index
     @q = Post.ransack(params[:q])
     @posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page])
+    @post_count = @posts.total_count
   end
 
   # GET /posts/new
@@ -59,6 +60,7 @@ class PostsController < ApplicationController
   def likes
     @q = current_user.like_posts.ransack(params[:q])
     @posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page])
+    @post_count = @posts.total_count
   end
 
   # 画像アップロード用のアクション
