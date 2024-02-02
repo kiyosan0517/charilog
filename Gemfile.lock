@@ -115,6 +115,10 @@ GEM
     date (3.3.4)
     debug_inspector (1.2.0)
     diff-lcs (1.5.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     enum_help (0.0.19)
       activesupport (>= 3.0.0)
     erubi (1.12.0)
@@ -282,6 +286,8 @@ GEM
       thor (>= 0.20.3, < 2.0)
     rainbow (3.1.1)
     rake (13.1.0)
+    rakuten_web_service (1.13.2)
+      json (~> 2.3)
     ransack (3.1.0)
       activerecord (>= 6.0.4)
       activesupport (>= 6.0.4)
@@ -427,6 +433,7 @@ DEPENDENCIES
   bullet
   byebug
   capybara (>= 2.15)
+  dotenv-rails
   enum_help
   factory_bot_rails
   faker
@@ -447,6 +454,7 @@ DEPENDENCIES
   puma (~> 4.1)
   rails (~> 6.0.3)
   rails-i18n
+  rakuten_web_service
   ransack
   rspec-rails
   rubocop
