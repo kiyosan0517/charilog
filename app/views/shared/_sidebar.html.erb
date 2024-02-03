@@ -1,19 +1,19 @@
 <sidebar>
   <div class="navigation">
     <ul>
-      <div class="user-panel d-lg-none d-flex align-items-center border-bottom border-dark pb-3">
-        <div class="user-avatar mx-2">
-          <%= link_to user_path(current_user) do %>
-            <%= image_tag current_user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
-          <% end %>
-        </div>
-        <div class="d-flex flex-column">
+      <div class="d-lg-none border-bottom border-dark mx-2 mb-2 pb-3">
+        <div class="user-panel d-flex align-items-center mb-2">
+          <div class="user-avatar me-2">
+            <%= link_to user_path(current_user) do %>
+              <%= image_tag current_user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
+            <% end %>
+          </div>
           <div class="user-name">
-            <%= link_to current_user.name.truncate(12), user_path(current_user), class: "d-block font-weight-bold text-secondary" %>
+            <%= link_to current_user.name.truncate(12), user_path(current_user), class: "d-block font-weight-bold text-secondary", style: "text-decoration:none;" %>
           </div>
-          <div class="new-post-btn">
-            <%= link_to t("defaults.post"), new_post_path, class: "btn btn-sm btn-info fw-bold p-0 px-2" %>
-          </div>
+        </div>
+        <div class="new-post-btn">
+          <%= link_to t("defaults.post"), new_post_path, class: "btn btn-sm btn-info fw-bold px-5" %>
         </div>
       </div>
       <li class="nav-item <%= nav_item_class(posts_path) %>">
@@ -32,7 +32,7 @@
           <span class="title"><%= User.model_name.human %></span>
         <% end %>
       </li>
-      <li class="nav-item ">
+      <li class="nav-item <%= nav_item_class(likes_posts_path) %>">
         <%= link_to likes_posts_path do %>
           <span class="nav-icon">
             <ion-icon name="heart-outline"></ion-icon>
@@ -40,15 +40,15 @@
           <span class="title"><%= t("defaults.likes") %></span>
         <% end %>
       </li>
-      <li class="nav-item ">
-        <%= link_to posts_path do %>
+      <li class="nav-item <%= nav_item_class(items_search_path) %>">
+        <%= link_to items_search_path do %>
           <span class="nav-icon">
-            <ion-icon name="bookmarks-outline"></ion-icon>
+            <ion-icon name="pricetags-outline"></ion-icon>
           </span>
-          <span class="title"><%= t("defaults.bookmarks") %></span>
+          <span class="title"><%= t("defaults.items") %></span>
         <% end %>
       </li>
-      <li class="nav-item ">
+      <li class="nav-item <%= nav_item_class(user_path(current_user)) %>">
         <%= link_to user_path(current_user) do %>
           <span class="nav-icon">
             <ion-icon name="person-circle-outline"></ion-icon>
@@ -56,7 +56,7 @@
           <span class="title"><%= t("defaults.my_page") %></span>
         <% end %>
       </li>
-      <li class="nav-item ">
+      <li class="nav-item <%= nav_item_class(edit_profile_path) %>">
         <%= link_to edit_profile_path do %>
           <span class="nav-icon">
             <ion-icon name="settings-outline"></ion-icon>

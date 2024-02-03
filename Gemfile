@@ -57,6 +57,12 @@ gem 'letter_opener_web'
 # Search
 gem 'ransack'
 
+# API
+gem 'rakuten_web_service'
+
+# Environments
+gem 'dotenv-rails'
+
 group :development, :test do
   # Debugger
   gem 'better_errors'
