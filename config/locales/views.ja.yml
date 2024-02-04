@@ -34,6 +34,7 @@ ja:
     to_reset_page: 'メール・パスワード設定'
     look_password: 'パスワードを表示'
     input_user_name: 'ユーザー名を入力'
+    input_keyword: 'キーワードを入力'
     select_images: '画像を選択する'
     select_bike: 'メーカーを選択'
     search_result: '検索結果'
