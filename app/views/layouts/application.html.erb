@@ -48,7 +48,9 @@
           </div>
         </div>
       <% else %>
-        <!-- ログインしていない場合、メインコンテンツのみ表示 -->
+        <div class="header-wrapper sticky-top shadow-sm bg-white p-0">
+          <%= render "/shared/header" %>
+        </div>
         <div class="content-wrapper pt-4">
           <%= render "/shared/flash_message" %>
           <%= yield %>

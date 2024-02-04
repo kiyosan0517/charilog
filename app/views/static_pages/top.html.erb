@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-5">
   <div class="row justify-content-center">
     <div class="col-xl-4 col-lg-5 col-md-6 d-md-block d-none">
       <%= image_tag "chari-log-top.png", class: "img-fluid h-100 float-right" %>
@@ -8,3 +8,41 @@
     </div>
   </div>
 </div>
+
+<!-- Services section -->
+<section id="services" class="py-5 border-top border-bottom">
+  <%= render 'services_detail' %>
+</section>
+
+<div class="hero vh-100 d-flex align-items-center mb-5" id="home">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 mx-auto text-center">
+        <h1 class="display-5 text-white">さぁ、ChariLogを始めよう</h1>
+        <p class="text-white mt-5">
+          公式X(旧Twitter)もあります。ご質問や開発等の技術面で何かあればこちらにお問い合わせください。
+        </p>
+        <%= link_to "ログイン", root_path, class: "btn btn-primary me-3 px-4" %>
+        <%= link_to "新規登録", new_user_path, class: "btn btn-info me-3 px-4" %>
+        <%= link_to "公式Xへ", "#", class: "btn btn-secondary px-4" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="blog" class="pt-4">
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col-md-8 mx-auto text-center">
+        <h2 class="fw-bold">ー 最新の投稿 ー</h2>
+        <p class="text-primary mb-4">
+          あなたもマイバイクとのログを残そう！
+        </p>
+      </div>
+
+      <div class="post-list">
+        <%= render 'post_list' %>
+      </div>
+    </div>
+  </div>
+</section>
