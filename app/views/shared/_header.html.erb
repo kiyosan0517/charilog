@@ -3,21 +3,23 @@
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag 'chari-log-logo.png', class: "ms-2", style: "height: 45px;" %>
     <% end %>
-    <div class="user-panel d-lg-flex d-none align-items-center">
-      <div class="user-avatar mx-2">
-        <%= link_to user_path(current_user) do %>
-          <%= image_tag current_user.avatar.variant(gravity: :center, resize: "40x40^!", crop:"40x40+0+0"), class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
-        <% end %>
+    <% if logged_in? %>
+      <div class="user-panel d-lg-flex d-none align-items-center">
+        <div class="user-avatar mx-2">
+          <%= link_to user_path(current_user) do %>
+            <%= image_tag current_user.avatar.variant(gravity: :center, resize: "40x40^!", crop:"40x40+0+0"), class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
+          <% end %>
+        </div>
+        <div class="user-name">
+          <%= link_to current_user.name, user_path(current_user), class: "d-block font-weight-bold text-secondary" %>
+        </div>
+        <div class="new-post-btn ms-4">
+          <%= link_to t("defaults.post"), new_post_path, class: "btn btn-sm btn-info fw-bold px-3 py-2" %>
+        </div>
       </div>
-      <div class="user-name">
-        <%= link_to current_user.name, user_path(current_user), class: "d-block font-weight-bold text-secondary" %>
-      </div>
-      <div class="new-post-btn ms-4">
-        <%= link_to t("defaults.post"), new_post_path, class: "btn btn-sm btn-info fw-bold px-3 py-2" %>
-      </div>
-    </div>
-    <button class="navbar-toggler" type="button">
-      <span class="fas fa-bars fa-lg"></span>
-    </button>
+      <button class="navbar-toggler" type="button">
+        <span class="fas fa-bars fa-lg"></span>
+      </button>
+    <% end %>
   </div>
 </nav>
