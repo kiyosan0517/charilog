@@ -25,6 +25,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @like_count = @user.posts_all_like_count
     @following_users = @user.following_users
     @follower_users = @user.follower_users
     @posts = @user.posts.order(created_at: :desc).page(params[:page]).per(10)

@@ -12,6 +12,18 @@ body {
   padding-top: 0px;
 }
 
+.site-wrapper {
+  position: relative;
+  padding-bottom: 125px;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+
+.footer-wrapper {
+  position: absolute;
+  bottom: 0;
+}
+
 .border-dashed {
   border: dashed;
 }

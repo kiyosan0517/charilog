@@ -18,10 +18,9 @@
   </head>
 
   <body>
-    <div class="site-wrapper">
-      <% if logged_in? %>
-        <%= javascript_include_tag "sidebar-toggle.js" %>
-
+    <% if logged_in? %>
+      <%= javascript_include_tag "sidebar-toggle.js" %>
+      <div class="site-wrapper">
         <div class="container-fluid bg-light p-0">
           <div class="row m-0">
             <!-- ヘッダー -->
@@ -30,36 +29,36 @@
             </div>
 
             <!-- サイドバー -->
-            <div class="sidebar-wrapper col-xl-2 col-lg-2 z-2">
+            <div class="sidebar-wrapper col-xl-2 col-lg-2 bg-white z-2">
               <%= render "/shared/sidebar" %>
             </div>
 
             <!-- メインコンテンツ -->
-            <div class="content-wrapper col-xl-10 col-lg-10 col-md-12 px-1 px-sm-5 pt-4 z-1">
+            <div class="content-wrapper col-xl-10 col-lg-10 col-md-12 bg-white px-1 px-sm-5 pt-4 z-0">
               <%= render "/shared/flash_message" %>
               <%= yield %>
               <div class="mask-area overlay"></div>
             </div>
 
             <!-- フッター -->
-            <div class="footer-wrapper shadow bg-white z-0 mt-4">
+            <div class="footer-wrapper bg-light z-1 mt-4">
               <%= render "/shared/footer" %>
             </div>
           </div>
         </div>
-      <% else %>
-        <div class="header-wrapper sticky-top shadow-sm bg-white p-0">
-          <%= render "/shared/header" %>
-        </div>
-        <div class="content-wrapper pt-4">
-          <%= render "/shared/flash_message" %>
-          <%= yield %>
-        </div>
-        <div class="footer-wrapper shadow mt-5">
-          <%= render "/shared/footer" %>
-        </div>
-      <% end %>
-    </div>
+      </div>
+    <% else %>
+      <div class="header-wrapper sticky-top shadow-sm bg-white p-0">
+        <%= render "/shared/header" %>
+      </div>
+      <div class="content-wrapper pt-4">
+        <%= render "/shared/flash_message" %>
+        <%= yield %>
+      </div>
+      <div class="before-login-footer-wrapper shadow mt-5">
+        <%= render "/shared/footer" %>
+      </div>
+    <% end %>
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

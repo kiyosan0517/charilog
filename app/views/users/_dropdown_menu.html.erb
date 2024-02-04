@@ -1,0 +1,36 @@
+<div class="item-info mb-2">
+  <button class="btn btn-danger dropdown-toggle px-lg-5 py-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <%= t("defaults.item_management") %>
+  </button>
+  <div class="dropdown-menu bg-white" aria-labelledby="dropdownMenuButton">
+    <%= link_to users_path, class: 'dropdown-item text-danger doropdown-list-delete' do %>
+      <div class="fw-bold">
+        <i class="fas fa-book"></i><%= t("defaults.to_items_page") %>
+      </div>
+    <% end %>
+    <%= link_to posts_path, class: 'dropdown-item text-danger doropdown-list-delete' do %>
+      <div class="fw-bold">
+        <i class="fas fa-search-plus"></i><%= t("defaults.to_new_item_page") %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="edit-profile">
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle px-lg-5 py-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <%= t("defaults.setting_profile") %>
+    </button>
+    <div class="dropdown-menu bg-white" aria-labelledby="dropdownMenuButton">
+      <%= link_to edit_profile_path, class: 'dropdown-item text-secondary doropdown-list-delete' do %>
+          <div class="fw-bold">
+            <i class="fas fa-id-card"></i>  <%= t("defaults.to_edit_profile_page") %>
+          </div>
+      <% end %>
+      <%= link_to new_password_reset_path, class: 'dropdown-item text-secondary doropdown-list-delete' do %>
+          <div class="fw-bold">
+            <i class="fas fa-lock"></i>  <%= t("defaults.to_reset_page") %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

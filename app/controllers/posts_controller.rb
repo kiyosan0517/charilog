@@ -1,19 +1,16 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ edit update destroy ]
 
-  # GET /posts or /posts.json
   def index
     @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page])
+    @posts = @q.result(distinct: true).includes(user: { avatar_attachment: :blob }).with_attached_images.order(created_at: :desc).page(params[:page])
     @post_count = @posts.total_count
   end
 
-  # GET /posts/new
   def new
     @post = Post.new
   end
 
-  # POST /posts or /posts.json
   def create
     @post = current_user.posts.new(post_params)
 
@@ -26,15 +23,12 @@ class PostsController < ApplicationController
     end
   end
 
-  # GET /posts/1 or /posts/1.json
   def show
     @post = Post.find(params[:id])
   end
 
-  # GET /posts/1/edit
   def edit; end
 
-  # PATCH/PUT /posts/1 or /posts/1.json
   def update
     if @post.update(post_params)
       redirect_to posts_path, success: t("defaults.message.updated", item: Post.model_name.human)
@@ -44,7 +38,6 @@ class PostsController < ApplicationController
     end
   end
 
-  # DELETE /posts/1 or /posts/1.json
   def destroy
     user = @post.user
     @post.images.purge
@@ -71,12 +64,10 @@ class PostsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = current_user.posts.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def post_params
     params.require(:post).permit(:title, :content, images: []).merge(images: uploaded_images)
   end
