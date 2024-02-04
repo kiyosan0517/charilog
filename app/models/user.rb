@@ -7,11 +7,9 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :like_posts, through: :likes, source: :post
 
-  # フォローをした、されたの関係
   has_many :followers, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followeds, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
 
-  # 一覧画面で使う
   has_many :following_users, through: :followers, source: :followed
   has_many :follower_users, through: :followeds, source: :follower
 
@@ -68,5 +66,15 @@ class User < ApplicationRecord
 
   def liked?(post)
     like_posts.include?(post)
+  end
+
+  def posts_all_like_count
+    user_posts = self.posts
+    posts_all_like_count = 0
+
+    user_posts.each do |post|
+      posts_all_like_count += post.likes.count
+    end
+    posts_all_like_count
   end
 end
