@@ -1,5 +1,5 @@
 <% @posts.each do |post| %>
-  <div class="col-md-4 text-center mb-3">
+  <div class="col-sm-6 col-lg-4 text-center mb-3">
     <div class="card shadow-sm">
       <div class="header-area">
         <div class="container">
@@ -11,6 +11,10 @@
             </div>
             <div class="user-name d-flex align-items-center text-break">
               <%= link_to post.user.name, user_path(post.user), class: "fw-bold text-dark hover-opacity-50", style:"text-decoration:none;" %>
+            </div>
+            <div class="like_count align-items-center ml-auto">
+              <i class="far fa-heart heart"></i>
+              <div class="text-secondary"><%= post.likes.count %> Likes</div>
             </div>
           </div>
         </div>
