@@ -1,12 +1,13 @@
 <div class="container">
-  <div class="title-area d-flex align-items-end under-line border-4 my-2">
+  <div class="title-area under-line border-4 d-lg-block d-none my-2">
     <h2 class="fw-bold"><%= t(".title") %></h2>
-    <% if search_from? %>
-      <h4 class="ms-auto">
-        <%= t("defaults.search_result") %>:<%= "#{@user_count}件" %>
-      </h4>
-    <% end %>
   </div>
+
+  <% if search_from? %>
+    <h4 class="text-center my-4 my-lg-5">
+      <%= t("defaults.search_result") %>:<%= "#{@user_count}件" %>
+    </h4>
+  <% end %>
 
   <!-- 検索フォーム -->
   <div class="row">

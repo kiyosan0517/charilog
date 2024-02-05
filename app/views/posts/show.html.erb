@@ -1,34 +1,6 @@
 <div class='container-fluid px-1'>
-  <div class="operation-area d-flex my-2">
-    <div class="dropdown-btn ms-auto">
-      <% if current_user.own?(@post) %>
-        <div class="add-element float-left">
-          <div class="dropleft">
-            <button class="btn btn-light dropdown-toggle border" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="far fa-plus-square fa-lg"></i>
-            </button>
-            <div class="dropdown-menu bg-white" aria-labelledby="dropdownMenuButton">
-              <%= link_to edit_post_path(@post), class: 'dropdown-item text-success doropdown-list-delete' do%>
-                  <i class="fas fa-plus"></i>  <%= t(".edit_images") %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-
-        <div class="delete-element float-left ps-1">
-          <div class="dropleft">
-            <button class="btn btn-light dropdown-toggle border" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="far fa-trash-alt fa-lg"></i>
-            </button>
-            <div class="dropdown-menu bg-white" aria-labelledby="dropdownMenuButton">
-              <%= link_to post_path, method: :delete, data: { confirm: t('defaults.message.delete_confirm', item: Post.model_name.human) }, class: 'dropdown-item text-danger doropdown-list-delete' do %>
-                <span><i class="far fa-trash-alt"></i></span>  <%= t(".delete_post") %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
+  <div class="title-area under-line border-4 d-lg-block d-none my-2">
+    <h2 class="fw-bold"><%= t(".title") %></h2>
   </div>
 
   <div class="card shadow">
@@ -42,10 +14,13 @@
         <div class="user-name d-flex align-items-center text-break">
           <%= link_to @post.user.name, user_path(@post.user), class: "fw-bold text-dark hover-opacity-50", style:"text-decoration:none;" %>
         </div>
-        <span class="text-secondary mx-2">
-          <i class="far fa-clock clock-icon me-1">
-          </i><%= time_ago_in_words(@post.created_at) %>前
-        </span>
+        <div class="operation_area d-flex align-items-center ml-auto">
+          <% if current_user.own?(@post) %>
+            <%= render 'posts/crud_menus', post: @post %>
+          <% else %>
+            <%= render 'posts/like_button', post: @post %>
+          <% end %>
+        </div>
       </div>
     </div>
 
@@ -77,7 +52,14 @@
     <% end %>
 
     <div class="card-body ms-2">
-      <h4 class="card-title fw-bold m-0"><%= @post.title %></h4><br>
+      <div class="d-flex align-items-center">
+        <h4 class="card-title fw-bold m-0"><%= @post.title %></h4>
+        <div class="text-secondary ms-2 mt-auto">
+          <i class="far fa-clock clock-icon me-1">
+          </i><%= time_ago_in_words(@post.created_at) %>前
+        </div>
+      </div>
+      <br>
       <p class="card-text"><%= @post.content %></p>
     </div>
   </div>
