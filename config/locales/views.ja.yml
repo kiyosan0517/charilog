@@ -52,7 +52,12 @@ ja:
       not_authorized: '権限がありません'
   application:
     not_authenticated:
-      warning: ログインしてください
+      warning: 'ログインしてください'
+  static_pages:
+    terms:
+      title: '利用規約'
+    privacy_policy:
+      title: 'プライバシーポリシー'
   users:
     index:
       title: 'ユーザーリスト'
@@ -115,11 +120,13 @@ ja:
       lets_like!: 'ログをいいねしよう！'
   items:
     index:
-
+      title:
+    search:
+      title: 'アイテム検索・登録'
     create:
-
+      title:
     destroy:
-
+      title:
   profiles:
     show:
       title: 'マイページ'
