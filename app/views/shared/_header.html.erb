@@ -13,7 +13,7 @@
           <i class="fas fa-angle-left fa-2x text-dark mx-3"></i>
         <% end %>
       <% end %>
-      <h5 class="page-title d-lg-none fw-bold mx-auto my-2">
+      <h5 class="page-title d-lg-none fw-bold mx-auto my-2 <%= logged_in? ? '' : 'pe-5' %>">
         <%= t("#{controller_name}.#{action_name}.title") %>
       </h5>
     <% else %>
