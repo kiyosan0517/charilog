@@ -92,9 +92,11 @@
       <%= render @posts %>
     <% else %>
       <div class="text-center text-secondary mt-4 mb-5"><%= t(".no_post") %></div>
-      <div class="text-center">
-        <%= link_to t(".leave_log!"), new_post_path, class: "btn btn-info" %>
-      </div>
+      <% if current_user.id == @user.id %>
+        <div class="text-center">
+          <%= link_to t(".leave_log!"), new_post_path, class: "btn btn-info" %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 
