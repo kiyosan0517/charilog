@@ -29,13 +29,19 @@
             </div>
 
             <!-- サイドバー -->
-            <div class="sidebar-wrapper col-xl-2 col-lg-2 bg-white z-2">
+            <div class="sidebar-wrapper col-xl-2 col-lg-2 bg-white z-3">
               <%= render "/shared/sidebar" %>
             </div>
 
+            <!-- メインコンテンツカバー画像（タブレット以下） -->
+            <%= render "/shared/main_content_cover_image_mobile" %>
+           
             <!-- メインコンテンツ -->
             <div class="content-wrapper col-xl-10 col-lg-10 col-md-12 bg-white px-4 px-sm-5 pt-4 z-0">
               <%= render "/shared/flash_message" %>
+
+              <!-- メインコンテンツカバー画像（PC以上） -->
+              <%= render "/shared/main_content_cover_image_pc" %>
               <%= yield %>
               <div class="mask-area overlay"></div>
             </div>

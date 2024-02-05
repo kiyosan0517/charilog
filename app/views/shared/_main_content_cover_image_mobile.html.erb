@@ -1,0 +1,13 @@
+<% unless current_page?(new_post_path) || current_page?(new_password_reset_path) || controller_name == 'password_resets' && action_name == 'edit' %>
+  <section class="hero d-lg-none py-4" style="background-image: url('<%= asset_path('home-cover.png') %>');">
+    <div class="container">
+      <p class="display-6 font-weight-bold text-light">
+        MyBikeを共有しよう！
+      </p>
+      <p class="lead text-light">
+        あなたの自転車ライフは？
+      </p>
+      <%= link_to 'ログを投稿する', new_post_path, class: 'btn btn-primary btn-sm font-weight-bold', data: { turbolinks: false } %>
+    </div>
+  </section>
+<% end %>
