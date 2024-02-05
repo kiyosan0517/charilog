@@ -1,5 +1,5 @@
 <% @posts.each do |post| %>
-  <div class="col-sm-6 col-lg-4 text-center mb-3">
+  <div class="col-12 col-md-6 col-lg-4 text-center mb-3">
     <div class="card shadow-sm">
       <div class="header-area">
         <div class="container">
@@ -14,7 +14,7 @@
             </div>
             <div class="like_count align-items-center ml-auto">
               <i class="far fa-heart heart"></i>
-              <div class="text-secondary"><%= post.likes.count %> Likes</div>
+              <div class="text-secondary text-nowrap"><%= post.likes.count %> Likes</div>
             </div>
           </div>
         </div>

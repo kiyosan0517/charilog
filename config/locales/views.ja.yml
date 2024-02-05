@@ -136,7 +136,7 @@ ja:
       title: 'プロフィール編集'
   password_resets:
     new:
-      title: 'メール・パスワード再設定申請'
+      title: 'パスワード再設定申請'
       require_email: 'メールアドレスを入力して下さい'
       to_edit_password_reset_page: '再設定手続きを進める'
     edit:
