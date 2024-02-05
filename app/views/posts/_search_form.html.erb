@@ -4,7 +4,7 @@
       <%= f.search_field :title_or_content_cont, class: 'form-control', placeholder: t("defaults.input_keyword") %>
     </div>
     <div class="col-10 col-sm-5 ps-0">
-      <%= f.select :user_my_bike_eq, User.my_bikes_i18n.map{|key, value| [key, User.my_bikes[value]]}, { include_blank: t("defaults.select_bike") }, { class: 'form-select text-secondary pointer' } %>
+      <%= f.select :user_my_bike_eq, User.my_bikes_i18n.invert.map{|key, value| [key, User.my_bikes[value]]}, { include_blank: t("defaults.select_bike") }, { class: 'form-select text-secondary pointer' } %>
     </div>
     <div class="col-1 ps-0">
       <%= f.submit class: 'btn btn-outline-success fw-bold px-2' %>
