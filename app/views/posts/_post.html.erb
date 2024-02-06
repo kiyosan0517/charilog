@@ -45,7 +45,15 @@
         <%= image_tag "no_image.png", class: "d-block mx-auto img-fluid hover-opacity-75 border-top border-bottom", style: "height: auto; width: auto;" %>
       <% end %>
 
-      <div class="card-body hover-opacity-50">
+      <div class="card-body hover-opacity-50 pt-3">
+        <div class="like-count d-flex align-items-center h4 mb-3">
+          <ion-icon name="heart-circle-outline"></ion-icon>
+          <div class="text-secondary">
+            <div id="likes-count-<%= post.id %>">
+              <%= post.likes.count %>
+            </div>
+          </div>
+        </div>
         <h5 class="card-title fw-bold"><%= post.title %></h5>
         <p class="card-text m-0"><%= post.content.truncate(30) %></p>
         <span class="text-secondary">

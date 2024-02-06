@@ -1,1 +1,2 @@
+$("#likes-count-<%= @post.id %>").html("<%= @post.likes.count %>");
 $("#js-like-button-for-post-<%= @post.id %>").replaceWith("<%= j(render('posts/unlike', post: @post)) %>");
