@@ -1,0 +1,47 @@
+<footer class="fixed-bottom">
+  <nav class="navbar navbar-dark bg-dark text-center py-3 px-2">
+    <div class="container-fluid p-0">
+      <!-- ナビゲーションリンクの設定 -->
+        <div class="col-2 p-0 text-center">
+          <%= link_to root_path do %>
+            <div class="text-white">
+              <ion-icon name="home-outline"></ion-icon>
+              <div class="title font-mini-size">Home</div>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-2 p-0 text-center">
+          <%= link_to items_search_path do %>
+            <div class="text-white">
+              <ion-icon name="pricetags-outline"></ion-icon>
+              <div class="title font-mini-size">Item</div>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-2 p-0 text-center">
+          <%= link_to new_post_path do %>
+            <div class="text-white">
+              <div class="h5 m-0"><ion-icon name="add-circle-outline"></ion-icon></div>
+              <div class="title font-mini-size">Post</div>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-2 p-0 text-center">
+          <%= link_to likes_posts_path do %>
+            <div class="text-white">
+              <div class="h5 m-0"><ion-icon name="heart-outline"></ion-icon></div>
+              <div class="title font-mini-size">Likes</div>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-2 p-0 text-center">
+          <%= link_to user_path(current_user) do %>
+            <div class="text-white">
+              <ion-icon name="person-circle-outline"></ion-icon>
+              <div class="title font-mini-size">MyPage</div>
+            </div>
+          <% end %>
+        </div>
+    </div>
+  </nav>
+</footer>
