@@ -1,14 +1,18 @@
 <tr>
   <th class="text-center">
     <%= link_to user_path(user) do %>
-      <%= image_tag user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
+      <%= image_tag user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle hover-opacity-75", style: "display: inline-block;" %>
     <% end %>
   </th>
   <th class="align-middle">
     <%= link_to user.name, user_path(user), class: "text-nowrap text-dark hover-opacity-50", style: "text-decoration:none;" %>
   </th>
   <th class="align-middle">
-    <div class="text-nowrap"><%= user.my_bike_i18n %></div>
+    <% if user.my_bike.present? %>
+      <div class="text-nowrap"><%= user.my_bike_i18n %></div>
+    <% else %>
+      <div class="text-info text-nowrap"><%= t("defaults.no_mybike") %></div>
+    <% end %>
   </th>
   <th class="align-middle">
     <% if current_user != user %>

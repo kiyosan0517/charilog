@@ -5,7 +5,7 @@
     <div class="user-panel d-flex flex-column flex-md-row justify-content-center align-items-center">
       <div class="user-avatar d-flex flex-wrap align-items-center my-3">
         <%= link_to @user.avatar, "data-lightbox": @user.avatar do %>
-          <%= image_tag @user.avatar.variant(gravity: :center, resize: "120x120^!", crop:"120x120+0+0"), class: "img rounded-circle bg-dark-subtle me-4", style: "display: inline-block;" %>
+          <%= image_tag @user.avatar.variant(gravity: :center, resize: "120x120^!", crop:"120x120+0+0"), class: "img rounded-circle bg-dark-subtle hover-opacity-75 me-4 me-lg-5", style: "display: inline-block;" %>
         <% end %>
         <div class="follow-btn mobile-size" style="display: inline-block;">
           <% if @user.id == current_user.id %>
@@ -30,7 +30,7 @@
             <% if @user.my_bike.present? %>
               <%= @user.my_bike %>
             <% else %>
-              <%= t(".no_mybike") %>
+              <%= t("defaults.no_mybike") %>
             <% end %>
           </div>
           <div class="post-count d-flex flex-wrap mb-2">
@@ -46,14 +46,14 @@
             </div>
           </div>
           <div class="element-count d-flex flex-wrap">
-            <%= link_to followers_user_path, style:"text-decoration:none;" do %>
+            <%= link_to followers_user_path, class:"hover-opacity-75", style:"text-decoration:none;" do %>
               <div class="text-secondary me-3">
                 <%= t(".follower") %>
                 <span>:</span>
                 <%= @user.followeds.count %>人
               </div>
             <% end %>
-            <%= link_to follows_user_path, style:"text-decoration:none;" do %>
+            <%= link_to follows_user_path, class:"hover-opacity-75", style:"text-decoration:none;" do %>
               <div class="text-secondary me-3">
                 <%= t(".follow") %>
                 <span>:</span>

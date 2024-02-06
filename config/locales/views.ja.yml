@@ -41,6 +41,7 @@ ja:
     select_bike: 'メーカーを選択'
     search_result: '検索結果'
     no_search_result: '検索結果がありません'
+    no_mybike: '未登録'
     message:
       require_login: 'ログインしてください'
       created: '%{item}を作成しました'
@@ -74,9 +75,9 @@ ja:
       fail: 'ユーザー登録に失敗しました'
     show:
       title: 'ユーザー詳細'
+      mypage: 'マイページ'
       no_post: 'まだ投稿はありません'
       no_bio: '自己紹介は登録されていません'
-      no_mybike: '登録されていません'
       follow: 'フォロー'
       follower: 'フォロワー'
       post: '投稿数'
@@ -130,10 +131,6 @@ ja:
     destroy:
       title:
   profiles:
-    show:
-      title: 'マイページ'
-      follow: 'フォロー中'
-      follower: 'フォロワー'
     edit:
       title: 'プロフィール編集'
   password_resets:

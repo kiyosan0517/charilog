@@ -57,6 +57,9 @@
               <%= f.label :password_confirmation, class: "fw-bold require" %>
               <%= f.password_field :password_confirmation, class: 'form-control bg-light', placeholder: User.human_attribute_name(:password_confirmation) %>
             </div>
+            <p class="font-mini-size pt-1">
+              本サービスに登録することで、ChariLogの<span><%= link_to t("defaults.terms"), '/terms', class: 'text-primary', style: "text-decoration:none;" %></span>、<span><%= link_to t("defaults.privacy_policy"), '/privacy_policy', class: 'text-primary', style: "text-decoration:none;" %></span>に同意するものとします。
+            </p>
             <div class="form-group">
               <%= f.submit t("defaults.register"), class: 'btn btn-primary btn-block font-weight-bold rounded-pill mt-4' %>
             </div>

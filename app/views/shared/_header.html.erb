@@ -14,7 +14,15 @@
         <% end %>
       <% end %>
       <h5 class="page-title d-lg-none fw-bold mx-auto my-2 <%= logged_in? ? '' : 'pe-5' %>">
-        <%= t("#{controller_name}.#{action_name}.title") %>
+        <% if logged_in? %>
+          <% unless current_page?(user_path(current_user)) %>
+            <%= t("#{controller_name}.#{action_name}.title") %>
+          <% else %>
+            <%= t("#{controller_name}.#{action_name}.mypage") %>
+          <% end %>
+        <% else %>
+          <%= t("#{controller_name}.#{action_name}.title") %>
+        <% end %>
       </h5>
     <% else %>
       <%= link_to root_path, class: "navbar-brand mx-2 p-0" do %>
@@ -26,11 +34,11 @@
       <div class="user-panel d-lg-flex d-none align-items-center">
         <div class="user-avatar mx-2">
           <%= link_to user_path(current_user) do %>
-            <%= image_tag current_user.avatar.variant(gravity: :center, resize: "40x40^!", crop:"40x40+0+0"), class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
+            <%= image_tag current_user.avatar.variant(gravity: :center, resize: "40x40^!", crop:"40x40+0+0"), class: "rounded-circle bg-dark-subtle hover-opacity-75", style: "display: inline-block;" %>
           <% end %>
         </div>
         <div class="user-name">
-          <%= link_to current_user.name, user_path(current_user), class: "d-block font-weight-bold text-secondary" %>
+          <%= link_to current_user.name, user_path(current_user), class: "d-block font-weight-bold text-secondary", style: "text-decoration:none;" %>
         </div>
         <div class="new-post-btn ms-4">
           <%= link_to t("defaults.post"), new_post_path, class: "btn btn-sm btn-info fw-bold px-3 py-2" %>
