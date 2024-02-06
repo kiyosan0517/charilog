@@ -3,8 +3,24 @@ class PostsController < ApplicationController
 
   def index
     @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).includes(user: { avatar_attachment: :blob }).with_attached_images.order(created_at: :desc).page(params[:page])
-    @post_count = @posts.total_count
+
+    if params[:order].present?
+      sort_posts
+    else
+      @posts = @q.result(distinct: true).includes(user: { avatar_attachment: :blob }).with_attached_images.order(created_at: :desc).page(params[:page])
+      @post_count = @posts.total_count
+    end
+  end
+
+  def likes
+    @q = current_user.like_posts.ransack(params[:q])
+
+    if params[:order].present?
+      sort_posts
+    else
+      @posts = @q.result(distinct: true).includes(user: { avatar_attachment: :blob }).with_attached_images.order(created_at: :desc).page(params[:page])
+      @post_count = @posts.total_count
+    end
   end
 
   def new
@@ -50,12 +66,6 @@ class PostsController < ApplicationController
     end
   end
 
-  def likes
-    @q = current_user.like_posts.ransack(params[:q])
-    @posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page])
-    @post_count = @posts.total_count
-  end
-
   # 画像アップロード用のアクション
   def upload_image
     @image_blob = create_blob(params[:image])
@@ -89,5 +99,20 @@ class PostsController < ApplicationController
   def came_from_user_show?
     referer = request.referer
     referer.present? && referer.include?('users')
+  end
+
+  def sort_posts
+    case params[:order]
+    when 'new'
+      @posts = @q.result(distinct: true).includes(user: { avatar_attachment: :blob }).with_attached_images.order('created_at DESC').page(params[:page])
+    when 'old'
+      @posts = @q.result(distinct: true).includes(user: { avatar_attachment: :blob }).with_attached_images.order('created_at ASC').page(params[:page])
+    when 'title_desc'
+      @posts = @q.result(distinct: true).includes(user: { avatar_attachment: :blob }).with_attached_images.order('title DESC').page(params[:page])
+    when 'title_asc'
+      @posts = @q.result(distinct: true).includes(user: { avatar_attachment: :blob }).with_attached_images.order('title ASC').page(params[:page])
+    else 'like_desc'
+      @posts = @q.result(distinct: true).left_joins(:likes).select("posts.*, COUNT(likes.id) AS like_count").group("posts.id").includes(user: { avatar_attachment: :blob }).with_attached_images.order("like_count DESC").page(params[:page])
+    end
   end
 end

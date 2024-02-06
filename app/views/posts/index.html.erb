@@ -1,17 +1,20 @@
 <div class="container p-2">
   <div class="title-area d-flex flex-wrap align-items-center justify-content-center under-line border-4 my-2">
-    <h3 class="fw-bold"><%= t(".title") %></h3>
-    <% if search_from? %>
-      <h4 class="ms-auto">
-        <%= t("defaults.search_result") %>:<%= "#{@post_count}件" %>
-      </h4>
-    <% end %>
+    <h4 class="fw-bold m-0"><%= t(".title") %></h4>
+    <!-- 並び替えリスト -->
+    <%= render 'sort_posts_menu' %>
   </div>
 
   <!-- 検索フォーム -->
   <div class="row">
-    <%= render 'search_form', q: @q, url: posts_path(from_search: @from_search) %>
+    <%= render 'search_form', q: @q, url: likes_posts_path %>
   </div>
+
+  <% if search_from? %>
+    <h4 class="text-center my-4">
+      <%= t("defaults.search_result") %>:<%= "#{@post_count}件" %>
+    </h4>
+  <% end %>
 
   <!-- 掲示板一覧 -->
   <div class="row mb-5">
