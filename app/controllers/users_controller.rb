@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
+  before_action :set_user, only: %i[show follows followers]
 
   def index
     @q = User.ransack(params[:q])
@@ -24,28 +25,29 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     @like_count = @user.posts_all_like_count
     @following_users = @user.following_users
     @follower_users = @user.follower_users
-    @posts = @user.posts.order(created_at: :desc).page(params[:page]).per(10)
+    @posts = @user.posts.includes(user: { avatar_attachment: :blob }).with_attached_images.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def follows
-    @user = User.find(params[:id])
     @q = @user.following_users.ransack(params[:q])
     @users = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(15)
     @user_count = @users.total_count
   end
 
   def followers
-    @user = User.find(params[:id])
     @q = @user.follower_users.ransack(params[:q])
     @users = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(15)
     @user_count = @users.total_count
   end
 
   private
+
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   def user_params
     params.require(:user).permit(:name, :my_bike, :email, :password, :password_confirmation, :avatar)
