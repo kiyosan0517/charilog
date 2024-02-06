@@ -46,9 +46,14 @@
               <div class="mask-area overlay"></div>
             </div>
 
-            <!-- フッター -->
-            <div class="footer-wrapper bg-light z-1 mt-4">
+            <!-- フッターPC以上 -->
+            <div class="footer-wrapper bg-light z-1 mt-4 d-sm-block d-none">
               <%= render "/shared/footer" %>
+            </div>
+
+            <!-- フッタータブレット以下 -->
+            <div class="d-sm-none">
+              <%= render "/shared/nav_footer" %>
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-<div class='container p-0 pb-4 mb-5'>
+<div class='container pt-2 mb-sm-5'>
   <div class="title-area under-line border-4 d-lg-flex d-none my-2">
     <%= link_to 'javascript:history.back()' do %>
       <i class="fas fa-angle-left fa-2x me-4"></i>
@@ -11,7 +11,7 @@
       <div class="d-flex align-items-center">
         <div class="user-avatar me-2 sm-mx-2">
           <%= link_to user_path(@post.user) do %>
-            <%= image_tag @post.user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle hover-opacity-75", style: "display: inline-block;" %>
+            <%= image_tag @post.user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
           <% end %>
         </div>
         <div class="user-name d-flex align-items-center text-break">
@@ -36,9 +36,9 @@
             <div class="swiper-slide">
               <%= link_to image, "data-lightbox": image do %>
                 <%# スマホの画像サイズ %>
-                <%= image_tag(image.variant(resize_to_fit: [450,300], gravity: 'Center', strip: true), class: "img d-block mx-auto img-fluid d-sm-none hover-opacity-75") %>
+                <%= image_tag(image.variant(resize_to_fit: [450,300], gravity: 'Center', strip: true), class: "img d-block mx-auto img-fluid d-sm-none") %>
                 <%# PCの画像サイズ %>
-                <%= image_tag(image.variant(resize_to_fit: [500,415], gravity: 'Center', strip: true), class: "img d-none mx-auto img-fluid d-sm-block hover-opacity-75") %>
+                <%= image_tag(image.variant(resize_to_fit: [500,415], gravity: 'Center', strip: true), class: "img d-none mx-auto img-fluid d-sm-block") %>
               <% end %>
             </div>
           <% end %>
@@ -54,21 +54,16 @@
       <%= image_tag "no_image.png", class: "d-block mx-auto img-fluid hover-opacity-75 border-top border-bottom m-0", style: "height: auto; width: auto;" %>
     <% end %>
 
-    <div class="card-body ms-2 pt-3">
-      <div class="like-count d-flex align-items-center h4 mb-3">
-        <ion-icon name="heart-circle-outline"></ion-icon>
-        <div class="text-secondary ms-1">
-          <div id="likes-count-<%= @post.id %>">
-            <%= @post.likes.count %>
-          </div>
+    <div class="card-body ms-2">
+      <div class="d-flex align-items-center">
+        <h4 class="card-title fw-bold m-0"><%= @post.title %></h4>
+        <div class="text-secondary ms-2 mt-auto">
+          <i class="far fa-clock clock-icon me-1">
+          </i><%= time_ago_in_words(@post.created_at) %>前
         </div>
       </div>
-      <h4 class="card-title fw-bold m-0"><%= @post.title %></h4>
+      <br>
       <p class="card-text"><%= @post.content %></p>
-      <span class="text-secondary">
-        <i class="far fa-clock clock-icon me-1">
-        </i><%= time_ago_in_words(@post.created_at) %>前
-      </span>
     </div>
   </div>
 </div>  

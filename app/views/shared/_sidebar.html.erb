@@ -12,16 +12,16 @@
             <%= link_to current_user.name.truncate(12), user_path(current_user), class: "d-block font-weight-bold text-secondary", style: "text-decoration:none;" %>
           </div>
         </div>
-        <div class="new-post-btn">
+        <div class="new-post-btn d-none d-sm-block">
           <%= link_to t("defaults.post"), new_post_path, class: "btn btn-sm btn-info fw-bold px-5" %>
         </div>
       </div>
-      <li class="nav-item <%= nav_item_class(posts_path) %>">
+      <li class="nav-item <%= nav_item_class(posts_path) %> d-none d-sm-block">
         <%= link_to posts_path do %>
           <span class="nav-icon">
             <ion-icon name="home-outline"></ion-icon>
           </span>
-          <span class="title"><%= t("defaults.home") %></span>
+          <span class="title p-0 ms-sm-2"><%= t("defaults.home") %></span>
         <% end %>
       </li>
       <li class="nav-item <%= nav_item_class(users_path) %>">
@@ -29,31 +29,31 @@
           <span class="nav-icon">
             <ion-icon name="people-circle-outline"></ion-icon>
           </span>
-          <span class="title"><%= User.model_name.human %></span>
+          <span class="title p-0 ms-sm-2"><%= User.model_name.human %></span>
         <% end %>
       </li>
-      <li class="nav-item <%= nav_item_class(likes_posts_path) %>">
+      <li class="nav-item <%= nav_item_class(likes_posts_path) %> d-none d-sm-block">
         <%= link_to likes_posts_path do %>
           <span class="nav-icon">
             <ion-icon name="heart-outline"></ion-icon>
           </span>
-          <span class="title"><%= t("defaults.likes") %></span>
+          <span class="title p-0 ms-sm-2"><%= t("defaults.likes") %></span>
         <% end %>
       </li>
-      <li class="nav-item <%= nav_item_class(items_search_path) %>">
+      <li class="nav-item <%= nav_item_class(items_search_path) %> d-none d-sm-block">
         <%= link_to items_search_path do %>
           <span class="nav-icon">
             <ion-icon name="pricetags-outline"></ion-icon>
           </span>
-          <span class="title"><%= t("defaults.items") %></span>
+          <span class="title p-0 ms-sm-2"><%= t("defaults.items") %></span>
         <% end %>
       </li>
-      <li class="nav-item <%= nav_item_class(user_path(current_user)) %>">
+      <li class="nav-item <%= nav_item_class(user_path(current_user)) %> d-none d-sm-block">
         <%= link_to user_path(current_user) do %>
           <span class="nav-icon">
             <ion-icon name="person-circle-outline"></ion-icon>
           </span>
-          <span class="title"><%= t("defaults.my_page") %></span>
+          <span class="title p-0 ms-sm-2"><%= t("defaults.my_page") %></span>
         <% end %>
       </li>
       <li class="nav-item <%= nav_item_class(edit_profile_path) %>">
@@ -61,7 +61,23 @@
           <span class="nav-icon">
             <ion-icon name="settings-outline"></ion-icon>
           </span>
-          <span class="title"><%= t("defaults.site") %></span>
+          <span class="title p-0 ms-sm-2"><%= t("defaults.site") %></span>
+        <% end %>
+      </li>
+      <li class="nav-item <%= nav_item_class(terms_path) %> d-sm-none">
+        <%= link_to terms_path do %>
+          <span class="nav-icon">
+            <ion-icon name="document-text-outline"></ion-icon>
+          </span>
+          <span class="title p-0"><%= t("defaults.terms") %></span>
+        <% end %>
+      </li>
+      <li class="nav-item <%= nav_item_class(privacy_policy_path) %> d-sm-none">
+        <%= link_to privacy_policy_path do %>
+          <span class="nav-icon">
+            <ion-icon name="document-lock-outline"></ion-icon>
+          </span>
+          <span class="title font-mini-size p-0"><%= t("defaults.privacy_policy") %></span>
         <% end %>
       </li>
       <li class="nav-item">
@@ -69,7 +85,15 @@
           <span class="nav-icon">
             <ion-icon name="log-out-outline"></ion-icon>
           </span>
-          <span class="title"><%= t("defaults.logout") %></span>
+          <span class="title p-0 ms-sm-2"><%= t("defaults.logout") %></span>
+        <% end %>
+      </li>
+      <li class="nav-item d-sm-none">
+        <%= link_to 'https://docs.google.com/forms/d/e/1FAIpQLSeHZcjha6HuQH0mcEN8ZAkv8ZMQY2p7YJCNxAFFcl1zUN_wkQ/viewform' do %>
+          <span class="nav-icon">
+            <ion-icon name="information-circle-outline"></ion-icon>
+          </span>
+          <span class="title text-secondary p-0"><%= t("defaults.inquiry") %></span>
         <% end %>
       </li>
     </ul>
