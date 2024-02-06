@@ -5,7 +5,7 @@
         <div class="user-panel d-flex align-items-center py-2">
           <div class="user-avatar me-2">
             <%= link_to user_path(post.user) do %>
-              <%= image_tag post.user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
+              <%= image_tag post.user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle hover-opacity-75", style: "display: inline-block;" %>
             <% end %>
           </div>
           <div class="user-name d-flex align-items-center text-break">

@@ -11,7 +11,7 @@
       <div class="d-flex align-items-center">
         <div class="user-avatar me-2 sm-mx-2">
           <%= link_to user_path(@post.user) do %>
-            <%= image_tag @post.user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
+            <%= image_tag @post.user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle hover-opacity-75", style: "display: inline-block;" %>
           <% end %>
         </div>
         <div class="user-name d-flex align-items-center text-break">
@@ -36,9 +36,9 @@
             <div class="swiper-slide">
               <%= link_to image, "data-lightbox": image do %>
                 <%# スマホの画像サイズ %>
-                <%= image_tag(image.variant(resize_to_fit: [450,300], gravity: 'Center', strip: true), class: "img d-block mx-auto img-fluid d-sm-none") %>
+                <%= image_tag(image.variant(resize_to_fit: [450,300], gravity: 'Center', strip: true), class: "img d-block mx-auto img-fluid d-sm-none hover-opacity-75") %>
                 <%# PCの画像サイズ %>
-                <%= image_tag(image.variant(resize_to_fit: [500,415], gravity: 'Center', strip: true), class: "img d-none mx-auto img-fluid d-sm-block") %>
+                <%= image_tag(image.variant(resize_to_fit: [500,415], gravity: 'Center', strip: true), class: "img d-none mx-auto img-fluid d-sm-block hover-opacity-75") %>
               <% end %>
             </div>
           <% end %>
