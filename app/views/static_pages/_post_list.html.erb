@@ -12,9 +12,13 @@
             <div class="user-name d-flex align-items-center text-break">
               <%= link_to post.user.name, user_path(post.user), class: "fw-bold text-dark hover-opacity-50", style:"text-decoration:none;" %>
             </div>
-            <div class="like_count align-items-center ml-auto">
-              <i class="far fa-heart heart"></i>
-              <div class="text-secondary text-nowrap"><%= post.likes.count %> Likes</div>
+            <div class="like_count d-flex align-items-center ml-auto text-danger h4 mb-0">
+              <ion-icon name="heart-circle-outline"></ion-icon>
+              <div class="text-secondary ms-1">
+                <div id="likes-count-<%= post.id %>">
+                  <%= post.likes.count %>
+                </div>
+              </div>
             </div>
           </div>
         </div>
