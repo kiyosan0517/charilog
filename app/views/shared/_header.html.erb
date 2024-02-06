@@ -14,7 +14,15 @@
         <% end %>
       <% end %>
       <h5 class="page-title d-lg-none fw-bold mx-auto my-2 <%= logged_in? ? '' : 'pe-5' %>">
-        <%= t("#{controller_name}.#{action_name}.title") %>
+        <% if logged_in? %>
+          <% unless current_page?(user_path(current_user)) %>
+            <%= t("#{controller_name}.#{action_name}.title") %>
+          <% else %>
+            <%= t("#{controller_name}.#{action_name}.mypage") %>
+          <% end %>
+        <% else %>
+          <%= t("#{controller_name}.#{action_name}.title") %>
+        <% end %>
       </h5>
     <% else %>
       <%= link_to root_path, class: "navbar-brand mx-2 p-0" do %>
