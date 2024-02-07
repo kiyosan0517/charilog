@@ -8,11 +8,7 @@
           <%= image_tag @user.avatar.variant(gravity: :center, resize: "120x120^!", crop:"120x120+0+0"), class: "img rounded-circle bg-dark-subtle hover-opacity-75 me-4 me-lg-5", style: "display: inline-block;" %>
         <% end %>
         <div class="follow-btn mobile-size" style="display: inline-block;">
-          <% if @user.id == current_user.id %>
-            <%= render 'dropdown_menu' %>
-          <% else %>
-            <%= render 'follow_btn' %>
-          <% end %>
+          <%= render 'user_show_operation' %>
         </div>
       </div>
       <div class="d-flex flex-column fw-bold">
@@ -63,27 +59,15 @@
           </div>
         </div>
         <div class="bio-area mobile-size fw-bold">
-          <% if @user.bio.present? %>
-            <div class="text"><%= @user.bio %></div>
-          <% else %>
-            <div class="text-secondary"><%= t(".no_bio") %></div>
-          <% end %>
+          <%= render 'user_bio' %>
         </div>
       </div>
       <div class="follow-btn pc-size mx-auto">
-        <% if @user.id == current_user.id %>
-          <%= render 'dropdown_menu' %>
-        <% else %>
-          <%= render 'follow_btn' %>
-        <% end %>
+        <%= render 'user_show_operation' %>
       </div>
     </div>
     <div class="bio-area pc-size fw-bold mt-3">
-      <% if @user.bio.present? %>
-        <div><%= @user.bio %></div>
-      <% else %>
-        <div class="text-secondary"><%= t(".no_bio") %></div>
-      <% end %>
+      <%= render 'user_bio' %>
     </div>
   </div>
 

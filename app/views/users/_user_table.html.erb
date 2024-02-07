@@ -1,0 +1,15 @@
+<div class="table-responsive">
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th></th>
+        <th class="text-nowrap"><%= User.human_attribute_name(:name) %></th>
+        <th><%= User.human_attribute_name(:my_bike) %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @users %>
+    </tbody>
+  </table>
+</div>

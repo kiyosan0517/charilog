@@ -20,21 +20,7 @@
   <!-- ユーザー一覧 -->
   <div class="row">
     <% if @users.present? %>
-      <div class="table-responsive">
-        <table class="table table-condensed">
-          <thead>
-            <tr>
-              <th></th>
-              <th class="text-nowrap"><%= User.human_attribute_name(:name) %></th>
-              <th><%= User.human_attribute_name(:my_bike) %></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <%= render @users %>
-          </tbody>
-        </table>
-      </div>
+      <%= render 'user_table' %>
     <% else %>
       <% if search_from? %>
         <div class="text-center text-secondary my-5"><%= t("defaults.no_search_result") %></div>

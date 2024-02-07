@@ -10,63 +10,10 @@
   </div>
 
   <div class="row g-4">
-    <div class="col-lg-4 col-sm-6">
-      <div class="service card-effect">
-        <div class="d-flex align-items-center mt-4">
-          <i class="fas fa-bicycle mb-2 me-1"></i>
-          <h5 class="fw-bold">ログ投稿</h5>
-        </div>
-        <p>
-          あなたとマイバイクとの記録をここに残そう！他のユーザーと共有しよう！
-        </p>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-6">
-      <div class="service card-effect">
-        <div class="d-flex align-items-center mt-4">
-          <i class="fas fa-tags mb-2 me-1"></i>
-          <h5 class="fw-bold">アイテム登録</h5>
-        </div>
-        <p>
-          投稿には使用パーツを登録できます。カスタムパーツを登録してあなたの個性を出そう！
-        </p>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-6">
-      <div class="service card-effect">
-        <div class="d-flex flex-wrap align-items-center mt-4">
-          <i class="fas fa-map-marker-alt mb-2 me-1"></i>
-          <h5 class="fw-bold">スポット登録</h5>
-          <h6>(導入予定)</h6>
-        </div>
-        <p>
-          日本には素晴らしいサイクリングスポットが沢山あります。お気に入りスポットを共有しよう！
-        </p>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-6">
-      <div class="service card-effect">
-        <div class="d-flex flex-wrap align-items-center mt-4">
-          <i class="fas fa-wrench mb-2 me-1"></i>
-          <h5 class="fw-bold">メンテナンス</h5>
-          <h6>(導入予定)</h6>
-        </div>
-        <p>
-          給油や消耗部品の交換目安・時期を通知します。定期的なメンテナンスを心掛けよう！
-        </p>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-6">
-      <div class="service card-effect">
-        <div class="d-flex flex-wrap align-items-center mt-4">
-          <i class="fas fa-heartbeat mb-2 me-1"></i>
-          <h5 class="fw-bold">ヘルスケア</h5>
-          <h6>(導入予定)</h6>
-        </div>
-        <p>
-          AppleWatchから取得した情報とあなたの設定した目標を比較して達成度を測ります。
-        </p>
-      </div>
-    </div>
+    <%= service_detail("fas fa-bicycle", "ログ投稿", "あなたとマイバイクとの記録をここに残そう！他のユーザーと共有しよう！") %>
+    <%= service_detail("fas fa-tags", "アイテム登録", "投稿には使用パーツを登録できます。カスタムパーツを登録してあなたの個性を出そう！") %>
+    <%= service_detail("fas fa-map-marker-alt", "スポット登録", "日本には素晴らしいサイクリングスポットが沢山あります。お気に入りスポットを共有しよう！", "(導入予定)") %>
+    <%= service_detail("fas fa-wrench", "メンテナンス", "給油や消耗部品の交換目安・時期を通知します。定期的なメンテナンスを心掛けよう！", "(導入予定)") %>
+    <%= service_detail("fas fa-heartbeat", "ヘルスケア", "AppleWatchから取得した情報とあなたの設定した目標を比較して達成度を測ります。", "(導入予定)") %>
   </div>
 </div>

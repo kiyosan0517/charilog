@@ -42,6 +42,7 @@ ja:
     search_result: '検索結果'
     no_search_result: '検索結果がありません'
     no_mybike: '未登録'
+    no_bio: '自己紹介は登録されていません'
     message:
       require_login: 'ログインしてください'
       created: '%{item}を作成しました'
@@ -77,7 +78,6 @@ ja:
       title: 'ユーザー詳細'
       mypage: 'マイページ'
       no_post: 'まだ投稿はありません'
-      no_bio: '自己紹介は登録されていません'
       follow: 'フォロー'
       follower: 'フォロワー'
       post: '投稿数'
