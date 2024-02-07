@@ -3,24 +3,12 @@ class PostsController < ApplicationController
 
   def index
     @q = Post.ransack(params[:q])
-
-    if params[:order].present?
-      sort_posts
-    else
-      @posts = @q.result(distinct: true).includes(user: { avatar_attachment: :blob }).with_attached_images.order(created_at: :desc).page(params[:page])
-      @post_count = @posts.total_count
-    end
+    sort_or_search
   end
 
   def likes
     @q = current_user.like_posts.ransack(params[:q])
-
-    if params[:order].present?
-      sort_posts
-    else
-      @posts = @q.result(distinct: true).includes(user: { avatar_attachment: :blob }).with_attached_images.order(created_at: :desc).page(params[:page])
-      @post_count = @posts.total_count
-    end
+    sort_or_search
   end
 
   def new
@@ -101,6 +89,14 @@ class PostsController < ApplicationController
     referer.present? && referer.include?('users')
   end
 
+  def sort_or_search
+    if params[:order].present?
+      sort_posts
+    else
+      search_posts
+    end
+  end
+
   def sort_posts
     case params[:order]
     when 'new'
@@ -114,5 +110,10 @@ class PostsController < ApplicationController
     else 'like_desc'
       @posts = @q.result(distinct: true).left_joins(:likes).select("posts.*, COUNT(likes.id) AS like_count").group("posts.id").includes(user: { avatar_attachment: :blob }).with_attached_images.order("like_count DESC").page(params[:page])
     end
+  end
+
+  def search_posts
+    @posts = @q.result(distinct: true).includes(user: { avatar_attachment: :blob }).with_attached_images.order(created_at: :desc).page(params[:page])
+    @post_count = @posts.total_count
   end
 end

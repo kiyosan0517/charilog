@@ -4,8 +4,7 @@ class UsersController < ApplicationController
 
   def index
     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true).with_attached_avatar.where.not(id: current_user.id).order(created_at: :desc).page(params[:page]).per(15)
-    @user_count = @users.total_count
+    load_users
   end
 
   def new
@@ -33,17 +32,20 @@ class UsersController < ApplicationController
 
   def follows
     @q = @user.following_users.ransack(params[:q])
-    @users = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(15)
-    @user_count = @users.total_count
+    load_users
   end
 
   def followers
     @q = @user.follower_users.ransack(params[:q])
-    @users = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(15)
-    @user_count = @users.total_count
+    load_users
   end
 
   private
+
+  def load_users
+    @users = @q.result(distinct: true).with_attached_avatar.where.not(id: current_user.id).order(created_at: :desc).page(params[:page]).per(15)
+    @user_count = @users.total_count
+  end
 
   def set_user
     @user = User.find(params[:id])
