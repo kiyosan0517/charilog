@@ -1,3 +1,6 @@
+<% image_url = url_for(@post.images.first) %>
+<% set_meta_tags title: t('.title'), og: { title: t('.og_title', user: @post.user.name, date: l(@post.created_at, format: :short)) } %>
+
 <div class='container pt-2 mb-sm-5'>
   <div class="title-area under-line border-4 d-lg-flex d-none my-2">
     <%= link_to 'javascript:history.back()' do %>
