@@ -1,0 +1,5 @@
+<% if @user.id == current_user.id %>
+  <%= render 'dropdown_menu' %>
+<% else %>
+  <%= render 'follow_btn' %>
+<% end %>
