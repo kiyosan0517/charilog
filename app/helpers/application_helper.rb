@@ -1,4 +1,7 @@
 module ApplicationHelper
+  include FooterNavLinkHelper
+  include ServiceDetailHelper
+
   def nav_item_class(path)
     'active' if current_page?(path)
   end
@@ -7,29 +10,42 @@ module ApplicationHelper
     params[:q].present?
   end
 
-  def service_detail(icon_class, title, description, additional_note = nil)
-    content_tag(:div, class: "col-lg-4 col-sm-6") do
-      content_tag(:div, class: "service card-effect") do
-        content_tag(:div, class: "d-flex #{additional_note.present? ? 'flex-wrap ' : ''}align-items-center mt-4") do
-          concat(content_tag(:i, nil, class: icon_class + " mb-2 me-1"))
-          concat(content_tag(:h5, title, class: "fw-bold"))
-          concat(content_tag(:h6, additional_note)) if additional_note.present?
-        end +
-        content_tag(:p, description)
-      end
-    end
+  def default_meta_tags
+    {
+      site: t("site.name"),
+      title: t("site.title"),
+      reverse: true,
+      separator: '|',
+      description: t("site.description"),
+      keywords: '自転車,ロードバイク,クロスバイク,サイクリング,サイクリスト,旅行,ツーリング,カスタムパーツ',
+      canonical: request.original_url,
+      noindex: ! Rails.env.production?,
+      og: default_og,
+      twitter: default_twitter_card,
+      icon: [
+        { href: image_url('charilog-favicon.png') }
+      ]
+    }
   end
 
-  def footer_nav_link(path, icon_name, title)
-    content_tag(:div, class: "col-2 p-0 text-center") do
-      link_to path, style: "text-decoration:none;" do
-        content_tag(:div, class: "text-white") do
-          content_tag(:div, class: "h5 m-0") do
-            tag.ion_icon(name: icon_name)
-          end +
-          content_tag(:div, title, class: "title font-mini-size")
-        end
-      end
-    end
+  private
+
+  def default_og
+    {
+      site_name: :site,
+      title: :full_title,
+      description: :description,
+      type: 'website',
+      url: request.original_url,
+      image: image_url('charilog-ogp.png'),
+      locale: 'ja_JP'
+    }
+  end
+
+  def default_twitter_card
+    {
+      card: 'summary_large_image',
+      site: '@Kiyo_newb_pg'
+    }
   end
 end

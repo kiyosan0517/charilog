@@ -63,6 +63,9 @@ gem 'rakuten_web_service'
 # Environments
 gem 'dotenv-rails'
 
+# SEO
+gem 'meta-tags'
+
 group :development, :test do
   # Debugger
   gem 'better_errors'
