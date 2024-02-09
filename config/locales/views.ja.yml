@@ -83,7 +83,7 @@ ja:
       fail: 'ユーザー登録に失敗しました'
     show:
       title: 'ユーザー詳細'
-      og_title: "%{user}さん/ログ一覧 - ChariLog"
+      og_title: "%{user}/ログ一覧 - ChariLog"
       mypage: 'マイページ'
       no_post: 'まだ投稿はありません'
       follow: 'フォロー'

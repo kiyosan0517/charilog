@@ -21,11 +21,14 @@
           <%= link_to @post.user.name, user_path(@post.user), class: "fw-bold text-dark hover-opacity-50", style:"text-decoration:none;" %>
         </div>
         <div class="operation_area d-flex align-items-center ml-auto">
-          <% if current_user.own?(@post) %>
-            <%= render 'posts/crud_menus', post: @post %>
-          <% else %>
-            <%= render 'posts/like_button', post: @post %>
-          <% end %>
+          <div class="like-count d-flex align-items-center text-danger fs-4">
+            <ion-icon name="heart-circle-outline"></ion-icon>
+            <div class="text-dark ms-1">
+              <div class="fs-5" id="likes-count-<%= @post.id %>">
+                <%= @post.likes.count %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -57,16 +60,25 @@
       <%= image_tag "no_image.png", class: "d-block mx-auto img-fluid hover-opacity-75 border-top border-bottom m-0", style: "height: auto; width: auto;" %>
     <% end %>
 
-    <div class="card-body ms-2">
-      <div class="d-flex align-items-center">
-        <h4 class="card-title fw-bold m-0"><%= @post.title %></h4>
-        <div class="text-secondary ms-2 mt-auto">
-          <i class="far fa-clock clock-icon me-1">
-          </i><%= time_ago_in_words(@post.created_at) %>前
+    <div class="card-body pt-3">
+      <div class="d-flex align-items-center mb-3">
+        <div class="share_area">
+          <%= render 'post_share_button' %>
+        </div>
+        <div class="ms-auto">
+          <% if current_user.own?(@post) %>
+            <%= render 'posts/crud_menus', post: @post %>
+          <% else %>
+            <%= render 'posts/like_button', post: @post %>
+          <% end %>
         </div>
       </div>
-      <br>
+      <h4 class="card-title fw-bold m-0"><%= @post.title %></h4>
       <p class="card-text"><%= @post.content %></p>
+      <span class="text-secondary">
+        <i class="far fa-clock clock-icon me-1">
+        </i><%= time_ago_in_words(@post.created_at) %>前
+      </span>
     </div>
   </div>
 </div>  

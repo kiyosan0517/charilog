@@ -48,4 +48,20 @@ module ApplicationHelper
       site: '@Kiyo_newb_pg'
     }
   end
+
+  def x_share_post_template(name, created_at)
+    CGI.escape(name) + 'さんのログを覗いてみよう！[投稿日: ' + created_at + ']%0a%23ChariLog%20%23ロードバイク%20%23クロスバイク%20%23自転車旅行%20%23サイクリング%20%23カスタムパーツ'
+  end
+
+  def x_share_user_template(name)
+    CGI.escape(name) + 'さんのログ一覧%0a%23ChariLog%20%23ロードバイク%20%23クロスバイク%20%23自転車旅行%20%23サイクリング%20%23カスタムパーツ'
+  end
+
+  def line_share_post_template(name, created_at)
+    CGI.escape(name) + 'さんのログを覗いてみよう！[投稿日: ' + created_at + '] - ChariLog(チャリログ)'
+  end
+
+  def line_share_user_template(name)
+    CGI.escape(name) + 'さんのログ一覧 - ChariLog(チャリログ)'
+  end
 end

@@ -1,0 +1,6 @@
+<%= link_to "https://twitter.com/share?url=#{request.url}&text=%0a%0a#{x_share_post_template(@post.user.name, l(@post.created_at, format: :short))}", title: 'Twitter', target: '_blank', style: "text-decoration:none;" do %>
+  <%= render 'shared/x_share_button' %>
+<% end %>
+<%= link_to "http://line.me/R/msg/text/?#{line_share_post_template(@post.user.name, l(@post.created_at, format: :short))}%0a#{request.url}%0ali", title: 'LINEで共有', target: '_blank', style: "text-decoration:none;" do %>
+  <%= render 'shared/line_share_button' %>
+<% end %>

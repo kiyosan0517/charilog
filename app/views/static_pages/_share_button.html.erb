@@ -1,0 +1,12 @@
+<%= link_to "https://twitter.com/share?url=#{request.url}&text=%0a%0aあなたの自転車ライフを共有しよう!%20-%20ChariLog", title: 'Xで共有', target: '_blank', style: "text-decoration:none;" do %>
+  <div class="text-dark btn btn-light mx-1 px-5">
+    <i class="fa-brands fa-x-twitter"></i>
+    <span class="font-mini-size"><%= 'でシェア' %></span>
+  </div>
+<% end %>
+<%= link_to "http://line.me/R/msg/text/?あなたの自転車ライフを共有しよう!%20-%20ChariLog%0a#{request.url}%0ali", title: 'LINEで共有', target: '_blank', style: "text-decoration:none;" do %>
+  <button type="button" class="btn btn-light text-success hover-opacity-50 mx-1 px-5">
+    <i class="fa-brands fa-line"></i>
+    <span class="font-mini-size"><%= 'でシェア' %></span>
+  </button>
+<% end %>
