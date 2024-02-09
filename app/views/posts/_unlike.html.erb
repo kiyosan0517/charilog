@@ -4,6 +4,8 @@
             style: "text-decoration:none;",
             method: :delete, 
             remote: true do %>
-  <i class="fas fa-heart heart"></i>
-  <div class="text-secondary text-nowrap"><%= post.likes.count %> Likes</div>
+  <div>
+    <i class="fas fa-heart heart"></i>
+    <div class="font-mini-size text-secondary text-nowrap"><%= post.likes.count %> Likes</div>
+  </div>
 <% end %>

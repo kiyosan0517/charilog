@@ -19,9 +19,12 @@
 <div class="hero vh-100 d-flex align-items-center mb-5" id="home">
   <div class="container">
     <div class="row">
-      <div class="col-lg-7 mx-auto text-center">
+      <div class="col-lg-8 mx-auto text-center">
         <h1 class="display-5 text-white">さぁ、ChariLogを始めよう</h1>
-        <p class="text-white mt-5">
+        <div class="text-center my-5">
+          <%= render 'share_button' %>
+        </div>
+        <p class="text-white">
           ご質問やご要望、開発等の技術面で何かあればお問い合わせください。様々なご意見お待ちしております。
         </p>
         <%= link_to t("defaults.login"), root_path, class: "btn btn-primary m-2 px-5" %>

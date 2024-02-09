@@ -2,11 +2,11 @@
 <% set_meta_tags title: current_page?(user_path(current_user)) ? t('.mypage') : t('.title'), og: { title: t('.og_title', user: @user.name) } %>
 
 <div class="container px-md-4">
-  <div class="row pb-4 mb-4 border-bottom">
-    <div class="user-panel d-flex flex-column flex-md-row justify-content-center align-items-center">
-      <div class="user-avatar d-flex flex-wrap align-items-center my-3">
+  <div class="row pb-2 mb-4 border-bottom">
+    <div class="user-panel d-flex flex-column flex-md-row justify-content-center align-items-center p-0">
+      <div class="user-avatar d-flex flex-wrap align-items-center mx-auto mx-md-0 my-3">
         <%= link_to @user.avatar, "data-lightbox": @user.avatar do %>
-          <%= image_tag @user.avatar.variant(gravity: :center, resize: "120x120^!", crop:"120x120+0+0"), class: "img rounded-circle bg-dark-subtle hover-opacity-75 me-4 me-lg-5", style: "display: inline-block;" %>
+          <%= image_tag @user.avatar.variant(gravity: :center, resize: "120x120^!", crop:"120x120+0+0"), class: "img rounded-circle bg-dark-subtle hover-opacity-75 me-5 me-md-4 me-lg-5", style: "display: inline-block;" %>
         <% end %>
         <div class="follow-btn mobile-size" style="display: inline-block;">
           <%= render 'user_show_operation' %>
@@ -33,12 +33,10 @@
           <div class="post-count d-flex flex-wrap mb-2">
             <div class="me-3">
               <%= t(".post") %>
-              <span>:</span>
               <%= @user.posts.count %>件
             </div>
             <div>
               <%= t(".all_likes") %>
-              <span>:</span>
               <%= @like_count %>Likes
             </div>
           </div>
@@ -46,29 +44,33 @@
             <%= link_to followers_user_path, class:"hover-opacity-75", style:"text-decoration:none;" do %>
               <div class="text-secondary me-3">
                 <%= t(".follower") %>
-                <span>:</span>
                 <%= @user.followeds.count %>人
               </div>
             <% end %>
             <%= link_to follows_user_path, class:"hover-opacity-75", style:"text-decoration:none;" do %>
               <div class="text-secondary me-3">
                 <%= t(".follow") %>
-                <span>:</span>
                 <%= @user.followers.count %>人
               </div>
             <% end %>
           </div>
         </div>
-        <div class="bio-area mobile-size fw-bold">
+        <div class="bio-area mobile-size d-flex d-md-none align-items-center flex-wrap fw-bold">
           <%= render 'user_bio' %>
+          <div class="share_area">
+            <%= render 'user_share_button' %>
+          </div>
         </div>
       </div>
-      <div class="follow-btn pc-size mx-auto">
+      <div class="follow-btn pc-size ms-auto me-xl-5">
         <%= render 'user_show_operation' %>
       </div>
     </div>
-    <div class="bio-area pc-size fw-bold mt-3">
+    <div class="bio-area pc-size d-md-flex align-items-center fw-bold p-0">
       <%= render 'user_bio' %>
+      <div class="share_area text-nowrap ms-auto me-xl-5">
+        <%= render 'user_share_button' %>
+      </div>
     </div>
   </div>
 
