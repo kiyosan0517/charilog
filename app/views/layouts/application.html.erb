@@ -66,7 +66,9 @@
         <%= render "/shared/flash_message" %>
         <%= yield %>
       </div>
-      <div class="before-login-footer-wrapper shadow mt-5">
+      <div class="before-login-footer-wrapper shadow mt-5
+                  <%= controller_name == 'password_resets' && action_name == 'new' ||
+                      controller_name == 'password_resets' && action_name == 'edit' ? 'd-none' : '' %>">
         <%= render "/shared/footer" %>
       </div>
     <% end %>
