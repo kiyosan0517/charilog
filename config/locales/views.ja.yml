@@ -25,6 +25,7 @@ ja:
     setting_profile: '登録情報設定'
     item_management: 'アイテム管理'
     back: '戻る'
+    remember_me: '次回から自動でログイン'
     to_top_page: 'トップページへ戻る'
     to_my_page: 'マイページへ戻る'
     to_register_page: '新規登録ページへ'
