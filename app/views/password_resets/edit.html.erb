@@ -20,7 +20,7 @@
           <div class="form-group">
             <i class="fas fa-envelope"></i>
             <%= f.label User.human_attribute_name(:email), class: "fw-bold", for: "email" %>
-            <%= f.text_field :email, class: 'form-control bg-light', value: @user.email, placeholder: User.human_attribute_name(:email), id: "email" %>
+            <%= f.text_field :email, class: 'form-control bg-light', value: @user.email, placeholder: User.human_attribute_name(:email), id: "email", autocomplete: "email" %>
           </div>
           <div class="form-group">
             <i class="fas fa-lock"></i>
