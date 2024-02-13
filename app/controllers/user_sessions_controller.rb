@@ -2,7 +2,7 @@ class UserSessionsController < ApplicationController
   skip_before_action :require_login, only: %i[create]
 
   def create
-    @user = login(params[:email], params[:password])
+    @user = login(params[:email], params[:password], params[:remember])
     if @user
       redirect_back_or_to root_path, success: t(".success")
     else
