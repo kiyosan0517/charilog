@@ -12,11 +12,21 @@
             <div class="user-name d-flex align-items-center text-break">
               <%= link_to post.user.name, user_path(post.user), class: "fw-bold text-dark hover-opacity-50", style:"text-decoration:none;" %>
             </div>
-            <div class="like_count d-flex align-items-center ml-auto text-danger h4 mb-0">
-              <ion-icon name="heart-circle-outline"></ion-icon>
+            <div class="d-flex align-items-center ml-auto h4 mb-0">
+
+              <!-- いいね数カウント -->
+              <i class="fa-solid fa-heart text-danger"></i>
               <div class="text-secondary ms-1">
-                <div id="likes-count-<%= post.id %>">
+                <div class="fs-5" id="likes-count-<%= post.id %>">
                   <%= post.likes.count %>
+                </div>
+              </div>
+
+              <!-- アイテム数カウント -->
+              <i class="fa-solid fa-tags text-success ms-2"></i>
+              <div class="text-secondary ms-1">
+                <div class="fs-5" id="likes-count-<%= post.id %>">
+                  <%= post.items.count %>
                 </div>
               </div>
             </div>

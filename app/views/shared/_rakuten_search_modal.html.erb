@@ -1,0 +1,26 @@
+<div class="modal fade" id="rakuten-modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">楽天で商品を検索</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="my-4">
+        <%= form_with url: search_rakuten_posts_path, method: :get, local: false, class: "row" do |f| %>
+          <div class="offset-1 offset-sm-2 col-7">
+            <%= f.text_field :q, value: params[:q], class: "form-control", placeholder: "キーワードで検索" %>
+          </div>
+          <div class="col-1">
+            <%= f.submit "検索", class: "btn btn-dark text-light" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-body pb-0" id="rakuten_result">
+        <%= render partial: 'shared/search_rakuten', locals: { rakuten_items: @rakuten_items } %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

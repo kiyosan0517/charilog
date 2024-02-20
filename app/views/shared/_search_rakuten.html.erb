@@ -1,0 +1,29 @@
+<% if rakuten_items %>
+  <div class="mt-56">
+    <div class="row align-items-center justify-content-around bg-light border-bottom py-2 d-none d-lg-flex">
+      <div class="col-3 fw-bold text-center">商品画像</div>
+      <div class="col-5 fw-bold text-center">商品名</div>
+      <div class="col-2 fw-bold text-center">商品リンク</div>
+      <div class="col-2"></div>
+    </div>
+    <% if rakuten_items.count == 0 %>
+      <p class="text-center mt-4 mb-3">条件に一致する検索結果はありません</p>
+    <% else %>
+      <% rakuten_items.each do |rakuten_item| %>
+        <div class="row g-4 justify-content-around border-bottom py-4">
+          <div class="col-5 col-lg-3 d-flex align-items-center justify-content-center"><%= image_tag rakuten_item.medium_image_urls.first, alt: rakuten_item.name %></div>
+          <div class="col-7 col-lg-5 d-flex align-items-center justify-content-center"><%= rakuten_item.name %></div>
+          <div class="col-7 col-lg-2 d-flex align-items-center justify-content-center">
+            <%= link_to rakuten_item.url, class: "text-secondary", target: "_blank", style:"text-decoration:none;", data: { confirm: '楽天で商品情報を確認しますか？' } do %>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              楽天商品ページへ
+            <% end %>
+          </div>
+          <div class="col-5 col-lg-2 d-flex align-items-center justify-content-center">
+            <%= link_to '選択', '#', data: { url: rakuten_item.url, image_url: rakuten_item.medium_image_urls.first, item_name: rakuten_item.name, price: rakuten_item.price, code: rakuten_item.code }, class: "btn btn-secondary btn-block text-light rakuten-add-button" %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

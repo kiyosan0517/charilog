@@ -46,11 +46,21 @@
       <% end %>
 
       <div class="card-body hover-opacity-50 pt-3">
-        <div class="like-count d-flex align-items-center text-danger h4 mb-3">
-          <ion-icon name="heart-circle-outline"></ion-icon>
+        <div class="d-flex align-items-center h4 mb-3">
+
+          <!-- いいね数カウント -->
+          <i class="fa-solid fa-heart text-danger"></i>
           <div class="text-secondary ms-1">
             <div class="fs-5" id="likes-count-<%= post.id %>">
               <%= post.likes.count %>
+            </div>
+          </div>
+
+          <!-- アイテム数カウント -->
+          <i class="fa-solid fa-tags text-success ms-3"></i>
+          <div class="text-secondary ms-1">
+            <div class="fs-5" id="likes-count-<%= post.id %>">
+              <%= post.items.count %>
             </div>
           </div>
         </div>

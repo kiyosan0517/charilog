@@ -1,0 +1,17 @@
+<% @post.items.each_with_index do |item, index| %>
+  <div class="row align-items-center justify-content-around py-4 <%= index != 0 ? 'border-top' : '' %>">
+    <%= image_tag item.image, class: 'd-flex col-4 col-sm-3 col-xl-2' %>
+    <div class="item-info d-flex col-8 col-sm-9 col-xl-10 flex-column text-secondary">
+      <p class="font-mini-size"><%= item.name.truncate(80) %></p>
+      <p class="fw-bold text-decoration-underline"><%= "参考価格：#{item.price}円" %></p>
+    </div>
+    <div class="rakuten-url text-right">
+      <%= link_to item.rakuten_url, class: "btn btn-light border text-secondary me-2", target: "_blank", style:"text-decoration:none;", data: { confirm: '楽天で商品情報を確認しますか？' } do %>
+        <div class="font-mini-size">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          楽天商品ページへ
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
