@@ -73,12 +73,24 @@
           <% end %>
         </div>
       </div>
-      <h4 class="card-title fw-bold m-0"><%= @post.title %></h4>
-      <p class="card-text"><%= @post.content %></p>
-      <span class="text-secondary">
-        <i class="far fa-clock clock-icon me-1">
-        </i><%= time_ago_in_words(@post.created_at) %>前
-      </span>
+      <div class="d-flex align-items-end">
+        <h5 class="card-title fw-bold m-0"><%= @post.title %></h5>
+        <span class="text-secondary ms-2 font-mini-size">
+          <i class="far fa-clock clock-icon me-1">
+          </i><%= time_ago_in_words(@post.created_at) %>前
+        </span>
+      </div>
+      
+      <p class="card-text mt-2"><%= @post.content %></p>
+
+      <div class="mt-3">
+        <div>
+          <i class="fa-solid fa-tags"></i>
+          使用しているアイテム
+        </div>
+        <%= render 'item_list' %>
+      </div>
+
     </div>
   </div>
 </div>  

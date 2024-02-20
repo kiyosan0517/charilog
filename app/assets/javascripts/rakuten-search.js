@@ -1,4 +1,7 @@
 $(document).ready(function() {
+  // 初期状態ではクリアボタンを非表示にする
+  $('#remove_rakuten_item_button').hide();
+
   // ”使用アイテムを登録する”ボタンをクリックしたときの処理
   $(document).on('click', '#rakuten-link-button', function(e) {
     e.preventDefault();

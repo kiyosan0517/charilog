@@ -19,6 +19,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
 
     if @post.save
+      save_items
       redirect_to posts_path, success: t("defaults.message.created", item: Post.model_name.human)
     else
       @post = Post.new(post_params)
@@ -127,5 +128,33 @@ class PostsController < ApplicationController
   def search_posts
     @posts = @q.result(distinct: true).includes(user: { avatar_attachment: :blob }).with_attached_images.order(created_at: :desc).page(params[:page])
     @post_count = @posts.total_count
+  end
+
+  def save_items
+    items_params&.each do |item|
+      item_data = JSON.parse(item)
+
+      if Item.exists?(item_code: item_data['item_code'])
+        item = Item.find_by(item_code: item_data['item_code'])
+        @post.post_items.create!(item: item)
+      else
+        item = Item.create(name: item_data['name'], 
+                           price: item_data['price'], 
+                           rakuten_url: item_data['rakuten_url'], 
+                           image: item_data['image'], 
+                           item_code: item_data['item_code']
+                          )
+        @post.post_items.create!(item: item)
+      end
+    end
+  end
+
+  def items_params
+    items = (params[:post][:items1] + params[:post][:items2] + params[:post][:items3] + params[:post][:items4]).reject(&:empty?)
+    if items.empty?
+      nil
+    else
+      items
+    end
   end
 end
