@@ -60,6 +60,18 @@ class PostsController < ApplicationController
     render json: @image_blob
   end
 
+  def search_rakuten
+    if params[:q].present?
+      @rakuten_items = RakutenWebService::Ichiba::Item.search({
+        keyword: params[:q],
+        hits: 15,
+      })
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def set_post

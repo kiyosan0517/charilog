@@ -56,15 +56,46 @@
           <%= f.label :content, class: "fw-bold", for: "content" %>
           <%= f.text_area :content, class: 'form-control', id: "content", rows: 5 %>
         </div>
+        <div class="form-group field mb-4">
+          <div class="label-container fw-bold", for: "post_rakuten_url">
+            <i class="fa-solid fa-link"></i>
+            アイテム登録
+          </div>
+          <div class="mt-3">
+            <%= link_to "使用アイテムを登録する", "#", id: "rakuten-link-button", local: true, class: "btn btn-success btn-outline-secondary" %><br>
+            <div class="row align-items-center">
+              <p class="my-4 col-8 col-sm-9"><選択されたアイテム></p>
+              <div class="col-2 d-flex justify-content-center">
+                <button class="btn btn-primary btn-outline-dark link-delete-btn" id="remove_rakuten_item_button">クリア</button>
+              </div>
+            </div>
+            <%= f.hidden_field 'items1', multiple: true %>
+            <%= f.hidden_field 'items2', multiple: true %>
+            <%= f.hidden_field 'items3', multiple: true %>
+            <%= f.hidden_field 'items4', multiple: true %>
+            
+            <% (1..4).each do |index| %>
+              <div class="row align-items-center justify-content-around" id="rakuten_data_wrap<%= index %>">
+                <img id="rakuten_image<%= index %>" class="col-3 d-flex d-none">
+                <p class="d-flex mb-0 text-secondary col-8" id="rakuten_name_text<%= index %>"></p>
+                <p class="text-center mb-0 text-secondary mt-2 font-mini-size col-12 px-4" id="rakuten_url_text<%= index %>">
+                  <%= '登録アイテムはありません' if index == 1 %>
+                </p>
+              </div>
+            <% end %>
+
+          </div>
+        </div>
         <div class='text-center'>
           <% if f.object.new_record? %>
-            <%= f.submit t("defaults.post"), class: 'btn btn-success m-4 submit-button' %>
+            <%= f.submit t("defaults.post"), class: 'btn btn-success m-3 px-3 px-sm-5 submit-button' %>
           <% else %>
-            <%= f.submit t("defaults.edit"), class: 'btn btn-primary m-4 submit-button' %>
+            <%= f.submit t("defaults.edit"), class: 'btn btn-primary m-3 px-3 px-sm-5 submit-button' %>
           <% end %>
-          <%= link_to t("defaults.to_posts_page"), posts_path, class: 'btn btn-info m-4' %>
+          <%= link_to t("defaults.to_posts_page"), posts_path, class: 'btn btn-info m-3 px-3 px-sm-5' %>
         </div>
       </div>
     <% end %>
   </div>
 </div>
+

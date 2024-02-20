@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :posts do
     resource :like, only: %i[create destroy]
     get 'likes', on: :collection
+    get 'search_rakuten', on: :collection
     post 'upload_image', on: :collection
   end
 

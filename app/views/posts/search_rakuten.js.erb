@@ -1,0 +1,7 @@
+$('#rakuten_result').empty();
+
+<% if @rakuten_items.present? %>
+  $('#rakuten_result').html('<%= escape_javascript(render partial: 'shared/search_rakuten', locals: { rakuten_items: @rakuten_items }) %>');
+<% else %>
+  $('#rakuten_result').html('<p class="text-center">条件に一致する検索結果はありません</p>');
+<% end %>
