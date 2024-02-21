@@ -40,14 +40,6 @@
           <span class="title p-0 ms-sm-2"><%= t("defaults.likes") %></span>
         <% end %>
       </li>
-      <li class="nav-item <%= nav_item_class(items_search_path) %> d-none d-sm-block">
-        <%= link_to items_search_path do %>
-          <span class="nav-icon">
-            <ion-icon name="pricetags-outline"></ion-icon>
-          </span>
-          <span class="title p-0 ms-sm-2"><%= t("defaults.items") %></span>
-        <% end %>
-      </li>
       <li class="nav-item <%= nav_item_class(user_path(current_user)) %> d-none d-sm-block">
         <%= link_to user_path(current_user) do %>
           <span class="nav-icon">
