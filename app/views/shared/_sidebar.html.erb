@@ -24,7 +24,7 @@
           <span class="title p-0 ms-sm-2"><%= t("defaults.home") %></span>
         <% end %>
       </li>
-      <li class="nav-item <%= nav_item_class(users_path) %>">
+      <li class="nav-item <%= nav_item_class(users_path) %> d-none d-sm-block">
         <%= link_to users_path do %>
           <span class="nav-icon">
             <ion-icon name="people-circle-outline"></ion-icon>
