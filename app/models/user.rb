@@ -23,6 +23,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: { case_sensitive: true }
   validates :name, presence: true
   validates :bio, length: { maximum: 160 }
+  validate :avatar_size
 
   enum my_bike:{
     ANCHOR（アンカー）:0,ARAYA（アラヤ）:1,ARGON（アルゴン）:2,AVEDIO（エヴァディオ）:3,BASSO（バッソ）:4,BH（ビーエイチ）:5,Bianchi（ビアンキ）:6,BMC（ビーエムシー）:7,BOMA（ボーマ）:8,BOTTECCHIA（ボッテキア）:9,BRIDGESTONE（ブリヂストン）:10,BROMPTON（ブロンプトン）:11,
@@ -37,6 +38,12 @@ class User < ApplicationRecord
     if !self.avatar.attached?
       self.avatar.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'sample.png')),
                          filename: 'sample.png', content_type: 'image/png')
+    end
+  end
+
+  def avatar_size
+    if avatar.present? && (avatar.blob.byte_size > 5.megabytes)
+      errors.add(:avatar, 'はサイズ5MB以内の画像にしてください')
     end
   end
 
