@@ -25,8 +25,5 @@ Rails.application.routes.draw do
     post 'upload_image', on: :collection
   end
 
-  resources :items, only: %i[index]
-  get 'items/search' => 'items#search'
-
   resources :password_resets, only: %i[new create edit update]
 end
