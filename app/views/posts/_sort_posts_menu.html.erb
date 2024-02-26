@@ -1,20 +1,20 @@
 <div class="btn-group dropdown ms-auto border">
-  <button class="btn btn-lg dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+  <button class="btn btn-lg dropdown-toggle fw-bold" style="font-size: smaller;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
     並び替え
   </button>
   <ul class="dropdown-menu dropdown-menu-end" id="dropdown_menu" aria-labelledby="dropdownMenuButton1">
     <% if current_page?(posts_path) %>
-      <li><%= link_to "新着順", posts_path(order: 'new'), class: "active dropdown-item text-dark" %></li>
-      <li><%= link_to "古い順", posts_path(order: 'old'), class: "dropdown-item text-dark" %></li>
-      <li><%= link_to "タイトル(降順)", posts_path(order: 'title_desc'), class: "dropdown-item text-dark" %></li>
-      <li><%= link_to "タイトル(昇順)", posts_path(order: 'title_asc'), class: "dropdown-item text-dark" %></li>
-      <li><%= link_to "人気順", posts_path(order: 'like_desc'), class: "dropdown-item text-dark" %></li>
+      <li><%= link_to "新着順", posts_path(order: 'new'), class: "dropdown-item text-dark #{sort_active_class('new')}" %></li>
+      <li><%= link_to "古い順", posts_path(order: 'old'), class: "dropdown-item text-dark #{sort_active_class('old')}" %></li>
+      <li><%= link_to "タイトル(降順)", posts_path(order: 'title_desc'), class: "dropdown-item text-dark #{sort_active_class('title_desc')}" %></li>
+      <li><%= link_to "タイトル(昇順)", posts_path(order: 'title_asc'), class: "dropdown-item text-dark #{sort_active_class('title_asc')}" %></li>
+      <li><%= link_to "人気順", posts_path(order: 'like_desc'), class: "dropdown-item text-dark #{sort_active_class('like_desc')}" %></li>
     <% elsif current_page?(likes_posts_path) %>
-      <li><%= link_to "新着順", likes_posts_path(order: 'new'), class: "active dropdown-item text-dark" %></li>
-      <li><%= link_to "古い順", likes_posts_path(order: 'old'), class: "dropdown-item text-dark" %></li>
-      <li><%= link_to "タイトル(降順)", likes_posts_path(order: 'title_desc'), class: "dropdown-item text-dark" %></li>
-      <li><%= link_to "タイトル(昇順)", likes_posts_path(order: 'title_asc'), class: "dropdown-item text-dark" %></li>
-      <li><%= link_to "人気順", likes_posts_path(order: 'like_desc'), class: "dropdown-item text-dark" %></li>
+      <li><%= link_to "新着順", likes_posts_path(order: 'new'), class: "dropdown-item text-dark #{sort_active_class('new')}" %></li>
+      <li><%= link_to "古い順", likes_posts_path(order: 'old'), class: "dropdown-item text-dark #{sort_active_class('old')}" %></li>
+      <li><%= link_to "タイトル(降順)", likes_posts_path(order: 'title_desc'), class: "dropdown-item text-dark #{sort_active_class('title_desc')}" %></li>
+      <li><%= link_to "タイトル(昇順)", likes_posts_path(order: 'title_asc'), class: "dropdown-item text-dark #{sort_active_class('title_asc')}" %></li>
+      <li><%= link_to "人気順", likes_posts_path(order: 'like_desc'), class: "dropdown-item text-dark #{sort_active_class('like_desc')}" %></li>
     <% end %>
   </ul>
 </div>
