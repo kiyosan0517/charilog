@@ -74,6 +74,12 @@
     </div>
   </div>
 
+  <div class="title-area d-flex flex-wrap align-items-center justify-content-center under-line my-2">
+    <h5 class="fw-bold text-decoration-underline m-0"><%= t(".post_index", user: @user.name) %></h5>
+    <!-- 並び替えリスト -->
+    <%= render 'posts/sort_posts_menu' %>
+  </div>
+
   <div class="row mb-sm-5">
     <% if @posts.present? %>
       <%= render @posts %>

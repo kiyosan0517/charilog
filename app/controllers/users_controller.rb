@@ -27,7 +27,11 @@ class UsersController < ApplicationController
     @like_count = @user.posts_all_like_count
     @following_users = @user.following_users
     @follower_users = @user.follower_users
-    @posts = @user.posts.includes(user: { avatar_attachment: :blob }).with_attached_images.order(created_at: :desc).page(params[:page]).per(10)
+    unless params[:order]
+      @posts = @user.posts.includes(user: { avatar_attachment: :blob }).with_attached_images.order(created_at: :desc).page(params[:page]).per(10)
+    else
+      sort_posts
+    end
   end
 
   def follows
@@ -53,5 +57,20 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :my_bike, :email, :password, :password_confirmation, :avatar)
+  end
+
+  def sort_posts
+    case params[:order]
+    when 'new'
+      @posts = @user.posts.includes(user: { avatar_attachment: :blob }).with_attached_images.order('created_at DESC').page(params[:page]).per(10)
+    when 'old'
+      @posts = @user.posts.includes(user: { avatar_attachment: :blob }).with_attached_images.order('created_at ASC').page(params[:page])
+    when 'title_desc'
+      @posts = @user.posts.result(distinct: true).includes(user: { avatar_attachment: :blob }).with_attached_images.order('title DESC').page(params[:page])
+    when 'title_asc'
+      @posts = @user.posts.result(distinct: true).includes(user: { avatar_attachment: :blob }).with_attached_images.order('title ASC').page(params[:page])
+    else 'like_desc'
+      @posts = @user.posts.result(distinct: true).left_joins(:likes).select("posts.*, COUNT(likes.id) AS like_count").group("posts.id").includes(user: { avatar_attachment: :blob }).with_attached_images.order("like_count DESC").page(params[:page])
+    end
   end
 end

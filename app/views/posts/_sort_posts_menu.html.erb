@@ -15,6 +15,12 @@
       <li><%= link_to "タイトル(降順)", likes_posts_path(order: 'title_desc'), class: "dropdown-item text-dark #{sort_active_class('title_desc')}" %></li>
       <li><%= link_to "タイトル(昇順)", likes_posts_path(order: 'title_asc'), class: "dropdown-item text-dark #{sort_active_class('title_asc')}" %></li>
       <li><%= link_to "人気順", likes_posts_path(order: 'like_desc'), class: "dropdown-item text-dark #{sort_active_class('like_desc')}" %></li>
+    <% elsif current_page?(user_path(@user)) %>
+      <li><%= link_to "新着順", user_path(@user, order: 'new'), class: "dropdown-item text-dark #{sort_active_class('new')}" %></li>
+      <li><%= link_to "古い順", user_path(@user, order: 'old'), class: "dropdown-item text-dark #{sort_active_class('old')}" %></li>
+      <li><%= link_to "タイトル(降順)", user_path(@user, order: 'title_desc'), class: "dropdown-item text-dark #{sort_active_class('title_desc')}" %></li>
+      <li><%= link_to "タイトル(昇順)", user_path(@user, order: 'title_asc'), class: "dropdown-item text-dark #{sort_active_class('title_asc')}" %></li>
+      <li><%= link_to "人気順", user_path(@user, order: 'like_desc'), class: "dropdown-item text-dark #{sort_active_class('like_desc')}" %></li>
     <% end %>
   </ul>
 </div>

@@ -92,6 +92,7 @@ ja:
       post: '投稿数'
       all_likes: 'いいね数'
       leave_log!: 'あなたのログを残そう！'
+      post_index: '%{user}さんの投稿ログ'
     followers:
       title:  'フォロワー'
       no_followers: 'フォロワーはまだいません'
