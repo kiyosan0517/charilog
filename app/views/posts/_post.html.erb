@@ -1,11 +1,11 @@
 <div class="col-12 col-md-6 col-xl-4 mb-3">
   <div class="card shadow-sm">
-    <div class="header-area">
+    <div class="header-area <%= controller_name == 'users' && action_name == 'show' ? 'd-none' : '' %>">
       <div class="container">
         <div class="user-panel d-flex align-items-center py-2">
           <div class="user-avatar me-2">
             <%= link_to user_path(post.user) do %>
-              <%= image_tag post.user.avatar.variant(gravity: :center, resize: "50x50^!", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle hover-opacity-75", style: "display: inline-block;" %>
+              <%= image_tag post.user.avatar.variant(gravity: :center, resize: "50x50^", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle hover-opacity-75", style: "display: inline-block;" %>
             <% end %>
           </div>
           <div class="user-name d-flex align-items-center text-break">
@@ -28,7 +28,9 @@
           <div id="img-carousel" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
               <% post.images.each_with_index do |image, index| %>
-                <li data-target="#img-carousel" data-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>" style="<%= post.images.length == 1 ? 'display: none;' : 'cursor: default;' %>"></li>
+                <li data-target="#img-carousel" data-slide-to="<%= index %>"
+                    class="<%= index == 0 ? 'active' : '' %>"
+                    style="<%= post.images.length == 1 ? 'display: none;' : 'cursor: default;' %>"></li>
               <% end %>
             </ol>
 
@@ -42,7 +44,8 @@
           </div>
         </div>
       <% else %>
-        <%= image_tag "no_image.png", class: "d-block mx-auto img-fluid hover-opacity-75 border-top border-bottom", style: "height: auto; width: auto;" %>
+        <%= image_tag "no_image.png", class: "d-block mx-auto img-fluid hover-opacity-75 border-bottom #{controller_name == 'users' && action_name == 'show' ? '' : 'border-top'}",
+                                      style: "height: auto; width: auto;" %>
       <% end %>
 
       <div class="card-body hover-opacity-50 pt-3">

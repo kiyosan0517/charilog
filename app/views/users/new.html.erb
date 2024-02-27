@@ -17,7 +17,7 @@
             <%= render 'shared/error_messages', object: f.object %>
             <div class="form-group avatar-panel d-flex justify-content-center align-items-center flex-wrap pb-2">
               <div class="prev-img position-relative border-right border-secondary pe-3">
-                <%= image_tag 'sample.png', class: "d-block rounded-circle bg-dark-subtle", id: "prev_img" %>
+                <%= image_tag 'sample.png', class: "d-block bg-dark-subtle", id: "prev_img", style: "object-fit: cover;" %>
                 <div class="delete-preview">
                   <i class="fas fa-times fa-lg text-white rounded-circle bg-dark opacity-75 py-1 px-2"></i>
                 </div>

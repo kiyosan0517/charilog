@@ -6,6 +6,11 @@ module ApplicationHelper
     'active' if current_page?(path)
   end
 
+  def sort_active_class(option)
+    current_order = params[:order]
+    return 'active' if current_order == option
+  end
+
   def search_from?
     params[:q].present?
   end
