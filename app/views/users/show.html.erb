@@ -6,7 +6,7 @@
     <div class="user-panel d-flex flex-column flex-md-row justify-content-center align-items-center p-0">
       <div class="user-avatar d-flex flex-wrap align-items-center mx-auto mx-md-0 my-3">
         <%= link_to @user.avatar, "data-lightbox": @user.avatar do %>
-          <%= image_tag @user.avatar.variant(gravity: :center, resize: "120x120^!", crop:"120x120+0+0"), class: "img rounded-circle bg-dark-subtle hover-opacity-75 me-5 me-md-4 me-lg-5", style: "display: inline-block;" %>
+          <%= image_tag @user.avatar.variant(gravity: :center, resize: "120x120^", crop:"120x120+0+0"), class: "img rounded-circle bg-dark-subtle hover-opacity-75 me-5 me-md-4 me-lg-5", style: "display: inline-block;" %>
         <% end %>
         <div class="follow-btn mobile-size" style="display: inline-block;">
           <%= render 'user_show_operation' %>
