@@ -4,24 +4,27 @@
 <div class="container px-md-4">
   <div class="row pb-2 mb-4 border-bottom">
     <div class="user-panel d-flex flex-column flex-md-row justify-content-center align-items-center p-0">
-      <div class="user-avatar d-flex flex-wrap align-items-center mx-auto mx-md-0 my-3">
+      <div class="user-avatar d-flex flex-wrap justify-content-center align-items-center mx-auto mx-md-0 my-3">
         <%= link_to @user.avatar, "data-lightbox": @user.avatar do %>
-          <%= image_tag @user.avatar.variant(gravity: :center, resize: "120x120^", crop:"120x120+0+0"), class: "img rounded-circle bg-dark-subtle hover-opacity-75 me-5 me-md-4 me-lg-5", style: "display: inline-block;" %>
+          <%= image_tag @user.avatar.variant(gravity: :center, resize: "120x120^", crop:"120x120+0+0"), class: "img rounded-circle bg-dark-subtle hover-opacity-75 my-1 mx-4 me-md-4 me-lg-5", style: "display: inline-block;" %>
         <% end %>
-        <div class="follow-btn mobile-size" style="display: inline-block;">
+        <div class="follow-btn mobile-size text-center mx-4" style="display: inline-block;">
           <%= render 'user_show_operation' %>
+          <div class="share_area">
+            <%= render 'user_share_button' %>
+          </div>
         </div>
       </div>
       <div class="d-flex flex-column fw-bold mx-3 mx-sm-0">
         <div class="user-element left-line border-4 border-primary ps-3 mb-3 mb-md-0">
           <div class="user-name mb-2">
-            <i class="fas fa-user me-1"></i>
+            <i class="fas fa-user"></i>
             <%= User.human_attribute_name(:name) %>
             <span>:</span>
             <%= @user.name %>
           </div>
           <div class="bike-name mb-2">
-            <i class="fas fa-bicycle me-1"></i>
+            <i class="fas fa-bicycle"></i>
             <%= User.human_attribute_name(:my_bike) %>
             <span>:</span>
             <% if @user.my_bike.present? %>
@@ -57,9 +60,6 @@
         </div>
         <div class="bio-area mobile-size d-flex d-md-none align-items-center flex-wrap fw-bold">
           <%= render 'user_bio' %>
-          <div class="share_area">
-            <%= render 'user_share_button' %>
-          </div>
         </div>
       </div>
       <div class="follow-btn pc-size ms-auto me-xl-5">
@@ -74,8 +74,8 @@
     </div>
   </div>
 
-  <div class="title-area d-flex flex-wrap align-items-center justify-content-center under-line my-2">
-    <h5 class="fw-bold text-decoration-underline m-0"><%= t(".post_index", user: @user.name) %></h5>
+  <div class="d-flex flex-wrap align-items-center justify-content-center under-line my-2">
+    <h5 class="fw-bold text-decoration-underline mb-0 me-3 my-1"><%= t(".post_index", user: @user.name) %></h5>
     <!-- 並び替えリスト -->
     <%= render 'posts/sort_posts_menu' %>
   </div>
