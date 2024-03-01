@@ -68,7 +68,7 @@
           </div>
         </div>
         <h5 class="card-title fw-bold"><%= post.title %></h5>
-        <p class="card-text m-0"><%= post.content.truncate(30) %></p>
+        <p class="card-text m-0"><%= safe_join(post.content.truncate(30).split("\n"),tag(:br)) %></p>
         <span class="text-secondary">
           <i class="far fa-clock clock-icon me-1">
           </i><%= time_ago_in_words(post.created_at) %>前
