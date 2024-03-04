@@ -81,7 +81,7 @@
         </span>
       </div>
       
-      <p class="card-text mt-2"><%= @post.content %></p>
+      <p class="card-text mt-2"><%= raw Rinku.auto_link(safe_join(@post.content.split("\n"),tag(:br)), :urls, 'target="_blank" rel="noopener noreferrer"') %></p>
 
       <div class="mt-3">
         <div>

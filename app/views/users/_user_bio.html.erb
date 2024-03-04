@@ -1,5 +1,5 @@
 <% if @user.bio.present? %>
-  <div class="me-3"><%= @user.bio %></div>
+  <div class="me-3"><%= raw Rinku.auto_link(safe_join(@user.bio.split("\n"),tag(:br)), :urls, 'target="_blank" rel="noopener noreferrer"') %></div>
 <% else %>
   <div class="text-secondary me-3"><%= t("defaults.no_bio") %></div>
 <% end %>

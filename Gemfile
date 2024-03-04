@@ -66,6 +66,9 @@ gem 'dotenv-rails'
 # SEO
 gem 'meta-tags'
 
+# URL
+gem 'rinku'
+
 group :development, :test do
   # Debugger
   gem 'better_errors'
