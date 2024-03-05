@@ -25,8 +25,8 @@ class UsersController < ApplicationController
 
   def show
     @like_count = @user.posts_all_like_count
-    @following_users = @user.following_users
-    @follower_users = @user.follower_users
+    @following_users = @user.following_users.includes(avatar_attachment: :blob)
+    @follower_users = @user.follower_users.includes(avatar_attachment: :blob)
     unless params[:order]
       @posts = @user.posts.includes(user: { avatar_attachment: :blob }).with_attached_images.order(created_at: :desc).page(params[:page]).per(10)
     else
