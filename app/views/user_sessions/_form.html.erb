@@ -13,8 +13,10 @@
       </div>
       <div class="form-group text-left font-mini-size">
         <%= f.password_field :password, class: 'form-control bg-light ', placeholder: t("defaults.password"), type: "password", id: "password"%>
-        <input name="pwPrev" type="checkbox" onChange="document.getElementById('password').type = (this.checked) ? 'text' : 'password';">
-        <%= t("defaults.look_password") %>
+        <div class="pw-prev">
+          <input name="pwPrev" type="checkbox" onChange="document.getElementById('password').type = (this.checked) ? 'text' : 'password';">
+          <%= t("defaults.look_password") %>
+        </div>
         <div class="remember-me">
           <%= check_box_tag :remember, params[:remember], false %>
           <%= label_tag :remember, t("defaults.remember_me") %>

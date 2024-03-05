@@ -26,11 +26,9 @@
       <% if post.images.present? %>
         <div class="img-area">
           <div id="img-carousel" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
+            <ol class="carousel-indicators" style="<%= post.images.length <= 1 ? 'display: none;' : 'cursor: default;' %>">
               <% post.images.each_with_index do |image, index| %>
-                <li data-target="#img-carousel" data-slide-to="<%= index %>"
-                    class="<%= index == 0 ? 'active' : '' %>"
-                    style="<%= post.images.length == 1 ? 'display: none;' : 'cursor: default;' %>"></li>
+                <li data-target="#img-carousel" data-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>"></li>
               <% end %>
             </ol>
 
@@ -50,22 +48,7 @@
 
       <div class="card-body hover-opacity-50 pt-3">
         <div class="d-flex align-items-center h4 mb-3">
-
-          <!-- いいね数カウント -->
-          <i class="fa-solid fa-heart text-danger"></i>
-          <div class="text-secondary ms-1">
-            <div class="fs-5" id="likes-count-<%= post.id %>">
-              <%= post.likes.count %>
-            </div>
-          </div>
-
-          <!-- アイテム数カウント -->
-          <i class="fa-solid fa-tags text-success ms-3"></i>
-          <div class="text-secondary ms-1">
-            <div class="fs-5" id="likes-count-<%= post.id %>">
-              <%= post.items.count %>
-            </div>
-          </div>
+          <%= render 'posts/likes_and_items_count', post: post %>
         </div>
         <h5 class="card-title fw-bold"><%= post.title %></h5>
         <p class="card-text m-0"><%= safe_join(post.content.truncate(30).split("\n"),tag(:br)) %></p>
