@@ -6,7 +6,7 @@
           <div class="user-panel d-flex align-items-center py-2">
             <div class="user-avatar me-2">
               <%= link_to user_path(post.user) do %>
-                <%= image_tag post.user.avatar.variant(gravity: :center, resize: "50x50^", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
+                <%= image_tag post.user.avatar.variant(gravity: :center, resize: "50x50^", crop:"50x50+0+0").processed, class: "rounded-circle bg-dark-subtle", style: "display: inline-block;" %>
               <% end %>
             </div>
             <div class="user-name d-flex align-items-center text-break">
@@ -29,7 +29,7 @@
               <div class="carousel-inner">
                 <% post.images.each_with_index do |image, index| %>
                   <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
-                    <%= image_tag(image.variant(gravity: :center, resize: "530x323^", crop: "530x323+0+0"), class: "d-block mx-auto img-fluid hover-opacity-75") %>
+                    <%= image_tag(image.variant(gravity: :center, resize: "530x323^", crop: "530x323+0+0").processed, class: "d-block mx-auto img-fluid hover-opacity-75") %>
                   </div>
                 <% end %>
               </div>

@@ -1,7 +1,7 @@
 <tr>
   <th class="text-center">
     <%= link_to user_path(user) do %>
-      <%= image_tag user.avatar.variant(gravity: :center, resize: "50x50^", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle hover-opacity-75", style: "display: inline-block;" %>
+      <%= image_tag user.avatar.variant(gravity: :center, resize: "50x50^", crop:"50x50+0+0").processed, class: "rounded-circle bg-dark-subtle hover-opacity-75", style: "display: inline-block;" %>
     <% end %>
   </th>
   <th class="align-middle">

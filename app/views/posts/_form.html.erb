@@ -3,7 +3,7 @@
     <div class="d-flex align-items-center ps-0">
       <div class="user-avatar mx-2">
         <%= link_to user_path(current_user) do %>
-          <%= image_tag current_user.avatar.variant(gravity: :center, resize: "50x50^", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle hover-opacity-75", style: "display: inline-block;" %>
+          <%= image_tag current_user.avatar.variant(gravity: :center, resize: "50x50^", crop:"50x50+0+0").processed, class: "rounded-circle bg-dark-subtle hover-opacity-75", style: "display: inline-block;" %>
         <% end %>
       </div>
       <div class="name_field text-break">
