@@ -35,7 +35,13 @@ class User < ApplicationRecord
   }
 
   def default_image
-    if !self.avatar.attached?
+    return if self.avatar.attached?
+
+    sample_avatar = ActiveStorage::Blob.find_by(filename: 'sample.png')
+
+    if sample_avatar
+      self.avatar.attach(sample_avatar)
+    else
       self.avatar.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'sample.png')),
                          filename: 'sample.png', content_type: 'image/png')
     end
@@ -76,11 +82,11 @@ class User < ApplicationRecord
   end
 
   def posts_all_like_count
-    user_posts = self.posts
+    user_posts = self.posts.includes(:likes)
     posts_all_like_count = 0
 
     user_posts.each do |post|
-      posts_all_like_count += post.likes.count
+      posts_all_like_count += post.likes.size
     end
     posts_all_like_count
   end

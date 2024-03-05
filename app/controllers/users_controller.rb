@@ -25,8 +25,8 @@ class UsersController < ApplicationController
 
   def show
     @like_count = @user.posts_all_like_count
-    @following_users = @user.following_users
-    @follower_users = @user.follower_users
+    @following_users = @user.following_users.includes(avatar_attachment: :blob)
+    @follower_users = @user.follower_users.includes(avatar_attachment: :blob)
     unless params[:order]
       @posts = @user.posts.includes(user: { avatar_attachment: :blob }).with_attached_images.order(created_at: :desc).page(params[:page]).per(10)
     else
@@ -66,11 +66,11 @@ class UsersController < ApplicationController
     when 'old'
       @posts = @user.posts.includes(user: { avatar_attachment: :blob }).with_attached_images.order('created_at ASC').page(params[:page])
     when 'title_desc'
-      @posts = @user.posts.result(distinct: true).includes(user: { avatar_attachment: :blob }).with_attached_images.order('title DESC').page(params[:page])
+      @posts = @user.posts.includes(user: { avatar_attachment: :blob }).with_attached_images.order('title DESC').page(params[:page])
     when 'title_asc'
-      @posts = @user.posts.result(distinct: true).includes(user: { avatar_attachment: :blob }).with_attached_images.order('title ASC').page(params[:page])
+      @posts = @user.posts.includes(user: { avatar_attachment: :blob }).with_attached_images.order('title ASC').page(params[:page])
     else 'like_desc'
-      @posts = @user.posts.result(distinct: true).left_joins(:likes).select("posts.*, COUNT(likes.id) AS like_count").group("posts.id").includes(user: { avatar_attachment: :blob }).with_attached_images.order("like_count DESC").page(params[:page])
+      @posts = @user.posts.left_joins(:likes).select("posts.*, COUNT(likes.id) AS like_count").group("posts.id").includes(user: { avatar_attachment: :blob }).with_attached_images.order("like_count DESC").page(params[:page])
     end
   end
 end

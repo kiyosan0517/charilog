@@ -1,19 +1,28 @@
 .upsize {
-  height: 115px; 
-  width: 115px;
+  height: 120px; 
+  width: 120px;
 }
 
 .downsize {
-  height: 90px; 
-  width: 90px;
+  height: 105px; 
+  width: 105px;
+}
+
+.more-downsize {
+  height: 85px; 
+  width: 85px;
 }
 
 .avatar-input-upsize {
-  padding: 32px 75px;
+  padding: 33px 75px;
 }
 
 .avatar-input-downsize {
-  padding: 20px 27px;
+  padding: 26px 55px;
+}
+
+.avatar-input-more-downsize {
+  padding: 16px 26px;
 }
 
 .position-relative {

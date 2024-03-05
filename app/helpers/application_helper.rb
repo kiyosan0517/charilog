@@ -11,6 +11,10 @@ module ApplicationHelper
     return 'active' if current_order == option
   end
 
+  def link_to_sort(name, url, options = {})
+    link_to(name, url, options.merge(data: { turbolinks: false }))
+  end
+
   def search_from?
     params[:q].present?
   end

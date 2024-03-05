@@ -10,11 +10,12 @@
     <% unless current_page?(posts_path) || current_page?(root_path) %>
       <% unless controller_name == 'password_resets' && action_name == 'edit' %>
         <%= link_to 'javascript:history.back()', class:"d-lg-none" do %>
-          <i class="fas fa-angle-left fa-2x text-dark mx-3"></i>
+          <i class="fas fa-angle-left fa-lg text-dark mx-3"></i>
         <% end %>
       <% end %>
-      <h5 class="page-title d-lg-none fw-bold mx-auto my-2 <%= logged_in? || controller_name == 'password_resets' && action_name == 'edit' ? '' : 'pe-5' %>
-                                                           <%= logged_in? && controller_name == 'password_resets' && action_name == 'edit' ? 'ps-5' : '' %>">
+      <h5 class="page-title d-lg-none fw-bold text-break mx-auto my-2 
+          <%= logged_in? || controller_name == 'password_resets' && action_name == 'edit' ? '' : 'pe-5' %>
+          <%= logged_in? && controller_name == 'password_resets' && action_name == 'edit' ? 'ps-5' : '' %>">
         <% if logged_in? %>
           <% unless current_page?(user_path(current_user)) %>
             <%= t("#{controller_name}.#{action_name}.title") %>
@@ -35,7 +36,7 @@
       <div class="user-panel d-lg-flex d-none align-items-center">
         <div class="user-avatar mx-2">
           <%= link_to user_path(current_user) do %>
-            <%= image_tag current_user.avatar.variant(gravity: :center, resize: "40x40^", crop:"40x40+0+0"), class: "rounded-circle bg-dark-subtle hover-opacity-75", style: "display: inline-block;" %>
+            <%= image_tag current_user.avatar.variant(gravity: :center, resize: "40x40^", crop:"40x40+0+0").processed, class: "rounded-circle bg-dark-subtle hover-opacity-75", style: "display: inline-block;" %>
           <% end %>
         </div>
         <div class="user-name">
@@ -46,7 +47,7 @@
         </div>
       </div>
       <button class="navbar-toggler" type="button">
-        <span class="fas fa-bars fa-lg"></span>
+        <span class="fas fa-bars"></span>
       </button>
     <% end %>
   </div>

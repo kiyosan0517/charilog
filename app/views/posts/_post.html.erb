@@ -5,7 +5,7 @@
         <div class="user-panel d-flex align-items-center py-2">
           <div class="user-avatar me-2">
             <%= link_to user_path(post.user) do %>
-              <%= image_tag post.user.avatar.variant(gravity: :center, resize: "50x50^", crop:"50x50+0+0"), class: "rounded-circle bg-dark-subtle hover-opacity-75", style: "display: inline-block;" %>
+              <%= image_tag post.user.avatar.variant(gravity: :center, resize: "50x50^", crop:"50x50+0+0").processed, class: "rounded-circle bg-dark-subtle hover-opacity-75", style: "display: inline-block;" %>
             <% end %>
           </div>
           <div class="user-name d-flex align-items-center text-break">
@@ -26,18 +26,16 @@
       <% if post.images.present? %>
         <div class="img-area">
           <div id="img-carousel" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
+            <ol class="carousel-indicators" style="<%= post.images.length <= 1 ? 'display: none;' : 'cursor: default;' %>">
               <% post.images.each_with_index do |image, index| %>
-                <li data-target="#img-carousel" data-slide-to="<%= index %>"
-                    class="<%= index == 0 ? 'active' : '' %>"
-                    style="<%= post.images.length == 1 ? 'display: none;' : 'cursor: default;' %>"></li>
+                <li data-target="#img-carousel" data-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>"></li>
               <% end %>
             </ol>
 
             <div class="carousel-inner">
               <% post.images.each_with_index do |image, index| %>
                 <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
-                  <%= image_tag(image.variant(gravity: :center, resize: "530x323^", crop: "530x323+0+0"), class: "d-block mx-auto img-fluid hover-opacity-75") %>
+                  <%= image_tag(image.variant(gravity: :center, resize: "530x323^", crop: "530x323+0+0").processed, class: "d-block mx-auto img-fluid hover-opacity-75") %>
                 </div>
               <% end %>
             </div>
@@ -50,22 +48,7 @@
 
       <div class="card-body hover-opacity-50 pt-3">
         <div class="d-flex align-items-center h4 mb-3">
-
-          <!-- いいね数カウント -->
-          <i class="fa-solid fa-heart text-danger"></i>
-          <div class="text-secondary ms-1">
-            <div class="fs-5" id="likes-count-<%= post.id %>">
-              <%= post.likes.count %>
-            </div>
-          </div>
-
-          <!-- アイテム数カウント -->
-          <i class="fa-solid fa-tags text-success ms-3"></i>
-          <div class="text-secondary ms-1">
-            <div class="fs-5" id="likes-count-<%= post.id %>">
-              <%= post.items.count %>
-            </div>
-          </div>
+          <%= render 'posts/likes_and_items_count', post: post %>
         </div>
         <h5 class="card-title fw-bold"><%= post.title %></h5>
         <p class="card-text m-0"><%= safe_join(post.content.truncate(30).split("\n"),tag(:br)) %></p>
