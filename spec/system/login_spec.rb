@@ -32,5 +32,4 @@ RSpec.describe 'UserSessions', type: :system do
       end
     end
   end
-
 end

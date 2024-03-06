@@ -14,6 +14,7 @@ ja:
     inquiry: 'お問い合わせ'
     terms: '利用規約'
     site: '設定'
+    resetting: '再設定'
     register: '登録する'
     post: '投稿する'
     edit: '編集する'
@@ -46,6 +47,7 @@ ja:
     no_bio: '自己紹介は登録されていません'
     message:
       require_login: 'ログインしてください'
+      send_email: 'メールを送信しました'
       created: '%{item}を作成しました'
       not_created: '%{item}の作成に失敗しました。'
       updated: '%{item}を更新しました'
@@ -155,3 +157,6 @@ ja:
       title: 'メール・パスワード再設定'
       new_password: '新しいパスワード'
       new_password_confirm: '新しいパスワード確認'
+    update:
+      success: '再設定が完了しました'
+      fail: '再設定に失敗しました'

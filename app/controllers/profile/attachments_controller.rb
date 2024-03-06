@@ -8,7 +8,7 @@ class Profile::AttachmentsController < ApplicationController
     if sample_avatar
       user.avatar.attach(sample_avatar)
     else
-      sample_avatar_path = Rails.root.join('app', 'assets', 'images', 'sample.png')
+      sample_avatar_path = Rails.root.join('app/assets/images/sample.png')
       user.avatar.attach(io: File.open(sample_avatar_path), filename: 'sample.png')
     end
 

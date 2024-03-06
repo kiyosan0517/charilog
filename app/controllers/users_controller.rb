@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  skip_before_action :require_login, only: %i[new create]
-  before_action :set_user, only: %i[show follows followers]
+  include SortPosts
+  skip_before_action :require_login, only: [:new, :create]
+  before_action :set_user, only: [:show, :follows, :followers]
 
   def index
     @q = User.ransack(params[:q])
@@ -15,9 +16,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       auto_login(@user)
-      redirect_to posts_path, success: t(".success")
+      redirect_to posts_path, success: t('.success')
     else
-      flash.now[:danger] = t(".fail")
+      flash.now[:danger] = t('.fail')
       render :new
       @user = User.new(user_params)
     end
@@ -27,10 +28,10 @@ class UsersController < ApplicationController
     @like_count = @user.posts_all_like_count
     @following_users = @user.following_users.includes(avatar_attachment: :blob)
     @follower_users = @user.follower_users.includes(avatar_attachment: :blob)
-    unless params[:order]
-      @posts = @user.posts.includes(user: { avatar_attachment: :blob }).with_attached_images.order(created_at: :desc).page(params[:page]).per(10)
+    if params[:order]
+      sort_user_posts
     else
-      sort_posts
+      @posts = @user.posts.includes(user: { avatar_attachment: :blob }).with_attached_images.order(created_at: :desc).page(params[:page]).per(10)
     end
   end
 
@@ -57,20 +58,5 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :my_bike, :email, :password, :password_confirmation, :avatar)
-  end
-
-  def sort_posts
-    case params[:order]
-    when 'new'
-      @posts = @user.posts.includes(user: { avatar_attachment: :blob }).with_attached_images.order('created_at DESC').page(params[:page]).per(10)
-    when 'old'
-      @posts = @user.posts.includes(user: { avatar_attachment: :blob }).with_attached_images.order('created_at ASC').page(params[:page])
-    when 'title_desc'
-      @posts = @user.posts.includes(user: { avatar_attachment: :blob }).with_attached_images.order('title DESC').page(params[:page])
-    when 'title_asc'
-      @posts = @user.posts.includes(user: { avatar_attachment: :blob }).with_attached_images.order('title ASC').page(params[:page])
-    else 'like_desc'
-      @posts = @user.posts.left_joins(:likes).select("posts.*, COUNT(likes.id) AS like_count").group("posts.id").includes(user: { avatar_attachment: :blob }).with_attached_images.order("like_count DESC").page(params[:page])
-    end
   end
 end
