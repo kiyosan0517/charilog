@@ -14,6 +14,7 @@ ja:
     inquiry: 'お問い合わせ'
     terms: '利用規約'
     site: '設定'
+    resetting: '再設定'
     register: '登録する'
     post: '投稿する'
     edit: '編集する'
@@ -36,16 +37,19 @@ ja:
     to_edit_profile_page: 'プロフィール設定'
     to_reset_page: 'メール・パスワード設定'
     look_password: 'パスワードを表示'
+    log_first!: '最初にログを残そう！'
     input_user_name: 'ユーザー名を入力'
     input_keyword: 'キーワードを入力'
     select_images: '画像を選択する'
     select_bike: 'メーカーを選択'
     search_result: '検索結果'
+    no_post: 'ログがまだありません'
     no_search_result: '検索結果がありません'
     no_mybike: '未登録'
     no_bio: '自己紹介は登録されていません'
     message:
       require_login: 'ログインしてください'
+      send_email: 'メールを送信しました'
       created: '%{item}を作成しました'
       not_created: '%{item}の作成に失敗しました。'
       updated: '%{item}を更新しました'
@@ -116,8 +120,6 @@ ja:
       title: 'ホーム'
       og_title: 'みんなのログを覗いてみよう！ - ChariLog'
       post_index: 'ログ一覧'
-      no_post: 'ログがまだありません'
-      log_first!: '最初にログを残そう！'
     new:
       title: 'ログ投稿'
     show:
@@ -155,3 +157,6 @@ ja:
       title: 'メール・パスワード再設定'
       new_password: '新しいパスワード'
       new_password_confirm: '新しいパスワード確認'
+    update:
+      success: '再設定が完了しました'
+      fail: '再設定に失敗しました'

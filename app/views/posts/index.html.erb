@@ -26,9 +26,9 @@
       <% if search_from? %>
         <div class="text-center text-secondary my-5"><%= t("defaults.no_search_result") %></div>
       <% else %>
-        <div class="text-center text-secondary my-5"><%= t(".no_post") %></div>
+        <div class="text-center text-secondary my-5"><%= t("defaults.no_post") %></div>
         <div class="text-center">
-          <%= link_to t(".log_first!"), new_post_path, class: "btn btn-info" %>
+          <%= link_to t("defaults.log_first!"), new_post_path, class: "btn btn-info" %>
         </div>
       <% end %>
     <% end %>

@@ -33,10 +33,10 @@ gem 'net-http'
 gem 'psych', '~> 3.1'
 
 # Uploader
-gem "aws-sdk-s3", require: false
+gem 'aws-sdk-s3', require: false
 
 # Task
-gem "whenever", require: false
+gem 'whenever', require: false
 
 # UI/UX
 gem 'rails-i18n'
@@ -89,7 +89,6 @@ group :development, :test do
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
-  gem 'rubocop-rspec', require: false
 
 end
 

@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: %i[edit update]
+  before_action :set_profile, only: [:edit, :update]
 
   def edit; end
 

@@ -12,7 +12,6 @@ inherit_from: .rubocop_todo.yml
 ## rubocop 関連の gem を require します。
 require:
   - rubocop-rails
-  - rubocop-rspec
   - rubocop-performance
 
 ## 全体に適応する項目を定義します。ここで Exclude に設定したファイルは、チェック対象外になります。
@@ -45,6 +44,15 @@ Style/AsciiComments:
 
 Layout/IndentationConsistency:
   EnforcedStyle: indented_internal_methods
+
+Layout/IndentationWidth:
+  Enabled: false
+
+Layout/MultilineOperationIndentation:
+  Enabled: false
+
+Layout/FirstHashElementIndentation:
+  Enabled: false
 
 Layout/CommentIndentation:
   Enabled: false
@@ -105,31 +113,6 @@ Naming/FileName:
 Naming/MethodParameterName:
   AllowedNames: [e]
 
-RSpec/ContextWording:
-  Enabled: false
-
-RSpec/DescribedClass:
-  Enabled: false
-
-RSpec/ExampleLength:
-  Enabled: false
-
-RSpec/ExpectInHook:
-  Enabled: false
-
-# An instance variable can be used when needed, but use let when possible.
-RSpec/InstanceVariable:
-  Enabled: false
-
-RSpec/MessageSpies:
-  Enabled: false
-
-RSpec/MultipleExpectations:
-  Enabled: false
-
-RSpec/NestedGroups:
-  Max: 5
-
 Style/BlockComments:
   Exclude:
     - 'spec/spec_helper.rb'
@@ -174,3 +157,9 @@ Style/RegexpLiteral:
 # https://rubocop.readthedocs.io/en/stable/cops_style/#styleslicingwithrange
 Style/SlicingWithRange:
   Enabled: true
+
+Style/NumericLiterals:
+  Enabled: false
+
+Style/RedundantCondition:
+  Enabled: false
