@@ -64,8 +64,7 @@ RSpec.describe 'Posts', type: :system do
     describe 'ログの編集' do
       context '入力値が正常' do
         it 'ログの編集が成功する' do
-          post = create(:post, user: user)
-          visit posts_path
+          post_create_and_redirect
           find('.fa-pencil-alt').click
           fill_in 'ログタイトル', with: 'edit-test-title'
           fill_in 'ログ内容', with: 'edit-test-content'
@@ -76,8 +75,7 @@ RSpec.describe 'Posts', type: :system do
       end
       context 'ログタイトル未入力' do
         it 'ログの編集が失敗する' do
-          post = create(:post, user: user)
-          visit posts_path
+          post_create_and_redirect
           find('.fa-pencil-alt').click
           fill_in 'ログタイトル', with: ''
           fill_in 'ログ内容', with: 'edit-test-content'
@@ -91,8 +89,7 @@ RSpec.describe 'Posts', type: :system do
     describe 'ログの削除' do
       context '自身のログ削除を要求した場合' do
         it 'ログが削除できる' do
-          post = create(:post, user: user)
-          visit posts_path
+          post_create_and_redirect
           find('.fa-trash').click
           accept_alert
           expect(current_path).to eq(posts_path)
