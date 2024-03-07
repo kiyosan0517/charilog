@@ -4,9 +4,9 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 col-12 px-md-4">
-      <div class="border rounded shadow-sm p-4 py-5">
+      <div class="border rounded shadow-sm px-3 py-5">
         <div class="text-center border-bottom">
-          <%= image_tag "chari-log-logo.png", class: "img-fluid", style: "max-width: 85%;" %>
+          <%= image_tag "chari-log-logo.png", class: "img-fluid", style: "max-width: 80%;" %>
         </div>
         <div class="text-center py-4">
           <h4 class="font-weight-bold text-secondary">MyBikeとの思い出を
@@ -15,15 +15,15 @@
         <div class="text-left">
           <%= form_with model: @user, local: true do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
-            <div class="form-group avatar-panel d-flex justify-content-center align-items-center flex-wrap pb-2">
-              <div class="prev-img position-relative border-right border-secondary pe-3">
+            <div class="form-group avatar-panel d-flex justify-content-evenly align-items-center pb-2">
+              <div class="prev-img position-relative pe-2">
                 <%= image_tag 'sample.png', class: "d-block bg-dark-subtle", id: "prev_img", style: "object-fit: cover;" %>
                 <div class="delete-preview">
                   <i class="fas fa-times fa-lg text-white rounded-circle bg-dark opacity-75 py-1 px-2"></i>
                 </div>
               </div>
               <%= f.label :avatar, class: "m-0" do %>
-                <div class="input-area d-flex align-items-center justify-content-center d-block-inline flex-wrap border-dashed border-2 rounded-1 border-secondary pointer ms-3">
+                <div class="input-area d-flex align-items-center justify-content-center d-block-inline border-dashed border-2 rounded-1 border-secondary pointer hover-opacity-75 ms-2">
                   <div class="text-center text-secondary">
                     <i class="fas fa-camera me-1"></i>画像を
                     <br>選択する

@@ -37,11 +37,13 @@ ja:
     to_edit_profile_page: 'プロフィール設定'
     to_reset_page: 'メール・パスワード設定'
     look_password: 'パスワードを表示'
+    log_first!: '最初にログを残そう！'
     input_user_name: 'ユーザー名を入力'
     input_keyword: 'キーワードを入力'
     select_images: '画像を選択する'
     select_bike: 'メーカーを選択'
     search_result: '検索結果'
+    no_post: 'ログがまだありません'
     no_search_result: '検索結果がありません'
     no_mybike: '未登録'
     no_bio: '自己紹介は登録されていません'
@@ -118,8 +120,6 @@ ja:
       title: 'ホーム'
       og_title: 'みんなのログを覗いてみよう！ - ChariLog'
       post_index: 'ログ一覧'
-      no_post: 'ログがまだありません'
-      log_first!: '最初にログを残そう！'
     new:
       title: 'ログ投稿'
     show:

@@ -44,9 +44,16 @@
           あなたもマイバイクとのログを残そう！
         </p>
       </div>
-      <div class="d-flex flex-wrap justify-content-center">
-        <%= render 'post_list' %>
-      </div>
+      <% if @posts.present? %>
+        <div class="d-flex flex-wrap justify-content-center">
+          <%= render 'post_list' %>
+        </div>
+      <% else %>
+        <div class="text-center text-secondary my-5"><%= t("defaults.no_post") %></div>
+        <div class="text-center">
+          <%= link_to t("defaults.log_first!"), new_post_path, class: "btn btn-info mb-5" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </section>

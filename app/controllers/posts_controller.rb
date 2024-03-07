@@ -44,10 +44,9 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    user = @post.user
     @post.images.purge
     @post.destroy!
-    redirect_to user_path(user), success: t('defaults.message.deleted', item: Post.model_name.human)
+    redirect_to posts_path, success: t('defaults.message.deleted', item: Post.model_name.human)
   end
 
   # 画像アップロード用のアクション
