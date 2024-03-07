@@ -18,7 +18,7 @@ RSpec.describe 'Users', type: :system do
           expect(page).to have_content('ユーザー登録が完了しました')
         end
       end
-      context 'ユーザーネーム未入力' do
+      context 'ユーザー名未入力' do
         it '新規登録が失敗する' do
           visit new_user_path
           fill_in 'ユーザー名', with: ''

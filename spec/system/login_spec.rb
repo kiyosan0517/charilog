@@ -26,7 +26,7 @@ RSpec.describe 'UserSessions', type: :system do
       it 'ログアウトに成功する' do
         login(user)
         click_link 'ログアウト'
-        page.driver.browser.switch_to.alert.accept
+        accept_alert
         expect(current_path).to eq root_path
         expect(page).to have_content('ログアウトしました')
       end
