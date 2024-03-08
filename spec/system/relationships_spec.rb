@@ -6,8 +6,8 @@ RSpec.describe 'Relationships', type: :system do
     @user2 = FactoryBot.create(:user)
   end
 
-  describe '#create,#destroy' do
-    it 'ユーザーをフォロー、フォロー解除できる' do
+  describe 'フォロー/フォロー解除' do
+    it '他ユーザーをフォロー/フォロー解除できる' do
       login(@user1)
       visit user_path(@user2)
 

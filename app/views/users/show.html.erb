@@ -3,12 +3,12 @@
 
 <div class="container px-md-4">
   <div class="row pb-2 mb-4 border-bottom">
-    <div class="user-panel d-flex flex-column flex-md-row justify-content-center align-items-center p-0">
+    <div class="user-panel d-flex flex-column flex-md-row justify-content-center justify-content-sm-around align-items-center p-0">
       <div class="user-avatar d-flex flex-wrap justify-content-center align-items-center mx-auto mx-md-0 my-3">
         <%= link_to @user.avatar, "data-lightbox": @user.avatar do %>
-          <%= image_tag @user.avatar.variant(gravity: :center, resize: "120x120^", crop:"120x120+0+0").processed, class: "img rounded-circle bg-dark-subtle hover-opacity-75 my-1 mx-3 me-md-4 me-lg-5", style: "display: inline-block;" %>
+          <%= image_tag @user.avatar.variant(gravity: :center, resize: "120x120^", crop:"120x120+0+0").processed, class: "img rounded-circle bg-dark-subtle hover-opacity-75 my-1 mx-3 mx-sm-4 me-md-4 me-lg-5", style: "display: inline-block;" %>
         <% end %>
-        <div class="follow-btn mobile-size text-center mx-3" style="display: inline-block;">
+        <div class="follow-btn mobile-size text-center mx-3 mx-sm-4" style="display: inline-block;">
           <%= render 'user_show_operation' %>
           <div class="share_area">
             <%= render 'user_share_button' %>

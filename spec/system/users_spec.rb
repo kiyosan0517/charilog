@@ -92,11 +92,11 @@ RSpec.describe 'Users', type: :system do
   end
 
   describe 'ログイン後' do
-    before do
-      login(user)
-    end
-
     describe 'プロフィール編集' do
+      before do
+        login(user)
+      end
+
       context '入力値が正常' do
         it '更新が成功する' do
           visit edit_profile_path(user)
@@ -118,6 +118,63 @@ RSpec.describe 'Users', type: :system do
           expect(current_path).to eq(profile_path)
           expect(page).to have_content('プロフィールの更新に失敗しました')
           expect(page).to have_content('ユーザー名を入力してください')
+        end
+      end
+    end
+
+    describe 'ユーザー検索' do
+      before do
+        @user1 = FactoryBot.create(:user)
+        @user2 = FactoryBot.create(:user, name: 'test', my_bike: 'PINARELLO（ピナレロ）')
+        @user3 = FactoryBot.create(:user, name: 'test', my_bike: 'SPECIALIZED（スペシャライズド）')
+        @user2 = FactoryBot.create(:user, name: 'other-name', my_bike: 'PINARELLO（ピナレロ）')
+
+        login(@user1)
+        visit users_path
+        search_test_preparation
+      end
+
+      context 'ユーザー名/メーカー両方(一致/不一致)' do
+        it '検索結果が正常に表示される' do
+          fill_in 'q_name_cont', with: 'test'
+          select 'ピナレロ', from: 'q_my_bike_eq'
+          click_button '検索'
+          expect(page).to have_selector('.user-name', text: 'test')
+          expect(page).to have_selector('.user-mybike', text: 'ピナレロ')
+
+          fill_in 'q_name_cont', with: 'mismatch-name'
+          select 'アンカー', from: 'q_my_bike_eq'
+          click_button '検索'
+          expect(page).to have_content('検索結果がありません')
+        end
+      end
+      context 'ユーザー名のみ(一致/不一致)' do
+        it '検索結果が正常に表示される' do
+          fill_in 'q_name_cont', with: 'test'
+          click_button '検索'
+          expect(page).to have_selector('.user-name', text: 'test')
+          expect(page).to have_selector('.user-mybike', text: 'ピナレロ')
+          expect(page).to have_selector('.user-name', text: 'test')
+          expect(page).to have_selector('.user-mybike', text: 'スペシャライズド')
+
+          fill_in 'q_name_cont', with: 'mismatch-name'
+          click_button '検索'
+          expect(page).to have_content('検索結果がありません')
+        end
+      end
+      context 'メーカーのみ(一致/不一致)' do
+        it '検索結果が正常に表示される' do
+          fill_in 'q_name_cont', with: ''
+          select 'ピナレロ', from: 'q_my_bike_eq'
+          click_button '検索'
+          expect(page).to have_selector('.user-name', text: 'test')
+          expect(page).to have_selector('.user-mybike', text: 'ピナレロ')
+          expect(page).to have_selector('.user-name', text: 'other-name')
+          expect(page).to have_selector('.user-mybike', text: 'ピナレロ')
+
+          select 'アンカー', from: 'q_my_bike_eq'
+          click_button '検索'
+          expect(page).to have_content('検索結果がありません')
         end
       end
     end
