@@ -34,66 +34,130 @@ RSpec.describe 'Posts', type: :system do
   end
 
   describe 'ログイン後' do
-    before do
-      login(user)
+    describe 'ログCRUD' do
+      before do
+        login(user)
+      end
+
+      describe 'ログの投稿' do
+        context '入力値が正常' do
+          it 'ログの投稿が成功する' do
+            visit new_post_path
+            fill_in 'ログタイトル', with: 'test-title'
+            fill_in 'ログ内容', with: 'test-content'
+            click_button '投稿する'
+            expect(current_path).to eq(posts_path)
+            expect(page).to have_content('ログを作成しました')
+          end
+        end
+        context 'ログタイトル未入力' do
+          it 'ログの投稿が失敗する' do
+            visit new_post_path
+            fill_in 'ログタイトル', with: ''
+            fill_in 'ログ内容', with: 'test-content'
+            click_button '投稿する'
+            expect(page).to have_content('ログの作成に失敗しました')
+            expect(page).to have_content('ログタイトルを入力してください')
+          end
+        end
+      end
+
+      describe 'ログの編集' do
+        context '入力値が正常' do
+          it 'ログの編集が成功する' do
+            post_create_and_redirect
+            find('.fa-pencil-alt').click
+            fill_in 'ログタイトル', with: 'edit-test-title'
+            fill_in 'ログ内容', with: 'edit-test-content'
+            click_button '編集する'
+            expect(current_path).to eq(posts_path)
+            expect(page).to have_content('ログを更新しました')
+          end
+        end
+        context 'ログタイトル未入力' do
+          it 'ログの編集が失敗する' do
+            post_create_and_redirect
+            find('.fa-pencil-alt').click
+            fill_in 'ログタイトル', with: ''
+            fill_in 'ログ内容', with: 'edit-test-content'
+            click_button '編集する'
+            expect(page).to have_content('ログの更新に失敗しました')
+            expect(page).to have_content('ログタイトルを入力してください')
+          end
+        end
+      end
+
+      describe 'ログの削除' do
+        context '自身のログ削除を要求した場合' do
+          it 'ログが削除できる' do
+            post_create_and_redirect
+            find('.fa-trash').click
+            accept_alert
+            expect(current_path).to eq(posts_path)
+            expect(page).to have_content('ログを削除しました')
+          end
+        end
+      end
     end
 
-    describe 'ログの投稿' do
-      context '入力値が正常' do
-        it 'ログの投稿が成功する' do
-          visit new_post_path
-          fill_in 'ログタイトル', with: 'test-title'
-          fill_in 'ログ内容', with: 'test-content'
-          click_button '投稿する'
-          expect(current_path).to eq(posts_path)
-          expect(page).to have_content('ログを作成しました')
-        end
-      end
-      context 'ログタイトル未入力' do
-        it 'ログの投稿が失敗する' do
-          visit new_post_path
-          fill_in 'ログタイトル', with: ''
-          fill_in 'ログ内容', with: 'test-content'
-          click_button '投稿する'
-          expect(page).to have_content('ログの作成に失敗しました')
-          expect(page).to have_content('ログタイトルを入力してください')
-        end
-      end
-    end
+    describe 'ログ検索' do
+      before do
+        search_user_set
+        create(:post, user: @user2, title: 'test-title', content: 'test-content')
+        create(:post, user: @user3, title: 'test-title', content: 'other-content')
+        create(:post, user: @user4, title: 'other-title', content: 'test-content')
 
-    describe 'ログの編集' do
-      context '入力値が正常' do
-        it 'ログの編集が成功する' do
-          post_create_and_redirect
-          find('.fa-pencil-alt').click
-          fill_in 'ログタイトル', with: 'edit-test-title'
-          fill_in 'ログ内容', with: 'edit-test-content'
-          click_button '編集する'
-          expect(current_path).to eq(posts_path)
-          expect(page).to have_content('ログを更新しました')
-        end
+        login(@user1)
+        visit posts_path
+        post_search_test_preparation
       end
-      context 'ログタイトル未入力' do
-        it 'ログの編集が失敗する' do
-          post_create_and_redirect
-          find('.fa-pencil-alt').click
-          fill_in 'ログタイトル', with: ''
-          fill_in 'ログ内容', with: 'edit-test-content'
-          click_button '編集する'
-          expect(page).to have_content('ログの更新に失敗しました')
-          expect(page).to have_content('ログタイトルを入力してください')
-        end
-      end
-    end
 
-    describe 'ログの削除' do
-      context '自身のログ削除を要求した場合' do
-        it 'ログが削除できる' do
-          post_create_and_redirect
-          find('.fa-trash').click
-          accept_alert
-          expect(current_path).to eq(posts_path)
-          expect(page).to have_content('ログを削除しました')
+      context 'タイトルor本文/メーカー両方(一致/不一致)' do
+        it '検索結果が正常に表示される' do
+          fill_in 'q_title_or_content_cont', with: 'test'
+          select 'ピナレロ', from: 'q_user_my_bike_eq'
+          click_button '検索'
+          expect(page).to have_selector('.user-name', text: 'test')
+          expect(page).to have_selector('.post-title', text: 'test-title')
+          expect(page).to have_selector('.post-content', text: 'test-content')
+
+          fill_in 'q_title_or_content_cont', with: 'no-post'
+          select 'アンカー', from: 'q_user_my_bike_eq'
+          click_button '検索'
+          expect(page).to have_content('検索結果がありません')
+        end
+      end
+      context 'タイトルor本文のみ(一致/不一致)' do
+        it '検索結果が正常に表示される' do
+          fill_in 'q_title_or_content_cont', with: 'test-title'
+          click_button '検索'
+          expect(page).to have_selector('.user-name', text: 'test')
+          expect(page).to have_selector('.post-title', text: 'test-title')
+          expect(page).to have_selector('.post-content', text: 'test-content')
+          expect(page).to have_selector('.user-name', text: 'test')
+          expect(page).to have_selector('.post-title', text: 'test-title')
+          expect(page).to have_selector('.post-content', text: 'other-content')
+
+          fill_in 'q_title_or_content_cont', with: 'mismatch-title-or-content'
+          click_button '検索'
+          expect(page).to have_content('検索結果がありません')
+        end
+      end
+      context 'メーカーのみ(一致/不一致)' do
+        it '検索結果が正常に表示される' do
+          fill_in 'q_title_or_content_cont', with: ''
+          select 'ピナレロ', from: 'q_user_my_bike_eq'
+          click_button '検索'
+          expect(page).to have_selector('.user-name', text: 'test')
+          expect(page).to have_selector('.post-title', text: 'test-title')
+          expect(page).to have_selector('.post-content', text: 'test-content')
+          expect(page).to have_selector('.user-name', text: 'other-name')
+          expect(page).to have_selector('.post-title', text: 'other-title')
+          expect(page).to have_selector('.post-content', text: 'test-content')
+
+          select 'アンカー', from: 'q_user_my_bike_eq'
+          click_button '検索'
+          expect(page).to have_content('検索結果がありません')
         end
       end
     end

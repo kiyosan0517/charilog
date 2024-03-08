@@ -124,14 +124,10 @@ RSpec.describe 'Users', type: :system do
 
     describe 'ユーザー検索' do
       before do
-        @user1 = FactoryBot.create(:user)
-        @user2 = FactoryBot.create(:user, name: 'test', my_bike: 'PINARELLO（ピナレロ）')
-        @user3 = FactoryBot.create(:user, name: 'test', my_bike: 'SPECIALIZED（スペシャライズド）')
-        @user2 = FactoryBot.create(:user, name: 'other-name', my_bike: 'PINARELLO（ピナレロ）')
-
+        search_user_set
         login(@user1)
         visit users_path
-        search_test_preparation
+        user_search_test_preparation
       end
 
       context 'ユーザー名/メーカー両方(一致/不一致)' do
