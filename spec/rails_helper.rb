@@ -36,6 +36,7 @@ RSpec.configure do |config|
   config.include CreatePostSupport
   config.include SearchFilterSupport
   config.include SortPostSupport
+  config.include FollowSupport
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
@@ -69,5 +70,6 @@ RSpec.configure do |config|
   # テスト実行前に前回テストのscreenshotを削除する
   config.before(:all) do
     FileUtils.rm_rf(Dir[Rails.root.join('tmp', 'screenshots', '*')], secure: true)
+    FileUtils.rm_rf(Dir[Rails.root.join('tmp', 'capybara', '*')], secure: true)
   end
 end

@@ -24,13 +24,11 @@ RSpec.describe 'Likes', type: :system do
   end
 
   describe 'いいね総数のカウント' do
-    before do
+    it '各ユーザーのいいね総数が確認できる' do
       user_post_and_like_set
       login(@user1)
       visit user_path(@user2)
-    end
 
-    it '各ユーザーのいいね総数が確認できる' do
       expect(page).to have_content('いいね数 3Likes')
     end
   end

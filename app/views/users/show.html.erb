@@ -45,13 +45,13 @@
           </div>
           <div class="element-count d-flex flex-wrap">
             <%= link_to followers_user_path, class:"hover-opacity-75", style:"text-decoration:none;" do %>
-              <div class="text-secondary me-3">
+              <div class="follower_index text-secondary me-3">
                 <%= t(".follower") %>
                 <%= @user.followeds.count %>人
               </div>
             <% end %>
             <%= link_to follows_user_path, class:"hover-opacity-75", style:"text-decoration:none;" do %>
-              <div class="text-secondary me-3">
+              <div class="followed_index text-secondary me-3">
                 <%= t(".follow") %>
                 <%= @user.followers.count %>人
               </div>
