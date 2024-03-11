@@ -132,10 +132,10 @@ RSpec.describe 'Users', type: :system do
 
       context 'ユーザー名/メーカー両方(一致/不一致)' do
         it '検索結果が正常に表示される' do
-          fill_in 'q_name_cont', with: 'test'
+          fill_in 'q_name_cont', with: 'first-user'
           select 'ピナレロ', from: 'q_my_bike_eq'
           click_button '検索'
-          expect(page).to have_selector('.user-name', text: 'test')
+          expect(page).to have_selector('.user-name', text: 'first-user')
           expect(page).to have_selector('.user-mybike', text: 'ピナレロ')
 
           fill_in 'q_name_cont', with: 'mismatch-name'
@@ -146,11 +146,9 @@ RSpec.describe 'Users', type: :system do
       end
       context 'ユーザー名のみ(一致/不一致)' do
         it '検索結果が正常に表示される' do
-          fill_in 'q_name_cont', with: 'test'
+          fill_in 'q_name_cont', with: 'second-user'
           click_button '検索'
-          expect(page).to have_selector('.user-name', text: 'test')
-          expect(page).to have_selector('.user-mybike', text: 'ピナレロ')
-          expect(page).to have_selector('.user-name', text: 'test')
+          expect(page).to have_selector('.user-name', text: 'second-user')
           expect(page).to have_selector('.user-mybike', text: 'スペシャライズド')
 
           fill_in 'q_name_cont', with: 'mismatch-name'
@@ -163,9 +161,9 @@ RSpec.describe 'Users', type: :system do
           fill_in 'q_name_cont', with: ''
           select 'ピナレロ', from: 'q_my_bike_eq'
           click_button '検索'
-          expect(page).to have_selector('.user-name', text: 'test')
+          expect(page).to have_selector('.user-name', text: 'first-user')
           expect(page).to have_selector('.user-mybike', text: 'ピナレロ')
-          expect(page).to have_selector('.user-name', text: 'other-name')
+          expect(page).to have_selector('.user-name', text: 'third-user')
           expect(page).to have_selector('.user-mybike', text: 'ピナレロ')
 
           select 'アンカー', from: 'q_my_bike_eq'

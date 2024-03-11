@@ -100,76 +100,124 @@ RSpec.describe 'Posts', type: :system do
       end
     end
 
-    describe 'ログ検索' do
+    describe 'ログ検索(ログ一覧/いいね一覧)' do
       before do
-        search_user_set
-        create(:post, user: @user2, title: 'test-title', content: 'test-content')
-        create(:post, user: @user3, title: 'test-title', content: 'other-content')
-        create(:post, user: @user4, title: 'other-title', content: 'test-content')
-
+        post_and_like_set
         login(@user1)
-        visit posts_path
-        post_search_test_preparation
       end
 
-      context 'タイトルor本文/メーカー両方(一致/不一致)' do
-        it '検索結果が正常に表示される' do
-          fill_in 'q_title_or_content_cont', with: 'test'
-          select 'ピナレロ', from: 'q_user_my_bike_eq'
-          click_button '検索'
-          expect(page).to have_selector('.user-name', text: 'test')
-          expect(page).to have_selector('.post-title', text: 'test-title')
-          expect(page).to have_selector('.post-content', text: 'test-content')
+      describe 'ログ一覧上での検索' do
+        before do
+          visit posts_path
+          post_search_test_preparation
+        end
 
-          fill_in 'q_title_or_content_cont', with: 'no-post'
-          select 'アンカー', from: 'q_user_my_bike_eq'
-          click_button '検索'
-          expect(page).to have_content('検索結果がありません')
+        context 'タイトルor本文/メーカー両方(一致/不一致)' do
+          it '検索結果が正常に表示される' do
+            fill_in 'q_title_or_content_cont', with: 'first-title'
+            select 'ピナレロ', from: 'q_user_my_bike_eq'
+            click_button '検索'
+            expect(page).to have_selector('.user-name', text: 'first-user')
+            expect(page).to have_selector('.post-title', text: 'first-title')
+            expect(page).to have_selector('.post-content', text: 'first-content')
+
+            fill_in 'q_title_or_content_cont', with: 'no-post'
+            select 'アンカー', from: 'q_user_my_bike_eq'
+            click_button '検索'
+            expect(page).to have_content('検索結果がありません')
+          end
+        end
+        context 'タイトルor本文のみ(一致/不一致)' do
+          it '検索結果が正常に表示される' do
+            fill_in 'q_title_or_content_cont', with: 'second-title'
+            click_button '検索'
+            expect(page).to have_selector('.user-name', text: 'second-user')
+            expect(page).to have_selector('.post-title', text: 'second-title')
+            expect(page).to have_selector('.post-content', text: 'second-content')
+
+            fill_in 'q_title_or_content_cont', with: 'mismatch-title-or-content'
+            click_button '検索'
+            expect(page).to have_content('検索結果がありません')
+          end
+        end
+        context 'メーカーのみ(一致/不一致)' do
+          it '検索結果が正常に表示される' do
+            fill_in 'q_title_or_content_cont', with: ''
+            select 'ピナレロ', from: 'q_user_my_bike_eq'
+            click_button '検索'
+            expect(page).to have_selector('.user-name', text: 'first-user')
+            expect(page).to have_selector('.post-title', text: 'first-title')
+            expect(page).to have_selector('.post-content', text: 'first-content')
+            expect(page).to have_selector('.user-name', text: 'third-user')
+            expect(page).to have_selector('.post-title', text: 'third-title')
+            expect(page).to have_selector('.post-content', text: 'third-content')
+
+            select 'アンカー', from: 'q_user_my_bike_eq'
+            click_button '検索'
+            expect(page).to have_content('検索結果がありません')
+          end
         end
       end
-      context 'タイトルor本文のみ(一致/不一致)' do
-        it '検索結果が正常に表示される' do
-          fill_in 'q_title_or_content_cont', with: 'test-title'
-          click_button '検索'
-          expect(page).to have_selector('.user-name', text: 'test')
-          expect(page).to have_selector('.post-title', text: 'test-title')
-          expect(page).to have_selector('.post-content', text: 'test-content')
-          expect(page).to have_selector('.user-name', text: 'test')
-          expect(page).to have_selector('.post-title', text: 'test-title')
-          expect(page).to have_selector('.post-content', text: 'other-content')
 
-          fill_in 'q_title_or_content_cont', with: 'mismatch-title-or-content'
-          click_button '検索'
-          expect(page).to have_content('検索結果がありません')
+      describe 'いいね一覧上での検索' do
+        before do
+          visit likes_posts_path
+          post_search_test_preparation
         end
-      end
-      context 'メーカーのみ(一致/不一致)' do
-        it '検索結果が正常に表示される' do
-          fill_in 'q_title_or_content_cont', with: ''
-          select 'ピナレロ', from: 'q_user_my_bike_eq'
-          click_button '検索'
-          expect(page).to have_selector('.user-name', text: 'test')
-          expect(page).to have_selector('.post-title', text: 'test-title')
-          expect(page).to have_selector('.post-content', text: 'test-content')
-          expect(page).to have_selector('.user-name', text: 'other-name')
-          expect(page).to have_selector('.post-title', text: 'other-title')
-          expect(page).to have_selector('.post-content', text: 'test-content')
 
-          select 'アンカー', from: 'q_user_my_bike_eq'
-          click_button '検索'
-          expect(page).to have_content('検索結果がありません')
+        context 'タイトルor本文/メーカー両方(一致/不一致)' do
+          it '検索結果が正常に表示される' do
+            fill_in 'q_title_or_content_cont', with: 'first-title'
+            select 'ピナレロ', from: 'q_user_my_bike_eq'
+            click_button '検索'
+            expect(page).to have_selector('.user-name', text: 'first-user')
+            expect(page).to have_selector('.post-title', text: 'first-title')
+            expect(page).to have_selector('.post-content', text: 'first-content')
+
+            fill_in 'q_title_or_content_cont', with: 'no-post'
+            select 'アンカー', from: 'q_user_my_bike_eq'
+            click_button '検索'
+            expect(page).to have_content('検索結果がありません')
+          end
+        end
+        context 'タイトルor本文のみ(一致/不一致)' do
+          it '検索結果が正常に表示される' do
+            fill_in 'q_title_or_content_cont', with: 'second-title'
+            click_button '検索'
+            expect(page).to have_selector('.user-name', text: 'second-user')
+            expect(page).to have_selector('.post-title', text: 'second-title')
+            expect(page).to have_selector('.post-content', text: 'second-content')
+
+            fill_in 'q_title_or_content_cont', with: 'mismatch-title-or-content'
+            click_button '検索'
+            expect(page).to have_content('検索結果がありません')
+          end
+        end
+        context 'メーカーのみ(一致/不一致)' do
+          it '検索結果が正常に表示される' do
+            fill_in 'q_title_or_content_cont', with: ''
+            select 'ピナレロ', from: 'q_user_my_bike_eq'
+            click_button '検索'
+            expect(page).to have_selector('.user-name', text: 'first-user')
+            expect(page).to have_selector('.post-title', text: 'first-title')
+            expect(page).to have_selector('.post-content', text: 'first-content')
+
+            select 'アンカー', from: 'q_user_my_bike_eq'
+            click_button '検索'
+            expect(page).to have_content('検索結果がありません')
+          end
         end
       end
     end
 
     describe 'ログ並び替え' do
-      describe '投稿一覧/いいね一覧の並び替え' do
+      describe 'ログ一覧/いいね一覧の並び替え' do
         before do
           post_and_like_set
           login(@user1)
         end
 
-        describe '投稿一覧の並び替え' do
+        describe 'ログ一覧の並び替え' do
           before do
             visit posts_path
           end
@@ -262,7 +310,7 @@ RSpec.describe 'Posts', type: :system do
         end
       end
 
-      describe '各ユーザーの投稿の並び替え' do
+      describe '各ユーザーのログの並び替え' do
         before do
           user_post_and_like_set
           login(@user1)

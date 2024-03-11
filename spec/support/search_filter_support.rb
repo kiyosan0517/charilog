@@ -13,8 +13,8 @@ module SearchFilterSupport
 
   def search_user_set
     @user1 = FactoryBot.create(:user)
-    @user2 = FactoryBot.create(:user, name: 'test', my_bike: 'PINARELLO（ピナレロ）')
-    @user3 = FactoryBot.create(:user, name: 'test', my_bike: 'SPECIALIZED（スペシャライズド）')
-    @user4 = FactoryBot.create(:user, name: 'other-name', my_bike: 'PINARELLO（ピナレロ）')
+    @user2 = FactoryBot.create(:user, name: 'first-user', my_bike: 'PINARELLO（ピナレロ）')
+    @user3 = FactoryBot.create(:user, name: 'second-user', my_bike: 'SPECIALIZED（スペシャライズド）')
+    @user4 = FactoryBot.create(:user, name: 'third-user', my_bike: 'PINARELLO（ピナレロ）')
   end
 end
