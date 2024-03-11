@@ -161,5 +161,154 @@ RSpec.describe 'Posts', type: :system do
         end
       end
     end
+
+    describe 'ログ並び替え' do
+      describe '投稿一覧/いいね一覧の並び替え' do
+        before do
+          post_and_like_set
+          login(@user1)
+        end
+
+        describe '投稿一覧の並び替え' do
+          before do
+            visit posts_path
+          end
+
+          context '新着順で並び替える' do
+            it '並び替えが正常に機能する' do
+              find('#dropdownMenuButton1').click
+              click_on '新着順'
+              expect(page.text).to match(/#{@user4_post.title}[\s\S]*#{@user3_post.title}[\s\S]*#{@user2_post.title}/)
+              expect(page.text).not_to match(/#{@user2_post.title}[\s\S]*#{@user3_post.title}[\s\S]*#{@user4_post.title}/)
+            end
+          end
+          context '古い順で並び替える' do
+            it '並び替えが正常に機能する' do
+              find('#dropdownMenuButton1').click
+              click_on '古い順'
+              expect(page.text).to match(/#{@user2_post.title}[\s\S]*#{@user3_post.title}[\s\S]*#{@user4_post.title}/)
+              expect(page.text).not_to match(/#{@user4_post.title}[\s\S]*#{@user3_post.title}[\s\S]*#{@user2_post.title}/)
+            end
+          end
+          context 'タイトル(A~Z/50音順)で並び替える' do
+            it '並び替えが正常に機能する' do
+              find('#dropdownMenuButton1').click
+              click_on 'タイトル(A~Z/50音順)'
+              expect(page.text).to match(/#{@user2_post.title}[\s\S]*#{@user3_post.title}[\s\S]*#{@user4_post.title}/)
+              expect(page.text).not_to match(/#{@user4_post.title}[\s\S]*#{@user3_post.title}[\s\S]*#{@user2_post.title}/)
+            end
+          end
+          context 'タイトル(逆50音/Z~A順)で並び替える' do
+            it '並び替えが正常に機能する' do
+              find('#dropdownMenuButton1').click
+              click_on 'タイトル(逆50音/Z~A順)'
+              expect(page.text).to match(/#{@user4_post.title}[\s\S]*#{@user3_post.title}[\s\S]*#{@user2_post.title}/)
+              expect(page.text).not_to match(/#{@user2_post.title}[\s\S]*#{@user3_post.title}[\s\S]*#{@user4_post.title}/)
+            end
+          end
+          context '人気順で並び替える' do
+            it '並び替えが正常に機能する' do
+              find('#dropdownMenuButton1').click
+              click_on '人気順'
+              expect(page.text).to match(/#{@user3_post.title}[\s\S]*#{@user2_post.title}[\s\S]*#{@user4_post.title}/)
+            end
+          end
+        end
+
+        describe 'いいね一覧の並び替え' do
+          before do
+            visit likes_posts_path
+          end
+
+          context '新着順で並び替える' do
+            it '並び替えが正常に機能する' do
+              find('#dropdownMenuButton1').click
+              click_on '新着順'
+              expect(page.text).to match(/#{@user3_post.title}[\s\S]*#{@user2_post.title}/)
+              expect(page.text).not_to match(/#{@user2_post.title}[\s\S]*#{@user3_post.title}/)
+            end
+          end
+          context '古い順で並び替える' do
+            it '並び替えが正常に機能する' do
+              find('#dropdownMenuButton1').click
+              click_on '古い順'
+              expect(page.text).to match(/#{@user2_post.title}[\s\S]*#{@user3_post.title}/)
+              expect(page.text).not_to match(/#{@user3_post.title}[\s\S]*#{@user2_post.title}/)
+            end
+          end
+          context 'タイトル(A~Z/50音順)で並び替える' do
+            it '並び替えが正常に機能する' do
+              find('#dropdownMenuButton1').click
+              click_on 'タイトル(A~Z/50音順)'
+              expect(page.text).to match(/#{@user2_post.title}[\s\S]*#{@user3_post.title}/)
+              expect(page.text).not_to match(/#{@user3_post.title}[\s\S]*#{@user2_post.title}/)
+            end
+          end
+          context 'タイトル(逆50音/Z~A順)で並び替える' do
+            it '並び替えが正常に機能する' do
+              find('#dropdownMenuButton1').click
+              click_on 'タイトル(逆50音/Z~A順)'
+              expect(page.text).to match(/#{@user3_post.title}[\s\S]*#{@user2_post.title}/)
+              expect(page.text).not_to match(/#{@user2_post.title}[\s\S]*#{@user3_post.title}/)
+            end
+          end
+          context '人気順で並び替える' do
+            it '並び替えが正常に機能する' do
+              find('#dropdownMenuButton1').click
+              click_on '人気順'
+              expect(page.text).to match(/#{@user3_post.title}[\s\S]*#{@user2_post.title}/)
+            end
+          end
+        end
+      end
+
+      describe '各ユーザーの投稿の並び替え' do
+        before do
+          user_post_and_like_set
+          login(@user1)
+          visit user_path(@user2)
+        end
+
+        context '新着順で並び替える' do
+          it '並び替えが正常に機能する' do
+            find('#dropdownMenuButton1').click
+            click_on '新着順'
+            expect(page.text).to match(/#{@user2_post2.title}[\s\S]*#{@user2_post1.title}/)
+            expect(page.text).not_to match(/#{@user2_post1.title}[\s\S]*#{@user2_post2.title}/)
+          end
+        end
+        context '古い順で並び替える' do
+          it '並び替えが正常に機能する' do
+            find('#dropdownMenuButton1').click
+            click_on '古い順'
+            expect(page.text).to match(/#{@user2_post1.title}[\s\S]*#{@user2_post2.title}/)
+            expect(page.text).not_to match(/#{@user2_post2.title}[\s\S]*#{@user2_post1.title}/)
+          end
+        end
+        context 'タイトル(A~Z/50音順)で並び替える' do
+          it '並び替えが正常に機能する' do
+            find('#dropdownMenuButton1').click
+            click_on 'タイトル(A~Z/50音順)'
+            expect(page.text).to match(/#{@user2_post1.title}[\s\S]*#{@user2_post2.title}/)
+            expect(page.text).not_to match(/#{@user2_post2.title}[\s\S]*#{@user2_post1.title}/)
+          end
+        end
+        context 'タイトル(逆50音/Z~A順)で並び替える' do
+          it '並び替えが正常に機能する' do
+            find('#dropdownMenuButton1').click
+            click_on 'タイトル(逆50音/Z~A順)'
+            expect(page.text).to match(/#{@user2_post2.title}[\s\S]*#{@user2_post1.title}/)
+            expect(page.text).not_to match(/#{@user2_post1.title}[\s\S]*#{@user2_post2.title}/)
+          end
+        end
+        context '人気順で並び替える' do
+          it '並び替えが正常に機能する' do
+            find('#dropdownMenuButton1').click
+            click_on '人気順'
+            expect(page.text).to match(/#{@user2_post1.title}[\s\S]*#{@user2_post2.title}/)
+          end
+        end
+      end
+    end
   end
 end

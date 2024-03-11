@@ -35,6 +35,7 @@ RSpec.configure do |config|
   config.include LoginSupport
   config.include CreatePostSupport
   config.include SearchFilterSupport
+  config.include SortPostSupport
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

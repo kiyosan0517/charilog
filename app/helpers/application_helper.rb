@@ -8,7 +8,7 @@ module ApplicationHelper
 
   def sort_active_class(option)
     current_order = params[:order]
-    'active' if current_order == option
+    'active bg-info-subtle' if current_order == option
   end
 
   def link_to_sort(name, url, options = {})
