@@ -83,8 +83,8 @@
           null,
           null,
           1,
-          11,
-          11,
+          5,
+          5,
           null,
           null
         ]
@@ -1016,30 +1016,7 @@
           null
         ]
       },
-      "/Users/kiyookasota/rubybook/portfolio/chari-log/spec/factories/items.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null
-        ]
-      },
       "/Users/kiyookasota/rubybook/portfolio/chari-log/spec/factories/likes.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          null,
-          null
-        ]
-      },
-      "/Users/kiyookasota/rubybook/portfolio/chari-log/spec/factories/post_items.rb": {
         "lines": [
           1,
           1,
@@ -2776,6 +2753,6 @@
         ]
       }
     },
-    "timestamp": 1710235810
+    "timestamp": 1710238676
   }
 }
