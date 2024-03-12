@@ -88,6 +88,7 @@ Metrics/BlockLength:
   CountComments: false
   Exclude:
     - 'Guardfile'
+    - 'config/environments/*.rb'
     - 'config/routes.rb'
     - 'spec/**/*'
     - 'app/views/**/*.jbuilder'
