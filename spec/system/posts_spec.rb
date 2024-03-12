@@ -62,6 +62,30 @@ RSpec.describe 'Posts', type: :system do
         end
       end
 
+      describe 'ログの投稿(楽天アイテム紐付け)', js: true do
+        it '各投稿に楽天アイテムを紐付けられる' do
+          visit new_post_path
+          fill_in 'ログタイトル', with: 'test-title'
+          fill_in 'ログ内容', with: 'test-content'
+
+          find('#rakuten-link-button').click
+          within '.rakuten-search-area' do
+            fill_in 'q', with: 'ruby postgres'
+            click_button '検索'
+          end
+          click_on '選択'
+          click_button 'Close'
+
+          click_button '投稿する'
+
+          expect(page).to have_css('.items_count', text: '1')
+
+          find('.card-body').click
+          expect(page).to have_content('参考価格：18,119円')
+          expect(page).to have_content('楽天商品ページへ')
+        end
+      end
+
       describe 'ログの編集' do
         context '入力値が正常' do
           it 'ログの編集が成功する' do
