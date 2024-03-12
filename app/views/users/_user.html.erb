@@ -5,11 +5,11 @@
     <% end %>
   </th>
   <th class="align-middle">
-    <%= link_to user.name, user_path(user), class: "text-nowrap text-dark hover-opacity-50", style: "text-decoration:none;" %>
+    <%= link_to user.name, user_path(user), class: "user-name text-nowrap text-dark hover-opacity-50", style: "text-decoration:none;" %>
   </th>
   <th class="align-middle">
     <% if user.my_bike.present? %>
-      <div class="text-nowrap"><%= user.my_bike_i18n %></div>
+      <div class="user-mybike text-nowrap"><%= user.my_bike_i18n %></div>
     <% else %>
       <div class="text-info text-nowrap"><%= t("defaults.no_mybike") %></div>
     <% end %>

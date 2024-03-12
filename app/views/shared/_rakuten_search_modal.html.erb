@@ -5,7 +5,7 @@
         <h1 class="modal-title fs-5" id="exampleModalLabel">楽天で商品を検索</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="my-4">
+      <div class="rakuten-search-area my-4">
         <%= form_with url: search_rakuten_posts_path, method: :get, local: false, class: "row" do |f| %>
           <div class="offset-1 offset-sm-2 col-7">
             <%= f.text_field :q, value: params[:q], class: "form-control", placeholder: "キーワードで検索" %>

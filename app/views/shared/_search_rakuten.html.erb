@@ -20,7 +20,8 @@
             <% end %>
           </div>
           <div class="col-5 col-lg-2 d-flex align-items-center justify-content-center">
-            <%= link_to '選択', '#', data: { url: rakuten_item.url, image_url: rakuten_item.medium_image_urls.first, item_name: rakuten_item.name, price: rakuten_item.price, code: rakuten_item.code }, class: "btn btn-secondary btn-block text-light rakuten-add-button" %>
+            <%= link_to '選択', '#', data: { url: rakuten_item.url, image_url: rakuten_item.medium_image_urls.first, item_name: rakuten_item.name, price: rakuten_item.price, code: rakuten_item.code },
+                                    class: "btn btn-secondary btn-block text-light rakuten-add-button" %>
           </div>
         </div>
       <% end %>

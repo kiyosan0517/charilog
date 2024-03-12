@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :post do
-    user { nil }
-    title { 'MyString' }
-    content { 'MyText' }
+    sequence(:title) { |n| "test-title-#{n}" }
+    sequence(:content) { |n| "test-content-#{n}" }
+    association :user
   end
 end

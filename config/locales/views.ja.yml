@@ -51,7 +51,7 @@ ja:
       require_login: 'ログインしてください'
       send_email: 'メールを送信しました'
       created: '%{item}を作成しました'
-      not_created: '%{item}の作成に失敗しました。'
+      not_created: '%{item}の作成に失敗しました'
       updated: '%{item}を更新しました'
       not_updated: '%{item}の更新に失敗しました'
       destroyed: '%{item}を削除しました'

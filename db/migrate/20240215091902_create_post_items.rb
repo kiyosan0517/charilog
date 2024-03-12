@@ -6,6 +6,5 @@ class CreatePostItems < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
-    add_index :post_items, [:post_id, :item_id], unique: true
   end
 end

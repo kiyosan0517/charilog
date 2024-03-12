@@ -105,8 +105,8 @@ class PostsController < ApplicationController
   end
 
   def post_create_failure
-    @post = Post.new(post_params)
     flash.now[:danger] = t('defaults.message.not_created', item: Post.model_name.human)
     render :new
+    @post = Post.new(post_params)
   end
 end

@@ -62,7 +62,6 @@ ActiveRecord::Schema.define(version: 2024_02_15_091902) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["item_id"], name: "index_post_items_on_item_id"
-    t.index ["post_id", "item_id"], name: "index_post_items_on_post_id_and_item_id", unique: true
     t.index ["post_id"], name: "index_post_items_on_post_id"
   end
 

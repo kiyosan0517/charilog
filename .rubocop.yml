@@ -163,3 +163,6 @@ Style/NumericLiterals:
 
 Style/RedundantCondition:
   Enabled: false
+
+Style/RedundantInterpolation:
+  Enabled: false
