@@ -1,6 +1,6 @@
 <% set_meta_tags title: t('.title') %>
 
-<div class="container mb-5 mb-sm-5 pb-sm-5">
+<div class="container pt-2 mb-sm-5 pb-sm-5">
   <div class="title-area under-line border-4 d-lg-flex d-none my-2">
     <%= link_to 'javascript:history.back()' do %>
       <i class="fas fa-angle-left fa-2x me-4"></i>
@@ -35,6 +35,10 @@
         <% end %>
       <% end %>
     <% end %>
+  </div>
+
+  <div class="row mt-3">
+    <%= paginate @users, theme: 'twitter-bootstrap-4' %>
   </div>
 
 </div>

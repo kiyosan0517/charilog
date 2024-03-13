@@ -80,7 +80,7 @@
     <%= render 'posts/sort_posts_menu' %>
   </div>
 
-  <div class="row mb-sm-5">
+  <div class="row mb-sm-4">
     <% if @posts.present? %>
       <%= render @posts %>
     <% else %>
@@ -93,7 +93,7 @@
     <% end %>
   </div>
 
-  <div class="row">
+  <div class="row mt-3">
     <%= paginate @posts, theme: 'twitter-bootstrap-4' %>
   </div>
 
