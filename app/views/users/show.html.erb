@@ -1,7 +1,7 @@
 <%= javascript_include_tag "user-show.js" %>
 <% set_meta_tags title: current_page?(user_path(current_user)) ? t('.mypage') : t('.title'), og: { title: t('.og_title', user: @user.name) } %>
 
-<div class="container px-md-4">
+<div class="container px-md-4 mb-sm-5 pb-sm-5">
   <div class="row pb-2 mb-4 border-bottom">
     <div class="user-panel d-flex flex-column flex-md-row justify-content-center justify-content-sm-around align-items-center p-0">
       <div class="user-avatar d-flex flex-wrap justify-content-center align-items-center mx-auto mx-md-0 my-3">
@@ -80,7 +80,7 @@
     <%= render 'posts/sort_posts_menu' %>
   </div>
 
-  <div class="row mb-sm-5">
+  <div class="row mb-sm-4">
     <% if @posts.present? %>
       <%= render @posts %>
     <% else %>
@@ -93,7 +93,7 @@
     <% end %>
   </div>
 
-  <div class="row">
+  <div class="row mt-3">
     <%= paginate @posts, theme: 'twitter-bootstrap-4' %>
   </div>
 

@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   private
 
   def load_users
-    @users = @q.result(distinct: true).with_attached_avatar.order(created_at: :desc).page(params[:page]).per(15)
+    @users = @q.result(distinct: true).with_attached_avatar.order(created_at: :desc).page(params[:page]).per(10)
     @user_count = @users.total_count
   end
 

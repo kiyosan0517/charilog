@@ -1,11 +1,28 @@
 <tr>
-  <th class="text-center">
+  <th class="text-center py-4">
     <%= link_to user_path(user) do %>
-      <%= image_tag user.avatar.variant(gravity: :center, resize: "50x50^", crop:"50x50+0+0").processed, class: "rounded-circle bg-dark-subtle hover-opacity-75", style: "display: inline-block;" %>
+      <%= image_tag user.avatar.variant(gravity: :center, resize: "75x75^", crop:"75x75+0+0").processed,
+                    class: "rounded-circle bg-dark-subtle hover-opacity-75",
+                    style: "display: inline-block;" %>
     <% end %>
   </th>
   <th class="align-middle">
-    <%= link_to user.name, user_path(user), class: "user-name text-nowrap text-dark hover-opacity-50", style: "text-decoration:none;" %>
+    <div>
+      <%= link_to user.name, user_path(user), class: "user-name text-nowrap text-dark hover-opacity-50",
+                                              style: "text-decoration:none;" %>
+    </div>
+    <div class="font-mini-size text-nowrap mt-2">
+      <%= t("users.show.follower") %>
+      <%= user.followeds.count %>人
+      <span class="mx-1"><%= "/" %></span>
+      <%= t("users.show.follow") %>
+      <%= user.followers.count %>人
+    </div>
+    <div class="font-mini-size text-secondary text-nowrap mt-1">
+      <% if user.bio.present? %>
+        <%= user.bio.truncate(16) %>
+      <% end %>
+    </div>
   </th>
   <th class="align-middle">
     <% if user.my_bike.present? %>
@@ -17,9 +34,9 @@
   <th class="align-middle">
     <% if current_user != user %>
       <% if current_user.following?(user) %>
-        <%= link_to t("defaults.unfollow"), user_relationships_path(user.id), method: :delete, class: "btn btn-danger fw-bold" %>
+        <%= link_to t("defaults.unfollow"), user_relationships_path(user.id), method: :delete, class: "btn btn-info fw-bold py-3 px-4", data: {confirm: 'フォローを解除しますか？'} %>
       <% else %>
-        <%= link_to t("defaults.follow"), user_relationships_path(user.id), method: :post, class: "btn btn-primary fw-bold" %>
+        <%= link_to t("defaults.follow"), user_relationships_path(user.id), method: :post, class: "btn btn-outline-info fw-bold p-3" %>
       <% end %>
     <% end %>
   </th>
