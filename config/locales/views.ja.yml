@@ -22,7 +22,7 @@ ja:
     submit: '送信する'
     update: '更新する'
     follow: 'フォローする'
-    unfollow: 'フォロー解除'
+    unfollow: 'フォロー中'
     setting_profile: '登録情報設定'
     item_management: 'アイテム管理'
     back: '戻る'
