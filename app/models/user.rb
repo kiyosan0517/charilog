@@ -44,8 +44,9 @@ class User < ApplicationRecord
       sample_avatar = ActiveStorage::Blob.find_by(filename: 'sample.png')
       avatar.attach(sample_avatar)
     else
-      sample_avatar_path = asset_path('sample.png')
-      avatar.attach(sample_avatar_path)
+      avatar.attach(io: File.open(Rails.root.join('app/assets/images/sample.png')),
+                    filename: 'sample.png',
+                    content_type: 'image/png')
     end
   end
 

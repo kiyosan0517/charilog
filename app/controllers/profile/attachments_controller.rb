@@ -7,8 +7,9 @@ class Profile::AttachmentsController < ApplicationController
       sample_avatar = ActiveStorage::Blob.find_by(filename: 'sample.png')
       user.avatar.attach(sample_avatar)
     else
-      sample_avatar_path = asset_path('sample.png')
-      user.avatar.attach(sample_avatar_path)
+      user.avatar.attach(io: File.open(Rails.root.join('app/assets/images/sample.png')),
+                         filename: 'sample.png',
+                         content_type: 'image/png')
     end
 
     redirect_to edit_profile_path
