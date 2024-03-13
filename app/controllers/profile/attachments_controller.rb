@@ -3,13 +3,13 @@ class Profile::AttachmentsController < ApplicationController
     user = User.find(params[:id])
     user.avatar.purge
 
-    sample_avatar = ActiveStorage::Blob.find_by(filename: 'sample.png')
-
-    if sample_avatar
+    if ActiveStorage::Blob.exists?(filename: 'sample.png')
+      sample_avatar = ActiveStorage::Blob.find_by(filename: 'sample.png')
       user.avatar.attach(sample_avatar)
     else
-      sample_avatar_path = Rails.root.join('app/assets/images/sample.png')
-      user.avatar.attach(io: File.open(sample_avatar_path), filename: 'sample.png')
+      user.avatar.attach(io: File.open(Rails.root.join('app/assets/images/sample.png')),
+                         filename: 'sample.png',
+                         content_type: 'image/png')
     end
 
     redirect_to edit_profile_path

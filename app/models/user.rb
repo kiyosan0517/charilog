@@ -40,9 +40,8 @@ class User < ApplicationRecord
   def default_image
     return if avatar.attached?
 
-    sample_avatar = ActiveStorage::Blob.find_by(filename: 'sample.png')
-
-    if sample_avatar
+    if ActiveStorage::Blob.exists?(filename: 'sample.png')
+      sample_avatar = ActiveStorage::Blob.find_by(filename: 'sample.png')
       avatar.attach(sample_avatar)
     else
       avatar.attach(io: File.open(Rails.root.join('app/assets/images/sample.png')),
