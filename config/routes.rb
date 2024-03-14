@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :new, :create, :show] do
     resource :relationships, only: [:create, :destroy]
     member { get 'follows', 'followers' }
+    collection { get 'search' }
   end
 
   resource :profile, only: [:edit, :update] do

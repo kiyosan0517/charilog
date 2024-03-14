@@ -45,6 +45,13 @@ class UsersController < ApplicationController
     load_users
   end
 
+  def search
+    @users = User.where("name like ?", "%#{params[:q]}%")
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def load_users
