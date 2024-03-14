@@ -4,8 +4,11 @@ document.addEventListener('DOMContentLoaded', function() {
   const DeleteBtn = document.querySelector('.fa-times');
   const AvatarInput = document.querySelector('#user_avatar');
   const AvatarInputArea = document.querySelector('.input-area');
+  const UpdateBtn = document.querySelector('#profile_update_btn');
   const sampleImagePath = '<%= asset_path('sample.png') %>';
   const avatarUrl = document.querySelector('#prev_img').dataset.avatarUrl;
+  const nameField = document.querySelector('input[id="name_field"]');
+  const nameLabel = document.querySelector("label[for='name_field']");
   
   // 初期表示の設定
   if (window.innerWidth >= 450) {
@@ -32,27 +35,26 @@ document.addEventListener('DOMContentLoaded', function() {
   // 画面サイズが変更された時にプレビューのサイズを切り替える
   window.addEventListener('resize', function() {
     if (window.innerWidth >= 450) {
-        PrevImg.classList.add('upsize');
-        PrevImg.classList.remove('downsize', 'more-downsize');
-        DeleteBtn.classList.add('fa-2x', 'py-1');
-        DeleteBtn.classList.remove('fa-lg', 'py-3', 'py-4');
-        AvatarInputArea.classList.add('avatar-input-upsize');
-        AvatarInputArea.classList.remove('avatar-input-downsize', 'avatar-input-more-downsize');
+      PrevImg.classList.add('upsize');
+      PrevImg.classList.remove('downsize', 'more-downsize');
+      DeleteBtn.classList.add('fa-2x', 'py-1');
+      DeleteBtn.classList.remove('fa-lg', 'py-3', 'py-4');
+      AvatarInputArea.classList.add('avatar-input-upsize');
+      AvatarInputArea.classList.remove('avatar-input-downsize', 'avatar-input-more-downsize');
     } else if (window.innerWidth >= 370) {
-        PrevImg.classList.add('downsize');
-        PrevImg.classList.remove('upsize', 'more-downsize');
-        DeleteBtn.classList.add('fa-lg', 'py-3');
-        DeleteBtn.classList.remove('fa-2x', 'py-1', 'py-4');
-        AvatarInputArea.classList.add('avatar-input-downsize');
-        AvatarInputArea.classList.remove('avatar-input-upsize', 'avatar-input-more-downsize');
+      PrevImg.classList.add('downsize');
+      PrevImg.classList.remove('upsize', 'more-downsize');
+      DeleteBtn.classList.add('fa-lg', 'py-3');
+      DeleteBtn.classList.remove('fa-2x', 'py-1', 'py-4');
+      AvatarInputArea.classList.add('avatar-input-downsize');
+      AvatarInputArea.classList.remove('avatar-input-upsize', 'avatar-input-more-downsize');
     } else if (window.innerWidth <= 369) {
-        PrevImg.classList.add('more-downsize');
-        PrevImg.classList.remove('downsize', 'upsize');
-        AvatarInputArea.classList.add('avatar-input-more-downsize');
-        AvatarInputArea.classList.remove('avatar-input-downsize', 'avatar-input-upsize');
+      PrevImg.classList.add('more-downsize');
+      PrevImg.classList.remove('downsize', 'upsize');
+      AvatarInputArea.classList.add('avatar-input-more-downsize');
+      AvatarInputArea.classList.remove('avatar-input-downsize', 'avatar-input-upsize');
     }
   });
-
 
   $(function() {
     function readURL(input) {
@@ -65,8 +67,43 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     $("#user_avatar").change(function() {
+      // エラーメッセージとスタイルをクリア
+      $('.error-message').remove();
+      $(this).removeClass('error-input');
+
+      // 画像ファイルのバリデーション
+      const file = this.files[0];
+      const fileSize = file.size;
+      if (fileSize > 5 * 1024 * 1024) {
+        // エラーメッセージを表示
+        $(this).after('<div class="error-message text-danger text-center font-mini-size mt-2">画像サイズ上限：5MB以下</div>');
+        // エラースタイルを適用
+        $(this).addClass('error-input');
+        AvatarInput.value = null;
+        return; // 処理を中断
+      }
       readURL(this);
       DeleteBtnArea.classList.add('open');
+    });
+
+    nameField.addEventListener('input', function() {
+      // 入力値を取得
+      var inputValue = this.value.trim();
+      
+      // 入力値が空でない場合
+      if (inputValue.length > 0) {
+        // ボタンの無効化を解除し、requireクラスを削除
+        UpdateBtn.disabled = false;
+        nameField.style.borderColor = '';
+        nameField.style.borderWidth = '';
+        nameLabel.classList.remove('require');
+      } else {
+        // 入力値が空の場合、ボタンを無効化し、requireクラスを追加
+        UpdateBtn.disabled = true;
+        nameField.style.borderColor = 'red';
+        nameField.style.borderWidth = '1.5px';
+        nameLabel.classList.add('require');
+      }
     });
 
     DeleteBtnArea.addEventListener('click', function() {
