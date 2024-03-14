@@ -32,9 +32,11 @@
             <% end %>
           </div>
           <div class="form-group">
-            <i class="fas fa-user me-1"></i>
-            <%= f.label :name, class: "fw-bold" %>
-            <%= f.text_field :name, class: 'form-control bg-light', placeholder: User.human_attribute_name(:name) %>
+            <div class="d-flex align-items-center">
+              <i class="fas fa-user me-1 mb-2"></i>
+              <%= f.label :name, class: "fw-bold", for: "name_field" %>
+            </div>
+            <%= f.text_field :name, class: 'form-control bg-light', placeholder: User.human_attribute_name(:name), id: 'name_field' %>
           </div>
           <div class="form-group">
             <i class="fas fa-bicycle"></i>
@@ -47,7 +49,7 @@
             <%= f.text_area :bio, class: 'form-control bg-light', placeholder: User.human_attribute_name(:bio), rows: 2 %>
           </div>
           <div class="form-group">
-            <%= f.submit t("defaults.update"), class: 'btn btn-primary btn-block font-weight-bold rounded-pill mt-4' %>
+            <%= f.submit t("defaults.update"), class: 'btn btn-primary btn-block font-weight-bold rounded-pill mt-4', id: 'profile_update_btn' %>
           </div>
         <% end %>
       </div>

@@ -21,14 +21,18 @@
           <%= link_to @post.user.name, user_path(@post.user), class: "fw-bold text-dark hover-opacity-50", style:"text-decoration:none;" %>
         </div>
         <div class="operation_area d-flex align-items-center ml-auto">
-          <div class="like-count d-flex align-items-center fs-4">
-            <i class="fa-solid fa-heart text-danger"></i>
-            <div class="text-dark ms-1">
-              <div class="fs-5" id="likes-count-<%= @post.id %>">
-                <%= @post.likes.count %>
+          <% if current_user.own?(@post) %>
+            <div class="like-count d-flex align-items-center fs-4">
+              <i class="fa-solid fa-heart text-danger"></i>
+              <div class="text-dark ms-1">
+                <div class="fs-5" id="likes-count-<%= @post.id %>">
+                  <%= @post.likes.count %>
+                </div>
               </div>
             </div>
-          </div>
+          <% else %>
+            <%= render 'posts/like_button', post: @post %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -68,8 +72,6 @@
         <div class="ms-auto">
           <% if current_user.own?(@post) %>
             <%= render 'posts/crud_menus', post: @post %>
-          <% else %>
-            <%= render 'posts/like_button', post: @post %>
           <% end %>
         </div>
       </div>
@@ -91,7 +93,7 @@
         <% if @post.items.present? %>
           <%= render 'item_list' %>
         <% else %>
-          <p class="text-center my-4">アイテムは登録されていません</p>
+          <p class="text-center font-mini-size text-secondary text-decoration-underline fw-bold my-4">アイテムは登録されていません</p>
         <% end %>
       </div>
 

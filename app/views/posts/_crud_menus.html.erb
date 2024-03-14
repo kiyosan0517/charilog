@@ -2,12 +2,12 @@
   <ul class='d-flex crud-menu-btn list-inline m-0'>
     <li class="list-inline-item">
       <%= link_to edit_post_path(post), class: "hover-opacity-50" do %>
-        <i class="fas fa-pencil-alt fa-lg text-dark"></i>
+        <h4 class="m-0"><i class="fas fa-pencil-alt text-dark"></i></h4>
       <% end %>
     </li>
-    <li class="list-inline-item">
+    <li class="list-inline-item ms-1">
       <%= link_to post_path(post), class: "hover-opacity-50", method: :delete, data: {confirm: t('defaults.message.delete_confirm', item: Post.model_name.human)} do %>
-        <i class="fas fa-trash fa-lg text-dark"></i>
+        <h4 class="m-0"><i class="fas fa-trash text-dark"></i></h4>
       <% end %>
     </li>
   </ul>

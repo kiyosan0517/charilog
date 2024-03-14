@@ -1,4 +1,4 @@
-<div class="col-12 col-sm-6 col-xl-4 mb-3 px-4 px-sm-2">
+<div class="col-12 col-sm-10 col-md-6 col-xl-4 mb-3 px-4 px-sm-2">
   <div class="card shadow-sm">
     <div class="header-area <%= controller_name == 'users' && action_name == 'show' ? 'd-none' : '' %>">
       <div class="container">
@@ -14,8 +14,6 @@
           <div class="operation_area d-flex align-items-center ml-auto">
             <% if current_user.own?(post) %>
               <%= render 'posts/crud_menus', post: post %>
-            <% else %>
-              <%= render 'posts/like_button', post: post %>
             <% end %>
           </div>
         </div>
