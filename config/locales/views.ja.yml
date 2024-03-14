@@ -84,6 +84,7 @@ ja:
       my_bike: 'お気に入り(所有する)自転車メーカー'
       registered: '登録済みの方はこちら'
     create:
+      title: 'ユーザー登録'
       success: 'ユーザー登録が完了しました'
       fail: 'ユーザー登録に失敗しました'
     show:
@@ -122,12 +123,16 @@ ja:
       post_index: 'ログ一覧'
     new:
       title: 'ログ投稿'
+    create:
+      title: 'ログ投稿'
     show:
       title: 'ログ詳細'
       og_title: "%{user}さんの投稿ログ/%{date} - ChariLog"
       edit_images: '写真を追加・編集'
       delete_post: 'ログを削除'
     edit:
+      title: 'ログ編集'
+    update:
       title: 'ログ編集'
     bookmarks:
       title: 'ブックマーク一覧'
@@ -148,6 +153,8 @@ ja:
   profiles:
     edit:
       title: 'プロフィール編集'
+    update:
+      title: 'プロフィール編集'
   password_resets:
     new:
       title: 'パスワード再設定申請'
@@ -158,5 +165,6 @@ ja:
       new_password: '新しいパスワード'
       new_password_confirm: '新しいパスワード確認'
     update:
+      title: 'メール・パスワード再設定'
       success: '再設定が完了しました'
       fail: '再設定に失敗しました'
