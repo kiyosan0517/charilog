@@ -114,10 +114,8 @@ RSpec.describe 'Users', type: :system do
           fill_in 'ユーザー名', with: ''
           select 'PINARELLO', from: 'user[my_bike]'
           fill_in '自己紹介', with: 'Hi Hellow'
-          click_on '更新する'
-          expect(current_path).to eq(profile_path)
-          expect(page).to have_content('プロフィールの更新に失敗しました')
-          expect(page).to have_content('ユーザー名を入力してください')
+          expect(page).to have_css('.require')
+          expect(page).to have_button('更新する', disabled: true)
         end
       end
     end

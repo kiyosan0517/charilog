@@ -93,7 +93,7 @@ RSpec.describe 'Posts', type: :system do
             find('.fa-pencil-alt').click
             fill_in 'ログタイトル', with: 'edit-test-title'
             fill_in 'ログ内容', with: 'edit-test-content'
-            click_button '編集する'
+            click_button '更新する'
             expect(current_path).to eq(posts_path)
             expect(page).to have_content('ログを更新しました')
           end
@@ -104,7 +104,7 @@ RSpec.describe 'Posts', type: :system do
             find('.fa-pencil-alt').click
             fill_in 'ログタイトル', with: ''
             fill_in 'ログ内容', with: 'edit-test-content'
-            click_button '編集する'
+            click_button '更新する'
             expect(page).to have_content('ログの更新に失敗しました')
             expect(page).to have_content('ログタイトルを入力してください')
           end

@@ -13,12 +13,13 @@ RSpec.describe 'Relationships', type: :system do
 
       # フォローする
       click_on 'フォローする'
-      expect(page).to have_content('フォロー解除')
+      expect(page).to have_content('フォロー中')
       expect(@user2.followeds.count).to eq(1)
       expect(@user1.followers.count).to eq(1)
 
       # フォロー解除する
-      click_on 'フォロー解除'
+      click_on 'フォロー中'
+      accept_alert
       expect(page).to have_content('フォローする')
       expect(@user2.followeds.count).to eq(0)
       expect(@user1.followers.count).to eq(0)
@@ -41,7 +42,8 @@ RSpec.describe 'Relationships', type: :system do
         expect(page).to have_content('フォロワー 2人')
         expect(page).to have_content('フォロー 2人')
 
-        click_on 'フォロー解除'
+        click_on 'フォロー中'
+        accept_alert
         expect(page).to have_content('フォロワー 1人')
         expect(page).to have_content('フォロー 2人')
 
