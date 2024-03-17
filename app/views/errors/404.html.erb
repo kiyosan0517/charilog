@@ -1,0 +1,17 @@
+<div class="d-flex flex-column justify-content-center align-items-center my-5 px-4">
+  <%= image_tag 'charilog-404.png', class: "img-fluid my-4", style: "max-width: 55%;" %>
+  <h5 class="text-danger mb-3 fs-4">
+    指定されたページ、またはディレクトリが見つかりませんでした。
+  </h5>
+  <div class="text-center">
+    <h6>お問い合わせは、
+      <span class="d-inline-block flex-wrap">
+        <span>
+          <%= link_to 'こちら', 'https://docs.google.com/forms/d/e/1FAIpQLSeHZcjha6HuQH0mcEN8ZAkv8ZMQY2p7YJCNxAFFcl1zUN_wkQ/viewform', class: "text-primary text-nowrap fs-5", style: "text-decoration:none;" %>
+        </span>
+        で受け付けております。
+      </span>
+    </h6>
+  </div>
+  <%= link_to 'ホーム(トップ)ページへ戻る', root_path, class: 'fs-5 text-primary mt-5' %>
+</div>
