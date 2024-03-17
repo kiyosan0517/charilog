@@ -6,6 +6,6 @@ module CreatePostSupport
 
   def others_post_create_and_redirect
     @post = create(:post)
-    visit posts_path
+    visit post_path(@post)
   end
 end
