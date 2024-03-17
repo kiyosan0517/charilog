@@ -7,11 +7,11 @@ class ApplicationController < ActionController::Base
     rescue_from ActionController::RoutingError, with: :render_404
   end
 
-  def render_404(error = nil)
+  def render_404
     render template: 'errors/404.html', content_type: 'text/html', layout: 'error', status: 404
   end
 
-  def render_500(error = nil)
+  def render_500
     render template: 'errors/500.html', content_type: 'text/html', layout: 'error', status: 500
   end
 

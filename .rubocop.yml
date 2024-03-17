@@ -34,6 +34,9 @@ Rails/FilePath:
     - 'lib/tasks/dev.rake'
     - 'spec/rails_helper.rb'
 
+Rails/HttpStatus:
+  Enabled: false
+
 ## `and return` の形式を利用できるようにします。基本的には、&& と || を使います。
 Style/AndOr:
   Enabled: false
@@ -113,6 +116,9 @@ Naming/FileName:
 
 Naming/MethodParameterName:
   AllowedNames: [e]
+
+Naming/VariableNumber:
+  Enabled: false
 
 Style/BlockComments:
   Exclude:

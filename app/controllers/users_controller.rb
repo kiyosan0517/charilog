@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   end
 
   def search
-    @users = User.where("name like ?", "%#{params[:q]}%")
+    @users = User.where('name like ?', "%#{params[:q]}%")
     respond_to do |format|
       format.js
     end
