@@ -27,4 +27,7 @@ Rails.application.routes.draw do
   end
 
   resources :password_resets, only: [:new, :create, :edit, :update]
+
+  get '*path', to: 'application#render_404', constraints: ->(req) { req.path.exclude? 'rails/active_storage' }
+  post '*path', to: 'application#render_404'
 end
