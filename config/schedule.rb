@@ -25,5 +25,5 @@ set :environment, rails_env # cronを実行する環境変数をセット
 set :output, Rails.root.join('log/crontab.log') # cronのログ出力用ファイル
 
 every :hour do # タスクの実行間隔
-  rake 'unattached_images:purge' # ← rake "タスクのファイル名 : タスク名"
+  rake 'unattached_images:purge', environment: ENV['RAILS_ENV'] # ← rake "タスクのファイル名 : タスク名"
 end

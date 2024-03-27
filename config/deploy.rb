@@ -16,6 +16,8 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'node_module
 set :deploy_to, "/var/www/charilog"
 set :puma_service_unit_name, 'puma.service'
 
+set :whenever_roles, -> { :app }
+
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
 
