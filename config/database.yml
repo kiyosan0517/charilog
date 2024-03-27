@@ -27,8 +27,9 @@ production:
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  database: <%= ENV['PRODUCTION_DB_NAME'] %>
-  username: <%= ENV['PRODUCTION_DB_USERNAME'] %>
-  password: <%= ENV['PRODUCTION_DB_PASSWORD'] %>
-  host: <%= ENV['PRODUCTION_DB_HOSTNAME'] %>
+  host: <%= Rails.application.credentials.db[:host] %>
+  database: <%= Rails.application.credentials.db[:database] %>
+  username: <%= Rails.application.credentials.db[:username] %>
+  password: <%= Rails.application.credentials.db[:password] %>
+  port: 5432
   
