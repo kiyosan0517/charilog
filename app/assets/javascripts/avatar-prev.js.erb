@@ -86,25 +86,27 @@ document.addEventListener('DOMContentLoaded', function() {
       DeleteBtnArea.classList.add('open');
     });
 
-    nameField.addEventListener('input', function() {
-      // 入力値を取得
-      var inputValue = this.value.trim();
-      
-      // 入力値が空でない場合
-      if (inputValue.length > 0) {
-        // ボタンの無効化を解除し、requireクラスを削除
-        UpdateBtn.disabled = false;
-        nameField.style.borderColor = '';
-        nameField.style.borderWidth = '';
-        nameLabel.classList.remove('require');
-      } else {
-        // 入力値が空の場合、ボタンを無効化し、requireクラスを追加
-        UpdateBtn.disabled = true;
-        nameField.style.borderColor = 'red';
-        nameField.style.borderWidth = '1.5px';
-        nameLabel.classList.add('require');
-      }
-    });
+    if (nameField) {
+      nameField.addEventListener('input', function() {
+        // 入力値を取得
+        var inputValue = this.value.trim();
+        
+        // 入力値が空でない場合
+        if (inputValue.length > 0) {
+          // ボタンの無効化を解除し、requireクラスを削除
+          UpdateBtn.disabled = false;
+          nameField.style.borderColor = '';
+          nameField.style.borderWidth = '';
+          nameLabel.classList.remove('require');
+        } else {
+          // 入力値が空の場合、ボタンを無効化し、requireクラスを追加
+          UpdateBtn.disabled = true;
+          nameField.style.borderColor = 'red';
+          nameField.style.borderWidth = '1.5px';
+          nameLabel.classList.add('require');
+        }
+      });
+    }
 
     DeleteBtnArea.addEventListener('click', function() {
       // プレビューを削除
