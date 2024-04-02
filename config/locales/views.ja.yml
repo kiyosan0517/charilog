@@ -20,6 +20,7 @@ ja:
     edit: '更新する'
     delete: '削除する'
     submit: '送信する'
+    send: '送信'
     update: '更新する'
     follow: 'フォローする'
     unfollow: 'フォロー中'
@@ -130,6 +131,8 @@ ja:
       og_title: "%{user}さんの投稿ログ/%{date} - ChariLog"
       edit_images: '写真を追加・編集'
       delete_post: 'ログを削除'
+      no_comment: 'コメントはまだありません'
+      lets_comment!: 'コメントを追加して会話を始めよう！'
     edit:
       title: 'ログ編集'
     update:
