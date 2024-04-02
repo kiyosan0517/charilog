@@ -9,8 +9,23 @@
       <div class="d-flex align-items-center mt-4">
         <%= image_tag current_user.avatar, class: 'rounded-circle', size: '40x40' %>
         <%= f.text_area :body, class: 'form-control mx-2', id: 'js-new-comment-body', rows: 1 %>
-        <%= f.submit t('defaults.send'), class: 'btn btn-secondary' %>
+        <%= f.submit t('defaults.send'), class: 'btn btn-secondary', id: 'submit-comment-btn', disabled: true %>
       </div>
     <% end %>
   </div>
 </div>
+
+<script>
+  $(document).ready(function() {
+    $('#js-new-comment-body').on('input', function() {
+      // テキストエリアの値を取得
+      var commentBody = $(this).val().trim();
+      
+      if (commentBody.length > 0) {
+        $('#submit-comment-btn').prop('disabled', false);
+      } else {
+        $('#submit-comment-btn').prop('disabled', true);
+      }
+    });
+  });
+</script>
