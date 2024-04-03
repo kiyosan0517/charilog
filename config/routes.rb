@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create destroy], shallow: true
     get 'likes', on: :collection
     get 'search_rakuten', on: :collection
+    get 'tags', on: :collection
     post 'upload_image', on: :collection
   end
 
