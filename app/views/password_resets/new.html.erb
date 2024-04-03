@@ -1,6 +1,6 @@
 <% set_meta_tags title: t('.title') %>
 
-<div class="container mb-sm-5">
+<div class="container mt-4 mb-sm-5">
   <div class="row justify-content-center pb-sm-5">
     <div class="col-xl-7 col-lg-8 col-md-10 col-12">
       <div class="title-area text-center d-lg-block d-none mt-4 mb-5">
@@ -24,16 +24,7 @@
           </div>
         <% end %>
       </div>
-      <h5 class="text-center mt-5">
-        <% if logged_in? %>
-          <%= link_to t("defaults.to_my_page"), user_path(current_user), class: "fw-bold", style: "text-decoration: underline;" %>
-        <% else %>
-          <div class="d-flex flex-column flex-sm-row justify-content-center px-2">
-            <%= link_to t("defaults.to_top_page"), root_path, class: "btn btn-outline-info fw-bold mb-4 mb-sm-0 py-3 px-sm-5" %>
-            <%= link_to t("defaults.to_register_page"), new_user_path, class: "btn btn-outline-success fw-bold ms-sm-4 ms-md-5 py-3 px-sm-5" %>
-          </div>
-        <% end %>
-      </h5>
+      <%= render "shared/to_page_button/" %>
     </div>
   </div>
 </div>

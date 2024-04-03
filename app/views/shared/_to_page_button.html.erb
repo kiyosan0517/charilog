@@ -1,0 +1,11 @@
+<% if logged_in? %>
+  <div class="d-flex flex-column flex-sm-row justify-content-center px-2 mt-5 mb-4">
+    <%= link_to t("defaults.to_home_page"), root_path, class: "btn btn-outline-info fw-bold mb-4 mb-sm-0 py-3 px-sm-5" %>
+    <%= link_to t("defaults.to_my_page"), user_path(current_user), class: "btn btn-outline-success fw-bold ms-sm-4 ms-md-5 py-3 px-sm-5" %>
+  </div>
+<% else %>
+  <div class="d-flex flex-column flex-sm-row justify-content-center px-2 mt-5 mb-4">
+    <%= link_to t("defaults.to_top_page"), root_path, class: "btn btn-outline-info fw-bold mb-4 mb-sm-0 py-3 px-sm-5" %>
+    <%= link_to t("defaults.to_register_page"), new_user_path, class: "btn btn-outline-success fw-bold ms-sm-4 ms-md-5 py-3 px-sm-5" %>
+  </div>
+<% end %>

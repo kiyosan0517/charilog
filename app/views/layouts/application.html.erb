@@ -60,7 +60,7 @@
             <%= render "/shared/rakuten_search_modal" %>
 
             <!-- フッターPC以上 -->
-            <div class="footer-wrapper bg-white d-sm-block d-none border-top mt-4 z-2">
+            <div class="footer-wrapper bg-white d-sm-block d-none border-top mt-4 px-0 z-2">
               <%= render "/shared/footer" %>
             </div>
 
@@ -79,9 +79,7 @@
         <%= render "/shared/flash_message" %>
         <%= yield %>
       </div>
-      <div class="before-login-footer-wrapper shadow mt-5
-                  <%= controller_name == 'password_resets' && action_name == 'new' ||
-                      controller_name == 'password_resets' && action_name == 'edit' ? 'd-none' : '' %>">
+      <div class="before-login-footer-wrapper shadow mt-5">
         <%= render "/shared/footer" %>
       </div>
     <% end %>

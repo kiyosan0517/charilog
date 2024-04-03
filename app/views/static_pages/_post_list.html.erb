@@ -41,7 +41,7 @@
 
         <div class="card-body hover-opacity-50 text-left">
           <div class="d-flex align-items-center h4 mb-3">
-            <%= render 'posts/likes_and_items_count', post: post %>
+            <%= render 'posts/likes_items_comments_count', post: post %>
           </div>
           <h5 class="card-title fw-bold"><%= post.title %></h5>
           <p class="card-text m-0"><%= safe_join(post.content.truncate(30).split("\n"),tag(:br)) %></p>
