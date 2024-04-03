@@ -56,6 +56,9 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post.tags.each do |tag|
+      tag.destroy if tag.posts.size <= 1
+    end
     @post.images.purge
     @post.destroy!
     redirect_to posts_path, success: t('defaults.message.deleted', item: Post.model_name.human)
@@ -74,6 +77,13 @@ class PostsController < ApplicationController
         hits: 15
       })
     end
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def search_tag
+    @tags = Tag.where('name like ?', "%#{params[:q]}%")
     respond_to do |format|
       format.js
     end

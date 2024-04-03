@@ -22,10 +22,10 @@ Rails.application.routes.draw do
   resources :posts do
     resource :like, only: [:create, :destroy]
     resources :comments, only: %i[create destroy], shallow: true
-    get 'likes', on: :collection
-    get 'search_rakuten', on: :collection
-    get 'tags', on: :collection
-    post 'upload_image', on: :collection
+    collection do
+      get 'likes', 'search_rakuten', 'search_tag'
+      post 'upload_image'
+    end
   end
 
   resources :password_resets, only: [:new, :create, :edit, :update]

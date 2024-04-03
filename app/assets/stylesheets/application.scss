@@ -77,6 +77,11 @@ body {
   justify-content: center;
 }
 
+.list-group-item {
+  position: relative;
+  z-index: 1;
+}
+
 .over-line {
   &.border-1 {
     border-top: 1px solid;
