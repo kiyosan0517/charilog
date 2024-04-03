@@ -44,6 +44,7 @@ ja:
     input_user_name: 'ユーザー名を入力'
     input_keyword: 'キーワードを入力'
     input_tags_name: 'タグを入力'
+    scroll_top: '画面最上部へ戻る'
     select_images: '画像を選択する'
     select_bike: 'メーカーを選択'
     search_result: '検索結果'
