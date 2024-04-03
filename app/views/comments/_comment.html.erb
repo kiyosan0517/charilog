@@ -1,7 +1,7 @@
 <tr id="comment-<%= comment.id %>">
   <td style="width: 60px" class="pe-0">
     <%= link_to user_path(comment.user) do %>
-      <%= image_tag comment.user.avatar, class: 'rounded-circle hover-opacity-50', size: '60x60' %>
+      <%= image_tag comment.user.avatar, class: 'rounded-circle bg-dark-subtle hover-opacity-50', size: '60x60' %>
     <% end %>
   </td>
   <td>
