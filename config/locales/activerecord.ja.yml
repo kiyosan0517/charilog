@@ -75,7 +75,7 @@ ja:
       user: 'ユーザー'
     attributes:
       comment:
-        content: 'コメント'
+        body: 'コメント'
       item:
         name: 'アイテム名'
         price: '価格'

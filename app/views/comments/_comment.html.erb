@@ -1,0 +1,40 @@
+<tr id="comment-<%= comment.id %>">
+  <td style="width: 60px" class="pe-0">
+    <%= link_to user_path(comment.user) do %>
+      <%= image_tag comment.user.avatar, class: 'rounded-circle hover-opacity-50', size: '60x60' %>
+    <% end %>
+  </td>
+  <td>
+    <div class="d-flex align-items-center mb-1">
+      <%= link_to user_path(comment.user), style: "text-decoration:none;" do %>
+        <div class="fw-bold text-dark hover-opacity-75">
+          <%= comment.user.name %>
+        </div>
+      <% end %>
+      <div class="text-secondary font-mini-size ms-2">
+        <%= time_ago_in_words(comment.created_at) %>前
+      </div>
+    </div>
+    <div class="d-flex align-items-center">
+    <div id="js-comment-<%= comment.id %>" class="text-break">
+      <%= simple_format(comment.body, {}, wrapper_tag: false) %>
+    </div>
+    <div id="js-textarea-comment-box-<%= comment.id %>" style="display: none;">
+      <textarea id="js-textarea-comment-<%= comment.id %>" class="form-control mb-1"><%= comment.body %></textarea>
+      <button class="btn btn-light js-button-edit-comment-cancel" data-comment-id="<%= comment.id %>">キャンセル</button>
+      <button class="btn btn-success js-button-comment-update" data-comment-id="<%= comment.id %>">更新</button>
+    </div>
+  </td>
+
+  <% if current_user.own?(comment) %>
+    <td class="action" style="text-align: center; vertical-align: middle;">
+      <%= link_to comment_path(comment), 
+                  method: :delete, 
+                  class: 'js-delete-comment-button',
+                  data: { confirm: t('defaults.message.delete_confirm',
+                  item: Comment.model_name.human), comment_id: comment.id } do %>
+        <h5><%= icon 'fas', 'trash', class: 'fa-lg text-black-50' %></h5>
+      <% end %>
+    </td>
+  <% end %>
+</tr>

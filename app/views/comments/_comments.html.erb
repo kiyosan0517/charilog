@@ -1,0 +1,12 @@
+<div class="row mb-5">
+  <div class="col-lg-10 offset-lg-1">
+    <table id="js-table-comment" class="table">
+      <% if comments.present? %>
+        <%= render comments %>
+      <% else %>
+        <p class="text-center text-dark mt-5"><%= t("posts.show.no_comment") %></p>
+        <p class="text-center text-secondary mb-5"><%= t("posts.show.lets_comment!") %></p>
+      <% end %>
+    </table>
+  </div>
+</div>
