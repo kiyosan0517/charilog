@@ -2,7 +2,7 @@
 <i class="fa-solid fa-heart text-danger"></i>
 <div class="text-secondary ms-1">
   <div class="fs-5 likes_count" id="likes-count-<%= post.id %>">
-    <%= post.likes.count %>
+    <%= post.likes.size %>
   </div>
 </div>
 
@@ -10,6 +10,14 @@
 <i class="fa-solid fa-tags text-success ms-2"></i>
 <div class="text-secondary ms-1">
   <div class="fs-5 items_count">
-    <%= post.items.count %>
+    <%= post.items.size %>
+  </div>
+</div>
+
+<!-- コメント数カウント -->
+<i class="fa-solid fa-comment-dots text-muted ms-2"></i>
+<div class="text-secondary ms-1">
+  <div class="fs-5 comments_count">
+    <%= post.comments.size %>
   </div>
 </div>
