@@ -62,6 +62,41 @@ RSpec.describe 'Posts', type: :system do
         end
       end
 
+      describe 'ログの投稿(タグの設定/編集/検索まで)' do
+        it '各投稿にタグを紐付けられる' do
+          visit new_post_path
+          fill_in 'ログタイトル', with: 'test-title'
+          fill_in 'タグ設定', with: 'test1'
+          click_button '投稿する'
+          expect(page).to have_content('test1')
+          expect(page).to have_content('ログを作成しました')
+
+          fill_in 'q_tags_name_cont', with: 'test2'
+          click_button '検索'
+          expect(page).to have_content('検索結果がありません')
+
+          fill_in 'q_tags_name_cont', with: 'test1'
+          click_button '検索'
+          expect(page).to have_content('検索結果:1件')
+          expect(page).to have_content('test1')
+
+          find('.fa-pencil-alt').click
+          fill_in 'タグ設定', with: 'test2'
+          click_button '更新する'
+          expect(page).to have_content('test2')
+          expect(page).to have_content('ログを更新しました')
+
+          fill_in 'q_tags_name_cont', with: 'test2'
+          click_button '検索'
+          expect(page).to have_content('検索結果:1件')
+          expect(page).to have_content('test2')
+
+          fill_in 'q_tags_name_cont', with: 'test1'
+          click_button '検索'
+          expect(page).to have_content('検索結果がありません')
+        end
+      end
+
       describe 'ログの投稿(楽天アイテム紐付け)', js: true do
         it '各投稿に楽天アイテムを紐付けられる' do
           visit new_post_path
@@ -83,6 +118,31 @@ RSpec.describe 'Posts', type: :system do
           find('.card-body').click
           expect(page).to have_content('参考価格：18,119円')
           expect(page).to have_content('楽天商品ページへ')
+        end
+      end
+
+      describe 'コメント追加/削除' do
+        context '入力値が正常' do
+          it 'コメントの追加/削除が成功する' do
+            post_create_and_redirect
+            find('.card-body').click
+            fill_in 'js-new-comment-body', with: 'test-comment'
+            click_button '送信'
+            expect(page).to have_content('test-comment')
+            expect(page).to have_content('コメントを作成しました')
+
+            find('.text-black-50').click
+            accept_alert
+            expect(page).to have_content('コメントはまだありません')
+          end
+        end
+        context 'コメント未入力' do
+          it 'コメントの追加に失敗する(送信ボタンが押せない)' do
+            post_create_and_redirect
+            find('.card-body').click
+            fill_in 'js-new-comment-body', with: ''
+            expect(page).to have_button('送信', disabled: true)
+          end
         end
       end
 

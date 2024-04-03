@@ -6,8 +6,8 @@ module SetTags
 
     old_tags.each do |old|
       @post.tags.delete Tag.find_by(name: old)
-      
-      if (tag = Tag.find_by(name: old)) && tag.posts.size.zero?
+
+      if (tag = Tag.find_by(name: old)) && tag.posts.empty?
         tag.destroy
       end
     end

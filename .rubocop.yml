@@ -84,8 +84,7 @@ Layout/LineLength:
   Max: 150
 
 Metrics/AbcSize:
-  Exclude:
-    - 'lib/tasks/dev.rake'
+  Enabled: false
 
 Metrics/BlockLength:
   CountComments: false
@@ -98,7 +97,7 @@ Metrics/BlockLength:
     - 'lib/tasks/dev.rake'
 
 Metrics/ClassLength:
-  CountComments: false
+  Enabled: false
 
 Metrics/MethodLength:
   CountComments: false
@@ -168,7 +167,13 @@ Style/SlicingWithRange:
 Style/NumericLiterals:
   Enabled: false
 
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
 Style/RedundantCondition:
+  Enabled: false
+
+Style/RedundantFetchBlock:
   Enabled: false
 
 Style/RedundantInterpolation:

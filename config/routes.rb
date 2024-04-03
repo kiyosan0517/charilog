@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   resources :posts do
     resource :like, only: [:create, :destroy]
-    resources :comments, only: %i[create destroy], shallow: true
+    resources :comments, only: [:create, :destroy], shallow: true
     collection do
       get 'likes', 'search_rakuten', 'search_tag'
       post 'upload_image'
