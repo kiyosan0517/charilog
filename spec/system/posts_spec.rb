@@ -62,6 +62,41 @@ RSpec.describe 'Posts', type: :system do
         end
       end
 
+      describe 'ログの投稿(タグの設定/編集/検索まで)' do
+        it '各投稿にタグを紐付けられる' do
+          visit new_post_path
+          fill_in 'ログタイトル', with: 'test-title'
+          fill_in 'タグ設定', with: 'test1'
+          click_button '投稿する'
+          expect(page).to have_content('test1')
+          expect(page).to have_content('ログを作成しました')
+
+          fill_in 'q_tags_name_cont', with: 'test2'
+          click_button '検索'
+          expect(page).to have_content('検索結果がありません')
+
+          fill_in 'q_tags_name_cont', with: 'test1'
+          click_button '検索'
+          expect(page).to have_content('検索結果:1件')
+          expect(page).to have_content('test1')
+
+          find('.fa-pencil-alt').click
+          fill_in 'タグ設定', with: 'test2'
+          click_button '更新する'
+          expect(page).to have_content('test2')
+          expect(page).to have_content('ログを更新しました')
+
+          fill_in 'q_tags_name_cont', with: 'test2'
+          click_button '検索'
+          expect(page).to have_content('検索結果:1件')
+          expect(page).to have_content('test2')
+
+          fill_in 'q_tags_name_cont', with: 'test1'
+          click_button '検索'
+          expect(page).to have_content('検索結果がありません')
+        end
+      end
+
       describe 'ログの投稿(楽天アイテム紐付け)', js: true do
         it '各投稿に楽天アイテムを紐付けられる' do
           visit new_post_path
