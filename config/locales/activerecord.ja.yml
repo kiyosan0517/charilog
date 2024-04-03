@@ -73,6 +73,7 @@ ja:
       maker: 'メーカー'
       post: 'ログ'
       user: 'ユーザー'
+      tag: 'タグ'
     attributes:
       comment:
         body: 'コメント'
@@ -84,6 +85,7 @@ ja:
       post:
         content: 'ログ内容'
         title: 'ログタイトル'
+        tag: 'タグ設定'
         images: '投稿画像'
       user:
         avatar: 'アイコン'

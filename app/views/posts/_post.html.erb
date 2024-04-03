@@ -48,7 +48,12 @@
         <div class="d-flex align-items-center h4 mb-3">
           <%= render 'posts/likes_and_items_count', post: post %>
         </div>
-        <h5 class="card-title post-title fw-bold"><%= post.title %></h5>
+        <h5 class="card-title post-title fw-bold mb-0"><%= post.title %></h5>
+        <div class="mb-2">
+          <% post.tags.each do |tag| %>
+            <div class="badge rounded-2 bg-secondary bg-gradient text-white"><%= tag.name %></div>
+          <% end %>
+        </div>
         <p class="card-text post-content m-0"><%= safe_join(post.content.truncate(30).split("\n"),tag(:br)) %></p>
         <span class="text-secondary">
           <i class="far fa-clock clock-icon me-1">

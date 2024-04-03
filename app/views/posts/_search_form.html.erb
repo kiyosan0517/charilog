@@ -2,17 +2,24 @@
 
 <%= search_form_for @q, url: url do |f| %>
   <div class="input-group justify-content-sm-center mb-3">
-    <div class="col-8 col-sm-5 ps-0">
+    <div class="col-8 col-sm-6 col-md-3 ps-0">
+      <div data-controller="autocomplete" data-autocomplete-url-value="/posts/search_tag" role="combobox">
+        <%= f.search_field :tags_name_cont, data: { autocomplete_target: 'input' }, class: 'form-control', placeholder: t("defaults.input_tags_name") %>
+        <%= f.hidden_field :tags_name, data: { autocomplete_target: 'hidden' } %>
+        <ul class="list-group position-absolute w-100" data-autocomplete-target="results"></ul>
+      </div>
+    </div>
+    <div class="col-8 col-sm-6 col-md-3 ps-0">
       <%= f.search_field :title_or_content_cont, class: 'form-control', placeholder: t("defaults.input_keyword") %>
     </div>
-    <div class="col-8 col-sm-4 col-md-5 ps-0">
+    <div class="col-8 col-sm-8 col-md-3 ps-0">
       <%= f.select :user_my_bike_eq, User.my_bikes_i18n.invert.map{|key, value| [key, User.my_bikes[value]]}, { include_blank: t("defaults.select_bike") }, { class: 'form-select text-secondary pointer' } %>
     </div>
-    <div class="col-2 col-md-1 ps-0 text-center">
-      <%= f.submit class: 'btn btn-outline-success fw-bold px-2 px-xl-3' %>
+    <div class="col-2 col-sm-2 col-md-1 ps-0 text-center">
+      <%= f.submit class: 'btn btn-outline-success fw-bold px-2 px-sm-3 px-md-2 px-xl-3' %>
     </div>
-    <div class="col-1 ps-0 text-center">
-      <button type="button" class="btn btn-light border fw-bold p-2 px-xl-3" id="search_clear_btn" style="font-size: smaller;">
+    <div class="col-2 col-sm-2 col-md-1 ps-0 text-center">
+      <button type="button" class="btn btn-light border fw-bold p-2 px-sm-3 p-md-2 px-xl-3" id="search_clear_btn" style="font-size: smaller;">
         クリア
       </button>
     </div>

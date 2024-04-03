@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   include SortPosts
   include SetRakutenItems
+  include SetTags
   before_action :set_post, only: [:edit, :update, :destroy]
 
   def index
@@ -19,9 +20,11 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
+    tag_list = params[:post][:tag].delete(' ').split(',')
 
     if @post.save
       save_items
+      save_tags(tag_list)
       redirect_to posts_path, success: t('defaults.message.created', item: Post.model_name.human)
     else
       post_create_failure
@@ -34,10 +37,17 @@ class PostsController < ApplicationController
     @comments = @post.comments.includes(:user).order(created_at: :desc)
   end
 
-  def edit; end
+  def edit
+    @post = current_user.posts.find(params[:id])
+    @tag_list = @post.tags.pluck(:name).join(',')
+  end
 
   def update
+    @post = current_user.posts.find(params[:id])
+    tag_list = params[:post][:tag].delete(' ').split(',')
+
     if @post.update(post_params)
+      save_tags(tag_list)
       redirect_to posts_path, success: t('defaults.message.updated', item: Post.model_name.human)
     else
       flash.now[:danger] = t('defaults.message.not_updated', item: Post.model_name.human)
@@ -46,6 +56,9 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post.tags.each do |tag|
+      tag.destroy if tag.posts.size <= 1
+    end
     @post.images.purge
     @post.destroy!
     redirect_to posts_path, success: t('defaults.message.deleted', item: Post.model_name.human)
@@ -64,6 +77,13 @@ class PostsController < ApplicationController
         hits: 15
       })
     end
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def search_tag
+    @tags = Tag.where('name like ?', "%#{params[:q]}%")
     respond_to do |format|
       format.js
     end

@@ -53,6 +53,11 @@
           <%= f.text_field :title, class: 'form-control', id: "title" %>
         </div>
         <div class="form-group">
+          <i class="fa-solid fa-tag"></i>
+          <%= f.label :tag, class: "fw-bold", for: "tag" %>
+          <%= f.text_field :tag, class: 'form-control', id: "tag", value: @tag_list, placeholder: ',で区切って入力してください' %>
+        </div>
+        <div class="form-group">
           <i class="fas fa-pencil-alt me-1"></i>
           <%= f.label :content, class: "fw-bold", for: "content" %>
           <%= f.text_area :content, class: 'form-control', id: "content", rows: 5 %>
