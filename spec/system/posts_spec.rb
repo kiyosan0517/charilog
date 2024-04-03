@@ -121,6 +121,31 @@ RSpec.describe 'Posts', type: :system do
         end
       end
 
+      describe 'コメント追加/削除' do
+        context '入力値が正常' do
+          it 'コメントの追加/削除が成功する' do
+            post_create_and_redirect
+            find('.card-body').click
+            fill_in 'js-new-comment-body', with: 'test-comment'
+            click_button '送信'
+            expect(page).to have_content('test-comment')
+            expect(page).to have_content('コメントを作成しました')
+
+            find('.text-black-50').click
+            accept_alert
+            expect(page).to have_content('コメントはまだありません')
+          end
+        end
+        context 'コメント未入力' do
+          it 'コメントの追加に失敗する(送信ボタンが押せない)' do
+            post_create_and_redirect
+            find('.card-body').click
+            fill_in 'js-new-comment-body', with: ''
+            expect(page).to have_button('送信', disabled: true)
+          end
+        end
+      end
+
       describe 'ログの編集' do
         context '入力値が正常' do
           it 'ログの編集が成功する' do
