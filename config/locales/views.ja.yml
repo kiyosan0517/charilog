@@ -34,6 +34,7 @@ ja:
     to_register_page: '新規登録ページへ'
     to_login_page: 'ログインページへ'
     to_posts_page: '投稿一覧へ'
+    to_edit_post_page: '編集ページへ'
     to_items_page: 'アイテム一覧へ'
     to_new_item_page: 'アイテム登録へ'
     to_user_profile_page: 'プロフィールへ'

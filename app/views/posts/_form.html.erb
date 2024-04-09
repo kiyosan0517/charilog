@@ -19,7 +19,7 @@
         <div class="d-flex align-items-center">
           <i class="fas fa-camera me-1"></i>
           <div class="fw-bold"><%= Post.human_attribute_name(:images) %></div>
-          <span class="ms-1 font-mini-size">(最大4枚)</span>
+          <span class="font-mini-size">（最大4枚）</span>
         </div>
         <p data-images-target="error" class="text-danger m-0"></p>
 
@@ -64,12 +64,18 @@
         </div>
 
         <div class="form-group">
-          <div class="label-container d-flex align-items-center">
+          <div class="d-flex align-items-center flex-wrap mb-2">
             <i class="fa-solid fa-location-dot me-1"></i>
             <div class="fw-bold">ルート登録</div>
+            <span class="font-mini-size">（A:出発地 / B:経由地 / C:目的地）</span>
           </div>
 
           <% if f.object.new_record? %>
+            <div class="route-add-detail text-danger font-mini-size fw-bold">
+              ・[タップ]or[クリック]で<span class="text-decoration-underline">A → B → C</span>の順に設定<br>
+              ・３地点設定後に<span class="text-decoration-underline">【ルート表示】</span>押下で登録可能<br>
+              ・投稿後の追加/削除不可
+            </div>
             <!-- 地図表示エリア -->
             <div id="map" style="height: 300px;"></div>
 
@@ -89,19 +95,19 @@
             <% if @route.present? %>
               <div id="map" style="height: 300px;"></div>
             <% else %>
-              <p class="text-center my-5">ルート登録はありません</p>
+              <p class="text-center text-secondary text-decoration-underline font-mini-size my-5">ルート登録はありません</p>
             <% end %>
           <% end %>
         </div>
 
         <div class="form-group field mb-4">
-          <div class="label-container d-flex align-items-center <%= @post.items.present? ? 'already-add' : '' %>", for: "post_rakuten_url">
+          <div class="d-flex align-items-center mb-2 <%= @post.items.present? ? 'already-add' : '' %>", for: "post_rakuten_url">
             <i class="fa-solid fa-tags me-1"></i>
             <div class="fw-bold">アイテム登録</div>
           </div>
           <% if f.object.new_record? %>
             <div class="items-add-detail text-danger font-mini-size fw-bold">
-              <※注意点><br>
+              < ※ 注意点 ><br>
               ・最大4つまで登録可能<br>
               ・投稿後の追加/削除不可
             </div>
@@ -125,7 +131,7 @@
                 <div class="row align-items-center justify-content-around" id="rakuten_data_wrap<%= index %>">
                   <img id="rakuten_image<%= index %>" class="col-3 d-flex d-none">
                   <p class="d-flex mb-0 text-secondary font-mini-size col-8" id="rakuten_name_text<%= index %>"></p>
-                  <p class="text-center mb-0 text-secondary mt-2 font-mini-size col-12 px-4" id="rakuten_url_text<%= index %>">
+                  <p class="text-center mb-0 text-secondary text-decoration-underline mt-2 font-mini-size col-12 px-4" id="rakuten_url_text<%= index %>">
                     <%= '登録アイテムはありません' if index == 1 %>
                   </p>
                 </div>
@@ -134,7 +140,7 @@
               <% if @post.items.present? %>
                 <%= render 'item_list' %>
               <% else %>
-                <p class="text-center my-5">登録アイテムはありません</p>
+                <p class="text-center text-secondary text-decoration-underline font-mini-size my-5">登録アイテムはありません</p>
               <% end %>
             <% end %>
           </div>

@@ -92,9 +92,10 @@
 
       <% if @route.present? %>
         <div class="mt-3">
-          <div>
-            <i class="fa-solid fa-location-dot"></i>
-            移動ルート
+          <div class="d-flex align-items-center flex-wrap mb-2">
+            <i class="fa-solid fa-location-dot me-1"></i>
+            <div class="fw-bold">移動ルート</div>
+            <span class="font-mini-size">（A:出発地 / B:経由地 / C:目的地）</span>
           </div>
           <!-- 地図表示エリア -->
           <div id="map" style="height: 300px;"></div>
@@ -102,17 +103,25 @@
       <% end %>
 
       <div class="mt-3">
-        <div>
+        <div class="mb-2 fw-bold">
           <i class="fa-solid fa-tags"></i>
-          使用しているアイテム
+          使用アイテム
         </div>
         <% if @post.items.present? %>
           <%= render 'item_list' %>
         <% else %>
-          <p class="text-center font-mini-size text-secondary text-decoration-underline fw-bold my-4">アイテムは登録されていません</p>
+          <p class="text-center font-mini-size text-secondary text-decoration-underline my-5">アイテムは登録されていません</p>
         <% end %>
       </div>
 
+      <div class='text-center pt-4'>
+        <% if current_user.own?(@post) %>
+          <%= link_to t("defaults.to_edit_post_page"), edit_post_path(@post), class: 'btn btn-success m-2 px-3 px-sm-5 submit-button' %>
+        <% else %>
+          <%= link_to t("defaults.to_user_profile_page"), user_path(@post.user), class: 'btn btn-primary m-3 px-3 px-sm-5 submit-button' %>
+        <% end %>
+        <%= link_to t("defaults.to_posts_page"), posts_path, class: 'btn btn-info m-2 px-3 px-sm-5' %>
+      </div>
     </div>
   </div>
 
