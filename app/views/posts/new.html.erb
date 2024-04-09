@@ -12,3 +12,104 @@
   <%= render 'form', post: @post %>
   
 </div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap" async defer></script>
+<script>
+  var map;
+  var markers = [];
+  var DisplayRouteBtn = document.querySelector('#display_route_btn');
+  var directionsService;
+  var directionsRenderer;
+
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: 35.6895, lng: 139.6917}, // 東京の座標
+      zoom: 10
+    });
+
+    directionsService = new google.maps.DirectionsService();
+    directionsRenderer = new google.maps.DirectionsRenderer();
+    directionsRenderer.setMap(map);
+
+    map.addListener('click', function(event) {
+      placeMarker(event.latLng);
+    });
+  }
+
+  function placeMarker(location) {
+    if (markers.length >= 3) {
+      alert("You've already placed 3 markers.");
+      return;
+    }
+
+    var label = String.fromCharCode(65 + markers.length);
+
+    var marker = new google.maps.Marker({
+      position: location,
+      map: map,
+      label: label
+    });
+
+    markers.push(marker);
+
+    var index = markers.length - 1;
+    document.getElementById('start_latitude').value = markers[0] ? markers[0].getPosition().lat() : '';
+    document.getElementById('start_longitude').value = markers[0] ? markers[0].getPosition().lng() : '';
+    document.getElementById('waypoint_latitude').value = markers[1] ? markers[1].getPosition().lat() : '';
+    document.getElementById('waypoint_longitude').value = markers[1] ? markers[1].getPosition().lng() : '';
+    document.getElementById('end_latitude').value = markers[2] ? markers[2].getPosition().lat() : '';
+    document.getElementById('end_longitude').value = markers[2] ? markers[2].getPosition().lng() : '';
+
+    if (markers.length === 3) {
+      DisplayRouteBtn.disabled = false;
+    }
+  }
+
+  function clearMarkers() {
+    for (var i = 0; i < markers.length; i++) {
+      markers[i].setMap(null);
+    }
+    markers = [];
+    document.getElementById('start_latitude').value = '';
+    document.getElementById('start_longitude').value = '';
+    document.getElementById('waypoint_latitude').value = '';
+    document.getElementById('waypoint_longitude').value = '';
+    document.getElementById('end_latitude').value = '';
+    document.getElementById('end_longitude').value = '';
+
+    directionsRenderer.setDirections({ routes: [] });
+
+    DisplayRouteBtn.disabled = true;
+  }
+
+  function displayRoute() {
+    var start = markers[0].getPosition();
+    var waypoint = markers[1].getPosition();
+    var end = markers[2].getPosition();
+
+    var request = {
+      origin: start,
+      waypoints: [{ location: waypoint, stopover: true }],
+      destination: end,
+      travelMode: 'BICYCLING'
+    };
+
+    directionsService.route(request, function(response, status) {
+      if (status === 'OK') {
+        directionsRenderer.setDirections(response);
+      } else if (status === 'ZERO_RESULTS') {
+        // 自転車のルートが見つからない場合、徒歩でのルート検索を試みる
+        request.travelMode = 'WALKING';
+        directionsService.route(request, function(response, status) {
+          if (status === 'OK') {
+            directionsRenderer.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      } else {
+        window.alert('Directions request failed due to ' + status);
+      }
+    });
+  }
+</script>

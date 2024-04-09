@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   include SortPosts
   include SetRakutenItems
   include SetTags
+  include SetRoute
   before_action :set_post, only: [:edit, :update, :destroy]
 
   def index
@@ -23,6 +24,7 @@ class PostsController < ApplicationController
     tag_list = params[:post][:tag].delete(' ').split(',')
 
     if @post.save
+      save_route
       save_items
       save_tags(tag_list)
       redirect_to posts_path, success: t('defaults.message.created', item: Post.model_name.human)
@@ -35,11 +37,13 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
     @comments = @post.comments.includes(:user).order(created_at: :desc)
+    @route = @post.route if @post.route.present?
   end
 
   def edit
     @post = current_user.posts.find(params[:id])
     @tag_list = @post.tags.pluck(:name).join(',')
+    @route = @post.route if @post.route.present?
   end
 
   def update

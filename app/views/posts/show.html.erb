@@ -90,18 +90,38 @@
       
       <p class="card-text mt-2"><%= raw Rinku.auto_link(safe_join(@post.content.split("\n"),tag(:br)), :urls, 'target="_blank" rel="noopener noreferrer"') %></p>
 
+      <% if @route.present? %>
+        <div class="mt-3">
+          <div class="d-flex align-items-center flex-wrap mb-2">
+            <i class="fa-solid fa-location-dot me-1"></i>
+            <div class="fw-bold">移動ルート</div>
+            <span class="font-mini-size">（A:出発地 / B:経由地 / C:目的地）</span>
+          </div>
+          <!-- 地図表示エリア -->
+          <div id="map" style="height: 300px;"></div>
+        </div>
+      <% end %>
+
       <div class="mt-3">
-        <div>
+        <div class="mb-2 fw-bold">
           <i class="fa-solid fa-tags"></i>
-          使用しているアイテム
+          使用アイテム
         </div>
         <% if @post.items.present? %>
           <%= render 'item_list' %>
         <% else %>
-          <p class="text-center font-mini-size text-secondary text-decoration-underline fw-bold my-4">アイテムは登録されていません</p>
+          <p class="text-center font-mini-size text-secondary text-decoration-underline my-5">アイテムは登録されていません</p>
         <% end %>
       </div>
 
+      <div class='text-center pt-4'>
+        <% if current_user.own?(@post) %>
+          <%= link_to t("defaults.to_edit_post_page"), edit_post_path(@post), class: 'btn btn-success m-2 px-3 px-sm-5 submit-button' %>
+        <% else %>
+          <%= link_to t("defaults.to_user_profile_page"), user_path(@post.user), class: 'btn btn-primary m-3 px-3 px-sm-5 submit-button' %>
+        <% end %>
+        <%= link_to t("defaults.to_posts_page"), posts_path, class: 'btn btn-info m-2 px-3 px-sm-5' %>
+      </div>
     </div>
   </div>
 
@@ -115,27 +135,79 @@
     <%= link_to t("defaults.to_home_page"), root_path, class: "btn btn-outline-info fw-bold mb-4 mb-sm-0 py-3 px-sm-5" %>
     <%= link_to t("defaults.to_user_profile_page"), user_path(@post.user), class: "btn btn-outline-success fw-bold ms-sm-4 ms-md-5 py-3 px-sm-5" %>
   </div>
-</div>  
+</div>
 
 <script>
-    let mySwiper = new Swiper ('.swiper', {
-  // 以下にオプションを設定
-  loop: false, //最後に達したら先頭に戻る
+  let mySwiper = new Swiper ('.swiper', {
+    // 以下にオプションを設定
+    loop: false, //最後に達したら先頭に戻る
 
-  //ページネーション表示の設定
-  pagination: {
-    el: '.swiper-pagination', //ページネーションの要素
-    type: 'fraction',
-    renderFraction: function(currentClass, totalClass) {
-      return '<span class="customPagenation">- <span class="' + currentClass + '"></span>' + ' / ' + '<span class="' + totalClass + '"></span> -</span>';
+    //ページネーション表示の設定
+    pagination: {
+      el: '.swiper-pagination', //ページネーションの要素
+      type: 'fraction',
+      renderFraction: function(currentClass, totalClass) {
+        return '<span class="customPagenation">- <span class="' + currentClass + '"></span>' + ' / ' + '<span class="' + totalClass + '"></span> -</span>';
+      },
     },
-  },
 
-  //ナビゲーションボタン（矢印）表示の設定
-  navigation: {
-    nextEl: '.swiper-button-next', //「次へボタン」要素の指定
-    prevEl: '.swiper-button-prev', //「前へボタン」要素の指定
-  },
-
-})
+    //ナビゲーションボタン（矢印）表示の設定
+    navigation: {
+      nextEl: '.swiper-button-next', //「次へボタン」要素の指定
+      prevEl: '.swiper-button-prev', //「前へボタン」要素の指定
+    },
+  })
 </script>
+
+<% if @route.present? %>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap" async defer></script>
+  <script>
+    var map;
+    var directionsService;
+    var directionsRenderer;
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: <%= @route.start_latitude %>, lng: <%= @route.start_longitude %>},
+        zoom: 10
+      });
+
+      directionsService = new google.maps.DirectionsService();
+      directionsRenderer = new google.maps.DirectionsRenderer();
+      directionsRenderer.setMap(map);
+
+      displayRoute();
+    }
+
+    function displayRoute() {
+      var start = {lat: <%= @route.start_latitude %>, lng: <%= @route.start_longitude %>};
+      var waypoint = {lat: <%= @route.waypoint_latitude %>, lng: <%= @route.waypoint_longitude %>};
+      var end = {lat: <%= @route.end_latitude %>, lng: <%= @route.end_longitude %>};
+
+      var request = {
+        origin: start,
+        waypoints: [{ location: waypoint, stopover: true }],
+        destination: end,
+        travelMode: 'BICYCLING'
+      };
+
+      directionsService.route(request, function(response, status) {
+        if (status === 'OK') {
+          directionsRenderer.setDirections(response);
+        } else if (status === 'ZERO_RESULTS') {
+          // 自転車のルートが見つからない場合、徒歩でのルート検索を試みる
+          request.travelMode = 'WALKING';
+          directionsService.route(request, function(response, status) {
+            if (status === 'OK') {
+              directionsRenderer.setDirections(response);
+            } else {
+              window.alert('Directions request failed due to ' + status);
+            }
+          });
+        } else {
+          window.alert('Directions request failed due to ' + status);
+        }
+      });
+    }
+  </script>
+<% end %>

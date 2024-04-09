@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_04_03_021402) do
+ActiveRecord::Schema.define(version: 2024_04_09_063155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,19 @@ ActiveRecord::Schema.define(version: 2024_04_03_021402) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "routes", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.float "start_latitude"
+    t.float "start_longitude"
+    t.float "waypoint_latitude"
+    t.float "waypoint_longitude"
+    t.float "end_latitude"
+    t.float "end_longitude"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_routes_on_post_id"
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -136,4 +149,5 @@ ActiveRecord::Schema.define(version: 2024_04_03_021402) do
   add_foreign_key "post_tags", "posts"
   add_foreign_key "post_tags", "tags"
   add_foreign_key "posts", "users"
+  add_foreign_key "routes", "posts"
 end

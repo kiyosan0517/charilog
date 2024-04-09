@@ -12,3 +12,56 @@
   <%= render 'form', post: @post %>
 
 </div>
+
+<% if @route.present? %>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap" async defer></script>
+  <script>
+    var map;
+    var directionsService;
+    var directionsRenderer;
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: <%= @route.start_latitude %>, lng: <%= @route.start_longitude %>},
+        zoom: 10
+      });
+
+      directionsService = new google.maps.DirectionsService();
+      directionsRenderer = new google.maps.DirectionsRenderer();
+      directionsRenderer.setMap(map);
+
+      displayRoute();
+    }
+
+    function displayRoute() {
+      var start = {lat: <%= @route.start_latitude %>, lng: <%= @route.start_longitude %>};
+      var waypoint = {lat: <%= @route.waypoint_latitude %>, lng: <%= @route.waypoint_longitude %>};
+      var end = {lat: <%= @route.end_latitude %>, lng: <%= @route.end_longitude %>};
+
+      var request = {
+        origin: start,
+        waypoints: [{ location: waypoint, stopover: true }],
+        destination: end,
+        travelMode: 'BICYCLING'
+      };
+
+      directionsService.route(request, function(response, status) {
+        if (status === 'OK') {
+          directionsRenderer.setDirections(response);
+        } else if (status === 'ZERO_RESULTS') {
+          // 自転車のルートが見つからない場合、徒歩でのルート検索を試みる
+          request.travelMode = 'WALKING';
+          directionsService.route(request, function(response, status) {
+            if (status === 'OK') {
+              directionsRenderer.setDirections(response);
+            } else {
+              window.alert('Directions request failed due to ' + status);
+            }
+          });
+        } else {
+          window.alert('Directions request failed due to ' + status);
+        }
+      });
+    }
+  </script>
+<% end %>
