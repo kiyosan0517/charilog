@@ -23,6 +23,19 @@ class PostsController < ApplicationController
     tag_list = params[:post][:tag].delete(' ').split(',')
 
     if @post.save
+      # ルート情報を保存
+      if params[:post][:end_latitude].present?
+        Route.create(
+          start_latitude: params[:post][:start_latitude],
+          start_longitude: params[:post][:start_longitude],
+          waypoint_latitude: params[:post][:waypoint_latitude],
+          waypoint_longitude: params[:post][:waypoint_longitude],
+          end_latitude: params[:post][:end_latitude],
+          end_longitude: params[:post][:end_longitude],
+          post_id: @post.id
+        )
+      end
+
       save_items
       save_tags(tag_list)
       redirect_to posts_path, success: t('defaults.message.created', item: Post.model_name.human)
@@ -35,11 +48,13 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
     @comments = @post.comments.includes(:user).order(created_at: :desc)
+    @route = @post.route if @post.route.present?
   end
 
   def edit
     @post = current_user.posts.find(params[:id])
     @tag_list = @post.tags.pluck(:name).join(',')
+    @route = @post.route if @post.route.present?
   end
 
   def update
