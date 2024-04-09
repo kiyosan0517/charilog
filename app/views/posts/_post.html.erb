@@ -47,6 +47,9 @@
       <div class="card-body hover-opacity-50 pt-3">
         <div class="d-flex align-items-center h4 mb-3">
           <%= render 'posts/likes_items_comments_count', post: post %>
+          <% if post.route.present? %>
+            <i class="fa-solid fa-map-location-dot ms-auto"></i>
+          <% end %>
         </div>
         <h5 class="card-title post-title fw-bold mb-0"><%= post.title %></h5>
         <div class="mb-2">
