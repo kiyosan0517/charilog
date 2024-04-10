@@ -1,2 +1,62 @@
-<h1>Notifications#index</h1>
-<p>Find me in app/views/notifications/index.html.erb</p>
+<% content_for :title, t('.title') %>
+
+<div class="container pt-2 mb-sm-5 pb-sm-5">
+  <div class="title-area under-line border-4 d-lg-flex d-none my-2">
+    <%= link_to 'javascript:history.back()', class: 'me-4' do %>
+      <i class="fas fa-angle-left fa-2x"></i>
+    <% end %>
+    <h3 class="fw-bold"><%= t(".title") %></h3>
+  </div>
+
+  <!-- 点検項目一覧 -->
+  <div class="row">
+    <div class="table-responsive">
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th class="text-nowrap">点検項目</th>
+            <th></th>
+            <th class="text-center text-nowrap">前回実施日</th>
+            <th class="text-center text-nowrap">次回実施日</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% [
+            { name: '空気補充', frequency: '(目安頻度：１週間)', sent_at: @air_pressure_sent_at, next_date: @air_pressure_next_date, type: :air_pressure },
+            { name: 'チェーン洗浄/注油', frequency: '(目安頻度：１ヶ月)', sent_at: @chain_oil_sent_at, next_date: @chain_oil_next_date, type: :chain_oil },
+            { name: 'フレーム洗車', frequency: '(目安頻度：２ヶ月)', sent_at: @frame_cleaning_sent_at, next_date: @frame_cleaning_next_date, type: :frame_cleaning }
+          ].each do |inspection| %>
+            <% overdue = inspection[:next_date].present? && inspection[:next_date] < Date.today %>
+            <tr class="text-nowrap">
+              <th class="align-middle fw-bold py-4 pe-0">
+                <%= inspection[:name] %>
+                <br>
+                <small class="text-muted"><%= inspection[:frequency] %></small>
+              </th>
+              <th class="align-middle px-3">
+                <i class="fa-regular fa-calendar fa-lg calendar-icon text-primary pointer hover-opacity-50"
+                  data-bs-toggle="modal"
+                  data-bs-target="#calendarModal"
+                  data-notification-type="<%= inspection[:type] %>">
+                </i>
+              </th>
+              <th class="text-center align-middle"><%= inspection[:sent_at].present? ? inspection[:sent_at].strftime('%Y/%m/%d') : '<span class="text-info">未登録</span>'.html_safe %></th>
+              <th class="text-center align-middle">
+                <% if inspection[:next_date].present? %>
+                  <% if overdue %>
+                    <span class="text-danger">要点検</span>
+                  <% else %>
+                    <%= inspection[:next_date].strftime('%Y/%m/%d') %>
+                  <% end %>
+                <% else %>
+                  ー
+                <% end %>
+              </th>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

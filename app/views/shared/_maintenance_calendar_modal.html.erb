@@ -1,0 +1,82 @@
+<!-- カレンダーモーダル -->
+<div class="modal fade" id="calendarModal" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="calendarModalLabel">カレンダー</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <!-- フォームを追加 -->
+      <form id="notificationForm" action="/notifications" method="POST">
+        <!-- 通知タイプを送信するための非表示フィールド -->
+        <input type="hidden" id="notificationTypeField" name="notification_type" value="">
+        <input type="hidden" id="sent_at" name="sent_at">
+        <!-- 日付を選択するための入力要素 -->
+        <div class="modal-body">
+          <input type="text" class="form-control" id="datepicker">
+        </div>
+        <!-- 登録ボタン -->
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">登録</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    // datepickerを初期化
+    $('#datepicker').datepicker({
+      format: 'yyyy/mm/dd', // 日付のフォーマットを指定
+      todayBtn: 'linked', // "今日" ボタンを有効化
+      autoclose: true, // 日付を選択するとモーダルが閉じるように設定
+      clearBtn: true // クリアボタンを表示
+    });
+  });
+</script>
+
+<script>
+  $(document).ready(function() {
+    // カレンダーアイコンがクリックされた時の処理
+    $('.calendar-icon').click(function() {
+      // 通知タイプを取得
+      var notificationType = $(this).data('notification-type');
+      // モーダル内の通知タイプフィールドに設定
+      $('#notificationTypeField').val(notificationType);
+    });
+
+    // フォームがサブミットされた時の処理
+    $('#notificationForm').submit(function(event) {
+      event.preventDefault(); // フォームのデフォルトのサブミットをキャンセル
+      var form = $(this);
+      // 選択された日付を取得
+      var selectedDate = $('#datepicker').val();
+      // 日付をセット
+      $('#sent_at').val(selectedDate);
+      // フォームデータを取得
+      var formData = form.serialize();
+      // 同期通信でフォームをサブミット
+      $.ajax({
+        url: form.attr('action'),
+        method: 'POST',
+        headers: {
+          'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: formData,
+        success: function(response) {
+          alert('日付を登録しました');
+          // モーダルを閉じる（必要に応じて）
+          $('#calendarModal').modal('hide');
+        },
+        error: function(xhr, status, error) {
+          alert('日付の登録に失敗しました');
+          console.error('Error creating notification:', error);
+        }
+      });
+    });
+
+  });
+</script>
+

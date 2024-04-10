@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :notifications, only: [:index, :create, :update]
+  resources :notifications, only: [:index, :create]
 
   resources :password_resets, only: [:new, :create, :edit, :update]
 
