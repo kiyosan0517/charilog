@@ -48,6 +48,14 @@
           <span class="title p-0 ms-sm-2"><%= t("defaults.my_page") %></span>
         <% end %>
       </li>
+      <li class="nav-item <%= nav_item_class(notifications_path) %>">
+        <%= link_to notifications_path do %>
+          <span class="nav-icon">
+            <ion-icon name="build-outline"></ion-icon>
+          </span>
+          <span class="title p-0 ms-sm-2"><%= t("defaults.maintenance") %></span>
+        <% end %>
+      </li>
       <li class="nav-item <%= nav_item_class(edit_profile_path) %>">
         <%= link_to edit_profile_path do %>
           <span class="nav-icon">

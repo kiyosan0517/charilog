@@ -8,6 +8,7 @@ ja:
     home: 'ホーム'
     likes: 'いいね'
     items: 'アイテム管理'
+    maintenance: 'メンテナンス'
     my_page: 'マイページ'
     profile: 'プロフィール'
     privacy_policy: 'プライバシーポリシー'
@@ -163,6 +164,9 @@ ja:
       title: 'プロフィール編集'
     update:
       title: 'プロフィール編集'
+  notifications:
+    index:
+      title: 'メンテナンス管理'
   password_resets:
     new:
       title: 'パスワード再設定申請'
