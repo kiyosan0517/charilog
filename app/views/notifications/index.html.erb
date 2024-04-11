@@ -1,0 +1,86 @@
+<% content_for :title, t('.title') %>
+
+<div class="container pt-2 mb-sm-5 pb-sm-5">
+  <div class="title-area under-line border-4 d-lg-flex d-none my-2">
+    <%= link_to 'javascript:history.back()', class: 'me-4' do %>
+      <i class="fas fa-angle-left fa-2x"></i>
+    <% end %>
+    <h3 class="fw-bold"><%= t(".title") %></h3>
+  </div>
+
+  <div class="text-danger mb-4 mt-2 my-lg-4">
+    <h5 class="fw-bold">◉ サービス / メンテナンスに関して</h5>
+  </div>
+
+  <ul class="notification-detail font-mini-size my-4 ps-3">
+    <li class="mb-1"><span class="fw-bold">「次回実施日」</span>には登録のメールアドレスへ<span class="fw-bold text-decoration-underline">お知らせメール</span>が入ります</li>
+    <li class="mb-1"><span class="fw-bold">「前回実施日」,「次回実施日」</span>は日付登録後に<span class="fw-bold text-decoration-underline">ページの再読み込み</span>を行うことで反映されます</li>
+    <li class="mb-1">本サイトでは頻繁に行うメンテナンスのみを記載しております。下記のような点も定期的に確認する必要があります。
+      <ul class="ps-3">
+        <li>ネジ/ボルトの緩み</li>
+        <li>消耗品のチェック(事故に直結しやすいタイヤ/チューブ・ブレーキシュー/パッドなどは頻繁に！)</li>
+        <li>油圧ディスクのオイル交換</li>
+        <li>チェーンの伸び</li>
+        <li>ホイールの振れなど</li>
+      </ul>
+    </li>
+    <li class="mb-1">下記の頻度はあくまで目安のため、<span class="fw-bold text-decoration-underline">頻繁に長距離を走る方は早めのメンテナンス</span>を心掛けよう！</li>
+  </ul>
+
+  <!-- 点検項目一覧 -->
+  <div class="row">
+    <div class="table-responsive">
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th class="text-nowrap ps-md-5 pe-md-0">点検項目</th>
+            <th></th>
+            <th class="text-center text-nowrap">前回実施日</th>
+            <th class="text-center text-nowrap">次回実施日</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% [
+            { name: '空気補充', frequency: '(目安頻度：１週間)', sent_at: @air_pressure_sent_at, next_date: @air_pressure_next_date, type: :air_pressure },
+            { name: 'チェーン洗浄/注油', frequency: '(目安頻度：１ヶ月)', sent_at: @chain_oil_sent_at, next_date: @chain_oil_next_date, type: :chain_oil },
+            { name: 'フレーム洗車', frequency: '(目安頻度：２ヶ月)', sent_at: @frame_cleaning_sent_at, next_date: @frame_cleaning_next_date, type: :frame_cleaning }
+          ].each do |inspection| %>
+            <% overdue = inspection[:next_date].present? && inspection[:next_date] < Date.today %>
+            <tr class="text-nowrap">
+              <th class="align-middle fw-bold py-4 ps-md-5 pe-md-0">
+                <%= inspection[:name] %>
+                <br>
+                <small class="text-muted"><%= inspection[:frequency] %></small>
+              </th>
+              <th class="align-middle px-4">
+                <i class="fa-regular fa-calendar fa-xl calendar-icon text-primary pointer hover-opacity-50"
+                  data-bs-toggle="modal"
+                  data-bs-target="#calendarModal"
+                  data-notification-type="<%= inspection[:type] %>">
+                </i>
+              </th>
+              <th class="text-center align-middle"><%= inspection[:sent_at].present? ? inspection[:sent_at].strftime('%Y/%m/%d') : '<span class="text-info">未登録</span>'.html_safe %></th>
+              <th class="text-center align-middle">
+                <% if inspection[:next_date].present? %>
+                  <% if overdue %>
+                    <span class="text-danger"><ion-icon name="alert-circle-outline"></ion-icon>要点検</span>
+                  <% else %>
+                    <%= inspection[:next_date].strftime('%Y/%m/%d') %>
+                  <% end %>
+                <% else %>
+                  ー
+                <% end %>
+              </th>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="d-flex flex-column flex-sm-row justify-content-center px-2 mt-5 mb-4">
+    <%= link_to t("defaults.to_home_page"), root_path, class: "btn btn-outline-info fw-bold mb-4 mb-sm-0 py-3 px-sm-5" %>
+    <%= link_to t("defaults.to_my_page"), user_path(current_user), class: "btn btn-outline-success fw-bold ms-sm-4 ms-md-5 py-3 px-sm-5" %>
+  </div>
+</div>

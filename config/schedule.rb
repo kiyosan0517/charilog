@@ -27,3 +27,7 @@ set :output, Rails.root.join('log/crontab.log') # cronのログ出力用ファ�
 every :hour do # タスクの実行間隔
   rake 'unattached_images:purge', environment: ENV['RAILS_ENV'] # ← rake "タスクのファイル名 : タスク名"
 end
+
+every 1.day, at: '9:00 am' do
+  rake 'notifications:check_the_next_date', environment: ENV['RAILS_ENV']
+end

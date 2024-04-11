@@ -8,6 +8,7 @@ ja:
     home: 'ホーム'
     likes: 'いいね'
     items: 'アイテム管理'
+    maintenance: 'メンテナンス'
     my_page: 'マイページ'
     profile: 'プロフィール'
     privacy_policy: 'プライバシーポリシー'
@@ -30,7 +31,7 @@ ja:
     remember_me: '次回から自動でログイン'
     to_top_page: 'トップページへ戻る'
     to_home_page: 'ホームへ戻る'
-    to_my_page: 'マイページへ戻る'
+    to_my_page: 'マイページへ'
     to_register_page: '新規登録ページへ'
     to_login_page: 'ログインページへ'
     to_posts_page: '投稿一覧へ'
@@ -163,6 +164,9 @@ ja:
       title: 'プロフィール編集'
     update:
       title: 'プロフィール編集'
+  notifications:
+    index:
+      title: 'メンテナンス管理'
   password_resets:
     new:
       title: 'パスワード再設定申請'

@@ -66,6 +66,11 @@ ja:
         TREK（トレック）: 'トレック'
         Wilier（ウィリエール）: 'ウィリエール'
         YONEX（ヨネックス）: 'ヨネックス'
+    notification:
+      notification_type:
+        air_pressure: '空気補充'
+        chain_oil: 'チェーン洗浄/注油'
+        frame_cleaning: 'フレーム洗車'
   activerecord:
     models:
       comment: 'コメント'
