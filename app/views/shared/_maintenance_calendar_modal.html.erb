@@ -29,25 +29,22 @@
   $(document).ready(function() {
     // datepickerを初期化
     $('#datepicker').datepicker({
-      format: 'yyyy/mm/dd', // 日付のフォーマットを指定
-      todayBtn: 'linked', // "今日" ボタンを有効化
-      autoclose: true, // 日付を選択するとモーダルが閉じるように設定
-      clearBtn: true // クリアボタンを表示
+      language: 'ja',
+      format: 'yyyy/mm/dd',
+      todayBtn: 'linked',
+      autoclose: true,
+      clearBtn: true
     });
   });
 </script>
 
 <script>
   $(document).ready(function() {
-    // カレンダーアイコンがクリックされた時の処理
     $('.calendar-icon').click(function() {
-      // 通知タイプを取得
       var notificationType = $(this).data('notification-type');
-      // モーダル内の通知タイプフィールドに設定
       $('#notificationTypeField').val(notificationType);
     });
 
-    // フォームがサブミットされた時の処理
     $('#notificationForm').submit(function(event) {
       event.preventDefault(); // フォームのデフォルトのサブミットをキャンセル
       var form = $(this);
@@ -67,7 +64,6 @@
         data: formData,
         success: function(response) {
           alert('日付を登録しました');
-          // モーダルを閉じる（必要に応じて）
           $('#calendarModal').modal('hide');
         },
         error: function(xhr, status, error) {
@@ -76,7 +72,5 @@
         }
       });
     });
-
   });
 </script>
-
