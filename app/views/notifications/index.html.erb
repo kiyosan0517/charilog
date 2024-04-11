@@ -45,7 +45,7 @@
               <th class="text-center align-middle">
                 <% if inspection[:next_date].present? %>
                   <% if overdue %>
-                    <span class="text-danger">要点検</span>
+                    <span class="text-danger"><ion-icon name="alert-circle-outline"></ion-icon>要点検</span>
                   <% else %>
                     <%= inspection[:next_date].strftime('%Y/%m/%d') %>
                   <% end %>
