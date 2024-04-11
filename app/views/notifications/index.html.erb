@@ -15,10 +15,10 @@
   <ul class="notification-detail font-mini-size my-4 ps-3">
     <li class="mb-1"><span class="fw-bold">「次回実施日」</span>には登録のメールアドレスへ<span class="fw-bold text-decoration-underline">お知らせメール</span>が入ります</li>
     <li class="mb-1"><span class="fw-bold">「前回実施日」,「次回実施日」</span>は日付登録後に<span class="fw-bold text-decoration-underline">ページの再読み込み</span>を行うことで反映されます</li>
-    <li class="mb-1">本サイトでは頻繁に行うメンテナンスのみを記載しております。その他、下記のような点も定期的に確認する必要があります。
+    <li class="mb-1">本サイトでは頻繁に行うメンテナンスのみを記載しております。下記のような点も定期的に確認する必要があります。
       <ul class="ps-3">
-        <li>消耗品のチェック(事故に直結しやすいタイヤ/チューブ・ブレーキシュー/パッドなどは頻繁に！)</li>
         <li>ネジ/ボルトの緩み</li>
+        <li>消耗品のチェック(事故に直結しやすいタイヤ/チューブ・ブレーキシュー/パッドなどは頻繁に！)</li>
         <li>油圧ディスクのオイル交換</li>
         <li>チェーンの伸び</li>
         <li>ホイールの振れなど</li>
@@ -33,7 +33,7 @@
       <table class="table table-condensed">
         <thead>
           <tr>
-            <th class="text-nowrap ps-md-5">点検項目</th>
+            <th class="text-nowrap ps-md-5 pe-md-0">点検項目</th>
             <th></th>
             <th class="text-center text-nowrap">前回実施日</th>
             <th class="text-center text-nowrap">次回実施日</th>
@@ -48,13 +48,13 @@
           ].each do |inspection| %>
             <% overdue = inspection[:next_date].present? && inspection[:next_date] < Date.today %>
             <tr class="text-nowrap">
-              <th class="align-middle fw-bold py-4 ps-md-5">
+              <th class="align-middle fw-bold py-4 ps-md-5 pe-md-0">
                 <%= inspection[:name] %>
                 <br>
                 <small class="text-muted"><%= inspection[:frequency] %></small>
               </th>
               <th class="align-middle px-4">
-                <i class="fa-regular fa-calendar fa-2x calendar-icon text-primary pointer hover-opacity-50"
+                <i class="fa-regular fa-calendar fa-xl calendar-icon text-primary pointer hover-opacity-50"
                   data-bs-toggle="modal"
                   data-bs-target="#calendarModal"
                   data-notification-type="<%= inspection[:type] %>">
