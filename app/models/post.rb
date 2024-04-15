@@ -13,7 +13,7 @@ class Post < ApplicationRecord
 
   has_many :comments, dependent: :destroy
 
-  has_one :route
+  has_one :route, dependent: :destroy
 
   validates :title, presence: true
 end
