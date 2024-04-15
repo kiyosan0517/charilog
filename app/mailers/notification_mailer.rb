@@ -6,5 +6,7 @@ class NotificationMailer < ApplicationMailer
     @maintenance_type = notification.notification_type_i18n
     @url = 'https://charilog.jp/notifications'
     mail(to: user.email, subject: '自転車メンテナンスのご案内')
+
+    logger.info "Delivering mail to: #{@user.email}"
   end
 end
