@@ -40,47 +40,50 @@ XやFacebookなど以上に自転車に関連する投稿を発信しやすく�
 
 | 新規登録 | ログイン/トップ | ログイン/トップ |
 | :---: | :---: | :---: |
-| ![charilog-user-new](https://github.com/kiyosan0517/charilog/assets/131296049/502b194d-1593-43d3-9f6a-588c4cf16115) | ![charilog-login](https://github.com/kiyosan0517/charilog/assets/131296049/8f10daab-16da-4886-835d-cc69f4934d10) | ![charilog-login](https://github.com/kiyosan0517/charilog/assets/131296049/a79c9eb9-68ce-4d3e-aa2b-cc02f6ce3da6) |
+| ![charilog-user-new](https://github.com/kiyosan0517/charilog/assets/131296049/502b194d-1593-43d3-9f6a-588c4cf16115) | ![charilog-login](https://github.com/kiyosan0517/charilog/assets/131296049/8f10daab-16da-4886-835d-cc69f4934d10) | ![charilog-login2](https://github.com/kiyosan0517/charilog/assets/131296049/79ad83f4-b8df-44ab-9d33-0fa939f2404e) |
 | メールアドレス・パスワードの他に、アイコン画像やユーザー名、お気に入りメーカーを登録可能 | ログインページにはパスワードリセットのためのリンクも用意 | ログインページ下部にはサービス詳細、XとLINEへのシェアボタン、最新の投稿を表示 |
 <br>
 
-| ログ一覧（ホーム） | いいね一覧 | ログ投稿 |
+| ログ一覧<br>（ホーム） | いいね一覧 | ログ投稿 |
 | :---: | :---: | :---: |
-| ![charilog-posts-index](https://github.com/kiyosan0517/charilog/assets/131296049/df35ecdd-df12-4ff3-b152-a9b6e2f13b36) | ![charilog-likes-index](https://github.com/kiyosan0517/charilog/assets/131296049/ffeeb05e-8d29-4981-8dfc-dac93f8e6c7d) | ![charilog-post-new](https://github.com/kiyosan0517/charilog/assets/131296049/aa6eabeb-91d9-46cb-89ff-96f1cbabafad) |
-| ログの検索、検索条件クリア、ログの並び替えが可能 | いいねした投稿のみを一覧形式で確認可能 | 画像やアイテムをログに紐づけて投稿可能 |
+| ![charilog-posts-index](https://github.com/kiyosan0517/charilog/assets/131296049/cdec1e12-482f-4377-b1d6-24913e6d3245) | ![charilog-likes-index](https://github.com/kiyosan0517/charilog/assets/131296049/0dcdd941-7a68-4437-b670-c051651b41f8) | ![charilog-post-new](https://github.com/kiyosan0517/charilog/assets/131296049/3a61ca3e-fffc-460a-9100-3e916f6faa85) |
+| ログの検索、検索条件クリア、ログの並び替えが可能 | いいねした投稿のみを一覧形式で確認可能 | 投稿には最大4枚まで画像を添付でき、タグも設定可能 |
 <br>
 
-| ログ詳細 | ログ詳細 | マイページ（ユーザー詳細） |
+| ログ投稿 | ログ詳細 | ログ詳細 |
 | :---: | :---: | :---: |
-| ![charilog-post-show](https://github.com/kiyosan0517/charilog/assets/131296049/d4730935-ec47-4a4f-98e2-3a45fe9090b2) | ![charilog-post-show](https://github.com/kiyosan0517/charilog/assets/131296049/da3a2f7b-2187-4697-9928-78419d466b1c) | ![charilog-user-show](https://github.com/kiyosan0517/charilog/assets/131296049/5b59c564-7d94-46c0-a96e-16ac281ba2df) |
-| 各ログ詳細にはシェアボタンを設置。<br>他ユーザーのログにはいいねが可能 | 登録アイテムの情報として、商品画像、商品名、商品価格、楽天へリンクが確認可能 | マイページorユーザー詳細では、自分や他ユーザーの詳細な情報を確認可能。ここにもシェアボタンを設置 |
+| ![charilog-post-new2](https://github.com/kiyosan0517/charilog/assets/131296049/2a06f49c-c49a-4bd3-9b12-46b510488656) | ![charilog-post-show](https://github.com/kiyosan0517/charilog/assets/131296049/fda1b7d1-1dc0-4f99-b324-8fa9ac409290) | ![charilog-post-show2](https://github.com/kiyosan0517/charilog/assets/131296049/dfb9fc3d-aeae-49b0-bbd8-ec123fd5be08) |
+| ABCの３点を繋げたルート、カスタムアイテムも登録可能 | 各ログ詳細にはシェアボタンを設置。他ユーザーのログにはいいねが可能 | 移動ルート、使用アイテム情報（画像、商品名、価格、リンク）を確認可能。 |
+<br>
+
+| ログ詳細 | メンテナンス管理 | マイページ<br>（ユーザー詳細） |
+| :---: | :---: | :---: |
+| ![charilog-post-show2](https://github.com/kiyosan0517/charilog/assets/131296049/10f128e1-6f8b-455c-aa16-87d372adadf8) | ![charilog-notifications-index](https://github.com/kiyosan0517/charilog/assets/131296049/2ac3ffef-bfc2-461c-910a-bd28b7975889) | ![charilog-user-show](https://github.com/kiyosan0517/charilog/assets/131296049/0ba4e1d9-f064-453e-a424-82696a8eef24) |
+| 各ログ詳細の下部にはコメント用のフォームを設置 | 「空気補充・チェーン洗浄/注油・フレーム洗車」のメンテナンス歴を記録可能（次回実施日にはメールで通知） | マイページorユーザー詳細では、各ユーザーの詳細な情報を確認可能。ここにもシェアボタンを設置 |
 <br>
 
 ## 機能概要
-### 実装済み機能
+### 実装機能紹介
 - 会員登録
 - ログイン
 - ログアウト
-- 投稿機能（楽天APIから取得した商品情報を紐付ける）
+- 投稿機能（楽天APIの商品情報/GoogleMapAPIの位置情報を紐付ける）
 - 投稿編集/削除
 - 投稿検索機能（タイトル・本文・自転車メーカー）
 - 投稿並べ替え機能（新着・古い・タイトル降順・タイトル昇順・いいね多い）
+- 投稿検索オートコンプリート機能（対象：タグ）
+- コメント機能
+- タグ機能
 - ユーザー編集（プロフィール/パスワードリセット）
 - ユーザー検索機能（ユーザーネーム・自転車メーカー）
+- ユーザー検索オートコンプリート（入力補完）機能（対象：ユーザー名）
 - 検索条件リセット機能
-- 検索オートコンプリート（入力補完）機能（現状ユーザー検索のみ）
 - フォロー機能
 - いいね機能
 - シェア機能（X,LINEへのシェア）
-
-### 今後の実装予定機能
-- コメント機能
-- タグ機能
-- 投稿検索オートコンプリート機能（対象はタグ）
 - マイバイク管理機能
-  - メンテナンス管理（いつ、どんなメンテナンスを行なったかを記録する機能）
-  - メンテナンス通知（給油や部品交換等の目安・時期を通知する機能）
-- 投稿に位置情報を紐づける機能（API(Google Map)を使用する予定）
+  - メンテナンス管理（いつメンテナンスを行なったかを記録する機能）
+  - メンテナンス通知（空気補充やチェーン洗浄/注油等の目安頻度・時期を通知する機能）
 
 ## 使用技術
 ### フロントエンド
@@ -107,7 +110,7 @@ XやFacebookなど以上に自転車に関連する投稿を発信しやすく�
 - Nginx
 
 ## インフラ構成図
-![charilog-infrastructure](https://github.com/kiyosan0517/charilog/assets/131296049/006bc42c-68f9-419e-869e-e672883a152a)
+![charilog-infrastructure](https://github.com/kiyosan0517/charilog/assets/131296049/e9469572-5028-469b-a246-b0b563bbf465)
 
 ## ER図
-![charilog-table](https://github.com/kiyosan0517/charilog/assets/131296049/38d125dd-d71b-4b1b-97ab-6b9bb7059e57)
+![charilog-table](https://github.com/kiyosan0517/charilog/assets/131296049/5a387e02-8b1c-458b-b28f-380f363a9b2f)
