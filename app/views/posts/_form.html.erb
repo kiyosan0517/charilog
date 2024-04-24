@@ -66,14 +66,25 @@
         <div class="form-group">
           <div class="d-flex align-items-center flex-wrap mb-2">
             <i class="fa-solid fa-location-dot me-1"></i>
-            <div class="fw-bold">ルート登録</div>
-            <span class="font-mini-size">（A:出発地 / B:経由地 / C:目的地）</span>
+            <div class="fw-bold me-1">ルート登録</div>
+            <% if f.object.new_record? %>
+              <span class="font-mini-size">(経由地1箇所→ A:出発地 / B:経由地 / C:目的地)</span>
+            <% else %>
+              <% if @route.waypoint_latitude.present? && @route.waypoint1_latitude.nil? %>
+                <span class="font-mini-size">（A:出発地 / B:経由地 / C:目的地）</span>
+              <% elsif @route.waypoint1_latitude.present? && @route.waypoint2_latitude.nil? %>
+                <span class="font-mini-size">（A:出発地 / B,C:経由地 / D:目的地）</span>
+              <% else %>
+                <span class="font-mini-size">（A:出発地 / B,C,D:経由地 / E:目的地）</span>
+              <% end %>
+            <% end %>
           </div>
 
           <% if f.object.new_record? %>
             <div class="route-add-detail text-danger font-mini-size fw-bold">
-              ・[タップ]or[クリック]で<span class="text-decoration-underline">A → B → C</span>の順に設定<br>
-              ・３地点設定後に<span class="text-decoration-underline">【ルート表示】</span>押下で登録可能<br>
+              ・[タップ],[クリック]で<span class="text-decoration-underline">A〜E</span>の順に設定<br>
+              ・<span class="text-decoration-underline">最大5地点(経由地3箇所を含む)</span>まで設定可能<br>
+              ・ルート表示/登録は<span class="text-decoration-underline">最低3地点(A,B,C)</span>が必要<br>
               ・投稿後の編集/削除不可
             </div>
             <!-- 地図表示エリア -->
@@ -84,6 +95,10 @@
             <%= f.hidden_field :start_longitude, id: "start_longitude" %>
             <%= f.hidden_field :waypoint_latitude, id: "waypoint_latitude" %>
             <%= f.hidden_field :waypoint_longitude, id: "waypoint_longitude" %>
+            <%= f.hidden_field :waypoint1_latitude, id: "waypoint1_latitude" %>
+            <%= f.hidden_field :waypoint1_longitude, id: "waypoint1_longitude" %>
+            <%= f.hidden_field :waypoint2_latitude, id: "waypoint2_latitude" %>
+            <%= f.hidden_field :waypoint2_longitude, id: "waypoint2_longitude" %>
             <%= f.hidden_field :end_latitude, id: "end_latitude" %>
             <%= f.hidden_field :end_longitude, id: "end_longitude" %>
 

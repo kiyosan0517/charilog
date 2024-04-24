@@ -37,8 +37,8 @@
   }
 
   function placeMarker(location) {
-    if (markers.length >= 3) {
-      alert("You've already placed 3 markers.");
+    if (markers.length >= 5) {
+      alert("ルート形成に使用可能なピンは最大5つです");
       return;
     }
 
@@ -55,12 +55,31 @@
     var index = markers.length - 1;
     document.getElementById('start_latitude').value = markers[0] ? markers[0].getPosition().lat() : '';
     document.getElementById('start_longitude').value = markers[0] ? markers[0].getPosition().lng() : '';
-    document.getElementById('waypoint_latitude').value = markers[1] ? markers[1].getPosition().lat() : '';
-    document.getElementById('waypoint_longitude').value = markers[1] ? markers[1].getPosition().lng() : '';
-    document.getElementById('end_latitude').value = markers[2] ? markers[2].getPosition().lat() : '';
-    document.getElementById('end_longitude').value = markers[2] ? markers[2].getPosition().lng() : '';
 
     if (markers.length === 3) {
+      document.getElementById('waypoint_latitude').value = markers[1] ? markers[1].getPosition().lat() : '';
+      document.getElementById('waypoint_longitude').value = markers[1] ? markers[1].getPosition().lng() : '';
+      document.getElementById('end_latitude').value = markers[2] ? markers[2].getPosition().lat() : '';
+      document.getElementById('end_longitude').value = markers[2] ? markers[2].getPosition().lng() : '';
+    } else if (markers.length === 4) {
+      document.getElementById('waypoint_latitude').value = markers[1] ? markers[1].getPosition().lat() : '';
+      document.getElementById('waypoint_longitude').value = markers[1] ? markers[1].getPosition().lng() : '';
+      document.getElementById('waypoint1_latitude').value = markers[2] ? markers[2].getPosition().lat() : '';
+      document.getElementById('waypoint1_longitude').value = markers[2] ? markers[2].getPosition().lng() : '';
+      document.getElementById('end_latitude').value = markers[3] ? markers[3].getPosition().lat() : '';
+      document.getElementById('end_longitude').value = markers[3] ? markers[3].getPosition().lng() : '';
+    } else if (markers.length === 5) {
+      document.getElementById('waypoint_latitude').value = markers[1] ? markers[1].getPosition().lat() : '';
+      document.getElementById('waypoint_longitude').value = markers[1] ? markers[1].getPosition().lng() : '';
+      document.getElementById('waypoint1_latitude').value = markers[2] ? markers[2].getPosition().lat() : '';
+      document.getElementById('waypoint1_longitude').value = markers[2] ? markers[2].getPosition().lng() : '';
+      document.getElementById('waypoint2_latitude').value = markers[3] ? markers[3].getPosition().lat() : '';
+      document.getElementById('waypoint2_longitude').value = markers[3] ? markers[3].getPosition().lng() : '';
+      document.getElementById('end_latitude').value = markers[4] ? markers[4].getPosition().lat() : '';
+      document.getElementById('end_longitude').value = markers[4] ? markers[4].getPosition().lng() : '';
+    }
+
+    if (markers.length >= 3) {
       DisplayRouteBtn.disabled = false;
     }
   }
@@ -74,6 +93,10 @@
     document.getElementById('start_longitude').value = '';
     document.getElementById('waypoint_latitude').value = '';
     document.getElementById('waypoint_longitude').value = '';
+    document.getElementById('waypoint1_latitude').value = '';
+    document.getElementById('waypoint1_longitude').value = '';
+    document.getElementById('waypoint2_latitude').value = '';
+    document.getElementById('waypoint2_longitude').value = '';
     document.getElementById('end_latitude').value = '';
     document.getElementById('end_longitude').value = '';
 
@@ -84,12 +107,22 @@
 
   function displayRoute() {
     var start = markers[0].getPosition();
-    var waypoint = markers[1].getPosition();
-    var end = markers[2].getPosition();
+    var end = markers[markers.length - 1].getPosition();
+    var waypoints = [];
+
+    // ウェイポイントが存在する場合、配列に追加
+    if (markers.length > 2) {
+      for (var i = 1; i < markers.length - 1; i++) {
+        waypoints.push({
+          location: markers[i].getPosition(),
+          stopover: true
+        });
+      }
+    }
 
     var request = {
       origin: start,
-      waypoints: [{ location: waypoint, stopover: true }],
+      waypoints: waypoints,
       destination: end,
       travelMode: 'BICYCLING'
     };

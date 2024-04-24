@@ -95,7 +95,13 @@
           <div class="d-flex align-items-center flex-wrap mb-2">
             <i class="fa-solid fa-location-dot me-1"></i>
             <div class="fw-bold">移動ルート</div>
-            <span class="font-mini-size">（A:出発地 / B:経由地 / C:目的地）</span>
+            <% if @route.waypoint_latitude.present? && @route.waypoint1_latitude.nil? %>
+              <span class="font-mini-size">（A:出発地 / B:経由地 / C:目的地）</span>
+            <% elsif @route.waypoint1_latitude.present? && @route.waypoint2_latitude.nil? %>
+              <span class="font-mini-size">（A:出発地 / B,C:経由地 / D:目的地）</span>
+            <% else %>
+              <span class="font-mini-size">（A:出発地 / B,C,D:経由地 / E:目的地）</span>
+            <% end %>
           </div>
           <!-- 地図表示エリア -->
           <div id="map" style="height: 300px;"></div>
@@ -181,12 +187,27 @@
 
     function displayRoute() {
       var start = {lat: <%= @route.start_latitude %>, lng: <%= @route.start_longitude %>};
-      var waypoint = {lat: <%= @route.waypoint_latitude %>, lng: <%= @route.waypoint_longitude %>};
       var end = {lat: <%= @route.end_latitude %>, lng: <%= @route.end_longitude %>};
+      var waypoints = [];
+
+      <% if @route.waypoint_latitude.present? %>
+        var waypoint = {lat: <%= @route.waypoint_latitude %>, lng: <%= @route.waypoint_longitude %>}
+        waypoints.push({ location: waypoint, stopover: true });
+      <% end %>
+
+      <% if @route.waypoint1_latitude.present? %>
+        var waypoint1 = {lat: <%= @route.waypoint1_latitude %>, lng: <%= @route.waypoint1_longitude %>}
+        waypoints.push({ location: waypoint1, stopover: true });
+      <% end %>
+
+      <% if @route.waypoint2_latitude.present? %>
+        var waypoint2 = {lat: <%= @route.waypoint2_latitude %>, lng: <%= @route.waypoint2_longitude %>}
+        waypoints.push({ location: waypoint2, stopover: true });
+      <% end %>
 
       var request = {
         origin: start,
-        waypoints: [{ location: waypoint, stopover: true }],
+        waypoints: waypoints,
         destination: end,
         travelMode: 'BICYCLING'
       };
