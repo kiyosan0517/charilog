@@ -67,7 +67,17 @@
           <div class="d-flex align-items-center flex-wrap mb-2">
             <i class="fa-solid fa-location-dot me-1"></i>
             <div class="fw-bold me-1">ルート登録</div>
-            <span class="font-mini-size">(経由地1箇所の場合 → A:出発地,B:経由地,C:目的地)</span>
+            <% if f.object.new_record? %>
+              <span class="font-mini-size">(経由地1箇所→ A:出発地 / B:経由地 / C:目的地)</span>
+            <% else %>
+              <% if @route.waypoint_latitude.present? && @route.waypoint1_latitude.nil? %>
+                <span class="font-mini-size">（A:出発地 / B:経由地 / C:目的地）</span>
+              <% elsif @route.waypoint1_latitude.present? && @route.waypoint2_latitude.nil? %>
+                <span class="font-mini-size">（A:出発地 / B,C:経由地 / D:目的地）</span>
+              <% else %>
+                <span class="font-mini-size">（A:出発地 / B,C,D:経由地 / E:目的地）</span>
+              <% end %>
+            <% end %>
           </div>
 
           <% if f.object.new_record? %>
