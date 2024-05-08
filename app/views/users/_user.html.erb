@@ -10,6 +10,9 @@
     <div>
       <%= link_to user.name, user_path(user), class: "user-name text-nowrap text-dark hover-opacity-50",
                                               style: "text-decoration:none;" %>
+      <% unless user.public? || current_user&.following?(user) && user&.following?(current_user) || user.id == current_user.id %>
+        <i class="fa-solid fa-lock ms-1"></i>
+      <% end %>
     </div>
     <div class="font-mini-size text-nowrap mt-2">
       <%= t("users.show.follower") %>

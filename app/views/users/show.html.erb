@@ -22,6 +22,9 @@
             <%= User.human_attribute_name(:name) %>
             <span>:</span>
             <%= @user.name %>
+            <% unless @user.public? || current_user&.following?(@user) && @user&.following?(current_user) || @user.id == current_user.id %>
+              <i class="fa-solid fa-lock ms-1"></i>
+            <% end %>
           </div>
           <div class="bike-name mb-2">
             <i class="fas fa-bicycle"></i>

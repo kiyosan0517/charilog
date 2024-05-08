@@ -44,9 +44,18 @@
             <%= f.select :my_bike, User.my_bikes.keys, { include_blank: t("defaults.select_bike") }, class: 'form-select form-control bg-light', id: "my_bike" %>
           </div>
           <div class="form-group">
-            <i class="fas fa-bicycle"></i>
-            <%= f.label :public, class: "fw-bold text-break", for: "public_setting" %>
-            <%= f.select :public, [['公開（全てのユーザーにログを公開）', true], ['非公開（相互フォローに限りログを公開）', false]], { include_blank: t("defaults.select_public_setting") }, class: 'form-select form-control bg-light', id: "public_setting" %>
+            <div class="mb-2 d-flex align-items-center">
+              <i class="fa-solid fa-user-lock"></i>
+              <div class="fw-bold text-break ms-1">テキストを配置したい内容</div>
+            </div>
+            <div class="form-check ms-1">
+              <%= f.radio_button :public, true, id: "public_setting_true", class: "form-check-input" %>
+              <%= f.label "public_setting_true", "公開（全てのユーザーにログを公開）", class: "form-check-label", for: "public_setting_true" %>
+            </div>
+            <div class="form-check ms-1">
+              <%= f.radio_button :public, false, id: "public_setting_false", class: "form-check-input" %>
+              <%= f.label "public_setting_false", "非公開（相互フォローに限りログを公開）", class: "form-check-label", for: "public_setting_false" %>
+            </div>
           </div>
           <div class="form-group">
             <i class="fas fa-envelope"></i>
