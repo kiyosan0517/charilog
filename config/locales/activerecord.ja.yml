@@ -100,7 +100,7 @@ ja:
         name: 'ユーザー名'
         password: 'パスワード'
         password_confirmation: 'パスワード確認'
-        public: '公開 / 非公開設定'
+        public: 'ログ公開 / 非公開設定'
   attributes:
     created_at: '作成日時'
     updated_at: '更新日時'
