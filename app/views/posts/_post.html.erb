@@ -20,49 +20,57 @@
       </div>
     </div>
 
-    <%= link_to post_path(post), class:"text-dark", style:"text-decoration:none;" do %>
-      <% if post.images.present? %>
-        <div class="img-area">
-          <div id="img-carousel" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators" style="<%= post.images.length <= 1 ? 'display: none;' : 'cursor: default;' %>">
-              <% post.images.each_with_index do |image, index| %>
-                <li data-target="#img-carousel" data-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>"></li>
-              <% end %>
-            </ol>
+    <% if post.user.public? || current_user&.following?(post.user) && post.user&.following?(current_user) || post.user.id == current_user.id %>
+      <%= link_to post_path(post), class:"text-dark", style:"text-decoration:none;" do %>
+        <% if post.images.present? %>
+          <div class="img-area">
+            <div id="img-carousel" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators" style="<%= post.images.length <= 1 ? 'display: none;' : 'cursor: default;' %>">
+                <% post.images.each_with_index do |image, index| %>
+                  <li data-target="#img-carousel" data-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>"></li>
+                <% end %>
+              </ol>
 
-            <div class="carousel-inner">
-              <% post.images.each_with_index do |image, index| %>
-                <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
-                  <%= image_tag(image.variant(gravity: :center, resize: "530x323^", crop: "530x323+0+0").processed, class: "d-block mx-auto img-fluid hover-opacity-75") %>
-                </div>
-              <% end %>
+              <div class="carousel-inner">
+                <% post.images.each_with_index do |image, index| %>
+                  <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
+                    <%= image_tag(image.variant(gravity: :center, resize: "530x323^", crop: "530x323+0+0").processed, class: "d-block mx-auto img-fluid hover-opacity-75") %>
+                  </div>
+                <% end %>
+              </div>
             </div>
           </div>
-        </div>
-      <% else %>
-        <%= image_tag "no_image.png", class: "d-block mx-auto img-fluid hover-opacity-75 border-bottom #{controller_name == 'users' && action_name == 'show' ? '' : 'border-top'}",
-                                      style: "height: auto; width: auto;" %>
-      <% end %>
+        <% else %>
+          <%= image_tag "no_image.png", class: "d-block mx-auto img-fluid hover-opacity-75 border-bottom #{controller_name == 'users' && action_name == 'show' ? '' : 'border-top'}",
+                                        style: "height: auto; width: auto;" %>
+        <% end %>
 
-      <div class="card-body hover-opacity-50 pt-3">
-        <div class="d-flex align-items-center h4 mb-3">
-          <%= render 'posts/likes_items_comments_count', post: post %>
-          <% if post.route.present? %>
-            <i class="fa-solid fa-map-location-dot ms-auto"></i>
-          <% end %>
+        <div class="card-body hover-opacity-50 pt-3">
+          <div class="d-flex align-items-center h4 mb-3">
+            <%= render 'posts/likes_items_comments_count', post: post %>
+            <% if post.route.present? %>
+              <i class="fa-solid fa-map-location-dot ms-auto"></i>
+            <% end %>
+          </div>
+          <h5 class="card-title post-title fw-bold mb-0"><%= post.title %></h5>
+          <div class="mb-2">
+            <% post.tags.each do |tag| %>
+              <div class="badge rounded-2 bg-secondary bg-gradient text-white"><%= tag.name %></div>
+            <% end %>
+          </div>
+          <p class="card-text post-content m-0"><%= safe_join(post.content.truncate(30).split("\n"),tag(:br)) %></p>
+          <span class="text-secondary">
+            <i class="far fa-clock clock-icon me-1">
+            </i><%= time_ago_in_words(post.created_at) %>前
+          </span>
         </div>
-        <h5 class="card-title post-title fw-bold mb-0"><%= post.title %></h5>
-        <div class="mb-2">
-          <% post.tags.each do |tag| %>
-            <div class="badge rounded-2 bg-secondary bg-gradient text-white"><%= tag.name %></div>
-          <% end %>
-        </div>
-        <p class="card-text post-content m-0"><%= safe_join(post.content.truncate(30).split("\n"),tag(:br)) %></p>
-        <span class="text-secondary">
-          <i class="far fa-clock clock-icon me-1">
-          </i><%= time_ago_in_words(post.created_at) %>前
-        </span>
+      <% end %>
+    <% else %>
+      <div class="py-5 px-4 px-sm-5 border-top">
+        <h4 class="fw-bold pb-1 mt-5">ログは非公開です。</h4>
+        <p class="mb-5"><%= "#{post.user.name}さんと相互フォロー(お互いにフォローし合っている状態)になった場合のみログが表示されます。" %></p>
       </div>
     <% end %>
   </div>
 </div>
+
