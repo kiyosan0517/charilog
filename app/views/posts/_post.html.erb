@@ -1,68 +1,70 @@
-<div class="col-12 col-sm-10 col-md-6 col-xl-4 mb-3 px-4 px-sm-2">
-  <div class="card shadow-sm">
-    <div class="header-area <%= controller_name == 'users' && action_name == 'show' ? 'd-none' : '' %>">
-      <div class="container">
-        <div class="user-panel d-flex align-items-center py-2">
-          <div class="user-avatar me-2">
-            <%= link_to user_path(post.user) do %>
-              <%= image_tag post.user.avatar.variant(gravity: :center, resize: "50x50^", crop:"50x50+0+0").processed, class: "rounded-circle bg-dark-subtle hover-opacity-75", style: "display: inline-block;" %>
-            <% end %>
-          </div>
-          <div class="user-name d-flex align-items-center text-break">
-            <%= link_to post.user.name, user_path(post.user), class: "fw-bold text-dark hover-opacity-50", style:"text-decoration:none;" %>
-          </div>
-          <div class="operation_area d-flex align-items-center ml-auto">
-            <% if current_user.own?(post) %>
-              <%= render 'posts/crud_menus', post: post %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <%= link_to post_path(post), class:"text-dark", style:"text-decoration:none;" do %>
-      <% if post.images.present? %>
-        <div class="img-area">
-          <div id="img-carousel" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators" style="<%= post.images.length <= 1 ? 'display: none;' : 'cursor: default;' %>">
-              <% post.images.each_with_index do |image, index| %>
-                <li data-target="#img-carousel" data-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>"></li>
+<% if post.user.public? || current_user&.following?(post.user) && post.user&.following?(current_user) || post.user.id == current_user.id %>
+  <div class="col-12 col-sm-10 col-md-6 col-xl-4 mb-3 px-4 px-sm-2">
+    <div class="card shadow-sm">
+      <div class="header-area <%= controller_name == 'users' && action_name == 'show' ? 'd-none' : '' %>">
+        <div class="container">
+          <div class="user-panel d-flex align-items-center py-2">
+            <div class="user-avatar me-2">
+              <%= link_to user_path(post.user) do %>
+                <%= image_tag post.user.avatar.variant(gravity: :center, resize: "50x50^", crop:"50x50+0+0").processed, class: "rounded-circle bg-dark-subtle hover-opacity-75", style: "display: inline-block;" %>
               <% end %>
-            </ol>
-
-            <div class="carousel-inner">
-              <% post.images.each_with_index do |image, index| %>
-                <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
-                  <%= image_tag(image.variant(gravity: :center, resize: "530x323^", crop: "530x323+0+0").processed, class: "d-block mx-auto img-fluid hover-opacity-75") %>
-                </div>
+            </div>
+            <div class="user-name d-flex align-items-center text-break">
+              <%= link_to post.user.name, user_path(post.user), class: "fw-bold text-dark hover-opacity-50", style:"text-decoration:none;" %>
+            </div>
+            <div class="operation_area d-flex align-items-center ml-auto">
+              <% if current_user.own?(post) %>
+                <%= render 'posts/crud_menus', post: post %>
               <% end %>
             </div>
           </div>
         </div>
-      <% else %>
-        <%= image_tag "no_image.png", class: "d-block mx-auto img-fluid hover-opacity-75 border-bottom #{controller_name == 'users' && action_name == 'show' ? '' : 'border-top'}",
-                                      style: "height: auto; width: auto;" %>
-      <% end %>
-
-      <div class="card-body hover-opacity-50 pt-3">
-        <div class="d-flex align-items-center h4 mb-3">
-          <%= render 'posts/likes_items_comments_count', post: post %>
-          <% if post.route.present? %>
-            <i class="fa-solid fa-map-location-dot ms-auto"></i>
-          <% end %>
-        </div>
-        <h5 class="card-title post-title fw-bold mb-0"><%= post.title %></h5>
-        <div class="mb-2">
-          <% post.tags.each do |tag| %>
-            <div class="badge rounded-2 bg-secondary bg-gradient text-white"><%= tag.name %></div>
-          <% end %>
-        </div>
-        <p class="card-text post-content m-0"><%= safe_join(post.content.truncate(30).split("\n"),tag(:br)) %></p>
-        <span class="text-secondary">
-          <i class="far fa-clock clock-icon me-1">
-          </i><%= time_ago_in_words(post.created_at) %>前
-        </span>
       </div>
-    <% end %>
+
+      <%= link_to post_path(post), class:"text-dark", style:"text-decoration:none;" do %>
+        <% if post.images.present? %>
+          <div class="img-area">
+            <div id="img-carousel" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators" style="<%= post.images.length <= 1 ? 'display: none;' : 'cursor: default;' %>">
+                <% post.images.each_with_index do |image, index| %>
+                  <li data-target="#img-carousel" data-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>"></li>
+                <% end %>
+              </ol>
+
+              <div class="carousel-inner">
+                <% post.images.each_with_index do |image, index| %>
+                  <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
+                    <%= image_tag(image.variant(gravity: :center, resize: "530x323^", crop: "530x323+0+0").processed, class: "d-block mx-auto img-fluid hover-opacity-75") %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% else %>
+          <%= image_tag "no_image.png", class: "d-block mx-auto img-fluid hover-opacity-75 border-bottom #{controller_name == 'users' && action_name == 'show' ? '' : 'border-top'}",
+                                        style: "height: auto; width: auto;" %>
+        <% end %>
+
+        <div class="card-body hover-opacity-50 pt-3">
+          <div class="d-flex align-items-center h4 mb-3">
+            <%= render 'posts/likes_items_comments_count', post: post %>
+            <% if post.route.present? %>
+              <i class="fa-solid fa-map-location-dot ms-auto"></i>
+            <% end %>
+          </div>
+          <h5 class="card-title post-title fw-bold mb-0"><%= post.title %></h5>
+          <div class="mb-2">
+            <% post.tags.each do |tag| %>
+              <div class="badge rounded-2 bg-secondary bg-gradient text-white"><%= tag.name %></div>
+            <% end %>
+          </div>
+          <p class="card-text post-content m-0"><%= safe_join(post.content.truncate(30).split("\n"),tag(:br)) %></p>
+          <span class="text-secondary">
+            <i class="far fa-clock clock-icon me-1">
+            </i><%= time_ago_in_words(post.created_at) %>前
+          </span>
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
+<% end %>

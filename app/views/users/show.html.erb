@@ -80,22 +80,29 @@
     <%= render 'posts/sort_posts_menu' %>
   </div>
 
-  <div class="row mb-sm-4 justify-content-center">
-    <% if @posts.present? %>
-      <%= render @posts %>
-    <% else %>
-      <div class="text-center text-secondary mt-4 mb-5"><%= t(".no_post") %></div>
-      <% if current_user.id == @user.id %>
-        <div class="text-center">
-          <%= link_to t(".leave_log!"), new_post_path, class: "btn btn-info" %>
-        </div>
+  <% if @user.public? || current_user&.following?(@user) && @user&.following?(current_user) || @user.id == current_user.id %>
+    <div class="row mb-sm-4 justify-content-center">
+      <% if @posts.present? %>
+        <%= render @posts %>
+      <% else %>
+        <div class="text-center text-secondary mt-4 mb-5"><%= t(".no_post") %></div>
+        <% if current_user.id == @user.id %>
+          <div class="text-center">
+            <%= link_to t(".leave_log!"), new_post_path, class: "btn btn-info" %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
 
-  <div class="row mt-3">
-    <%= paginate @posts, theme: 'twitter-bootstrap-4' %>
-  </div>
+    <div class="row mt-3">
+      <%= paginate @posts, theme: 'twitter-bootstrap-4' %>
+    </div>
+  <% else %>
+    <div class="my-5 py-5 px-4 px-sm-5">
+      <h4 class="fw-bold pb-1">ログは非公開です。</h4>
+      <p><%= "#{@user.name}さんと相互フォロー(お互いにフォローし合っている状態)になった場合のみログが表示されます。" %></p>
+    </div>
+  <% end %>
 
   <%= render "shared/scroll_top/" %>
 
